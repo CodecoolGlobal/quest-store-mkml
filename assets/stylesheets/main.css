@@ -60,6 +60,7 @@ table {
  */
 
 .primary-header {
+    z-index: 1;
     background-color: #133C55;
     background-image: linear-gradient(#081A26, #133C55);
     color: aliceblue;
