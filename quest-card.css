@@ -55,19 +55,55 @@ table {
     border-radius: 20px;
     width: 300px;
     height: 450px;
-    background: lightgrey;
+    background-image:url("assets/quest-card/quest-card-background.png");
+
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .quest-card-header{
+    text-align: center;
+    font-size: 25px;
+    margin: 25px 10px 20px 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.quest-card-price{
+    background-image: url("assets/quest-card/quest-card-price.png");
+    height: 60px;
+    width: 60px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    }
+
+.quest-card-price-box{
+    position: absolute;
+    font-size: 20px;
 }
 
 .quest-card-image img{
-    position: fixed;
+    /*position: fixed;*/
     width: 280px;
     margin-left: 10px;
 }
 
+.quest-card-text-box{
+    background-image:url("assets/quest-card/quest-card-text.png");
+    width: 280px;
+    height: 100%;
+    margin: 10px;
+}
+
 .quest-card-text{
-    
+    font-size: 20px;
+    line-height: 1.5em;
+    padding: 10px;
 }
