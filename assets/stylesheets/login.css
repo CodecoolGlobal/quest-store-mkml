@@ -10,7 +10,7 @@ html, body {
 
 body {
     background: #133C55;
-    background-image: linear-gradient(to right, #051937, #1d3054, #354974, #4c6495, #6580b7, #5c96cd, #4eace0, #3fc2ef, #1dd2e0, #53ddc5, #90e5a5, #cbe78c);
+    background-image: linear-gradient(to right, #1d3054, #354974, #4c6495, #6580b7, #5c96cd, #4eace0, #3fc2ef, #1dd2e0, #53ddc5, #90e5a5);
 }
 
 div.primary-login-container {
