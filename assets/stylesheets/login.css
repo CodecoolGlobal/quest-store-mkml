@@ -1,0 +1,114 @@
+/*
+  ========================================
+  Login Form Styles
+  ========================================
+*/
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: #133C55;
+    background: linear-gradient(to left, #f6f1d3, #648880, #293f50);
+}
+
+div.primary-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-form {
+    height: 500px;
+    width: 300px;
+    background-color: #ffffff;
+}
+
+.login-form div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.half-way-of-logo {
+    height: 60px;
+}
+
+div.login-header-gradient {
+    background: #133C55;
+    background: linear-gradient(to right, #f6f1d3, #648880, #293f50);
+}
+
+img.login-header-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    position: relative;
+    top: 74px;
+}
+
+.login-form-container label {
+    visibility: hidden;
+}
+
+label.remember-me {
+    visibility: visible;
+    font-size: 12px;
+    color: #648880;
+}
+
+.remember-me-container {
+    display: block;
+    position: relative;
+    left: -56px;
+}
+
+.login-form-container input {
+    border-radius: 10px;
+    border: 1px solid rgba(19, 60, 85, 0.671);
+    height: 35px;
+    width: 200px;
+    font-size: 14px;
+    text-align: center;
+}
+
+::placeholder {
+    color: #648880;
+}
+
+input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    vertical-align: bottom;
+}
+
+input.submit-button {
+    color: #ffffff;
+    width: 210px;
+    border-radius: 10px;
+    background-color: #133C55;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.5),
+        0 1px 0 rgba(255, 255, 255, 0.25) inset,
+        0 0 0 rgba(0, 0, 0, 0.25) inset,
+        0 20px 0 rgba(255, 255, 255, 0.03) inset,
+        0 -20px 20px rgba(0, 0, 0, 0.15) inset,
+        0 20px 20px rgba(255, 255, 255, 0.05) inset;
+    transition: all 0.2s linear 0s;
+}
+
+input.submit-button:hover {
+    cursor: pointer;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.25),
+        0 1px 0 rgba(255, 255, 255, 0.25) inset,
+        0 0 0 rgba(0, 0, 0, 0.5) inset,
+        0 1.25rem 0 rgba(255, 255, 255, 0.08) inset,
+        0 -1.25rem 1.25rem rgba(0, 0, 0, 0.3) inset,
+        0 1.25rem 1.25rem rgba(255, 255, 255, 0.1) inset;
+}
