@@ -1,10 +1,10 @@
 /*
 ================================
-    Quest Card
+    Item Card
 ============================
  */
 
-.quest-card{
+.item-card{
     margin: 20px;
     border-style: solid;
     border-color: black;
@@ -17,15 +17,16 @@
     flex-flow: column nowrap;
 }
 
-.quest-card-basic{
-    background-image:url("../images/quest-card/quest-card-background-basic.png");
+.item-card-silver{
+    background-image:url("../images/item-card/item-background-silver.png");
+
+}
+.item-card-gold{
+    background-image:url("../images/item-card/item-background-gold.png");
+
 }
 
-.quest-card-extra{
-    background-image: url("../images/quest-card/quest-card-background-extra.png");
-}
-
-.quest-card-header{
+.item-card-header{
     text-align: center;
     font-size: 25px;
     margin: 25px 10px 20px 10px;
@@ -35,7 +36,7 @@
     align-items: center;
 }
 
-.quest-card-price{
+.item-card-price{
     background-image: url("../images/quest-card/quest-card-price.png");
     height: 60px;
     width: 60px;
@@ -46,35 +47,34 @@
     align-items: center;
     flex-grow: 0;
     flex-shrink: 0;
-    border-style: solid;
     border-width: 1px;
-    z-index: 1;
+    border-style: solid;
     }
 
-.quest-card-price-box{
+.item-card-price-box{
     position: absolute;
     font-size: 20px;
 }
 
-.quest-card-image img{
+.item-card-image img{
     /*position: fixed;*/
     width: 280px;
     margin-left: 10px;
 }
 
-.quest-card-category{
+.item-card-category{
     font-size: 20px;
     margin: 5px 10px 5px 10px;
 }
 
-.quest-card-text-box{
+.item-card-text-box{
     background-image:url("../images/quest-card/quest-card-text.png");
     width: 280px;
     height: 100%;
     margin: 10px;
 }
 
-.quest-card-text{
+.item-card-text{
     font-size: 20px;
     line-height: 1.5em;
     padding: 10px;
