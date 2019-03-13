@@ -1,0 +1,76 @@
+/*
+================================
+    Item Card
+============================
+ */
+
+.item-card{
+    margin: 20px;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    border-radius: 20px;
+    width: 300px;
+    height: 450px;
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.item-card-silver{
+    background-image:url("../images/item-card/item-background-silver.png");
+
+}
+.item-card-gold{
+    background-image:url("../images/item-card/item-background-gold.png");
+
+}
+
+.item-card-header{
+    text-align: center;
+    font-size: 25px;
+    margin: 25px 10px 20px 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-card-price{
+    background-image: url("../images/quest-card/quest-card-price.png");
+    height: 60px;
+    width: 60px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-width: 1px;
+    border-style: solid;
+    }
+
+.item-card-price-box{
+    position: absolute;
+    font-size: 20px;
+}
+
+.item-card-image img{
+    /*position: fixed;*/
+    width: 280px;
+    margin-left: 10px;
+}
+
+.item-card-text-box{
+    background-image:url("../images/quest-card/quest-card-text.png");
+    width: 280px;
+    height: 100%;
+    margin: 10px;
+}
+
+.item-card-text{
+    font-size: 20px;
+    line-height: 1.5em;
+    padding: 10px;
+}

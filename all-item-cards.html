@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <link rel="stylesheet" href="assets/stylesheets/item-cards.css">
+</head>
+<body onpageshow="progressBar()">
+<header class="primary-header">
+    <div class="container">
+        <div class="sub-header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="LOGO">
+                </a>
+            </div>
+            <div class="user-status">
+                <div class="level">
+                    <div>
+                        <h2> Level: &nbsp</h2>
+                        <h2> 5 </h2>
+                    </div>
+                    <div id="myProgress" >
+                        <div id="myBar"></div>
+                    </div>
+                </div>
+                <div class="coins">
+                    <h2>Coins: &nbsp</h2>
+                    <h2> 2400 </h2>
+                </div>
+            </div>
+        </div>
+        <nav class="primary-nav">
+            <ul>
+                <li><a href="index.html">Some text</a></li>
+                <li><a href="#">Sometext</a></li>
+                <li><a href="#">Other</a></li>
+                <li><a href="#">Ororor</a></li>
+            </ul>
+            <div id="logout">
+                <img src="assets/images/logout.png" alt="Logout">
+            </div>
+        </nav>
+    </div>
+</header>
+<section style="display: flex; flex-flow: row wrap">
+    <div class="item-card item-card-silver">
+        <div class="item-card-header">Combat training
+            <div class="item-card-price">
+                <div class="item-card-price-box">50</div>
+            </div>
+        </div>
+        <div class="item-card-image">
+            <img src="assets/images/item-card/item-sword-training.jpg" alt="Combat training">
+        </div>
+        <div class="item-card-text-box">
+            <div class="item-card-text">Finishing a Teamwork week </div>
+        </div>
+    </div>
+
+    <div class="item-card item-card-gold">
+        <div class="item-card-header">Circle of Sorcery
+            <div class="item-card-price">
+                <div class="item-card-price-box">1000</div>
+            </div>
+        </div>
+        <div class="item-card-image">
+            <img src="assets/images/item-card/item-sorcery-circle.jpg" alt="Circle of sorcery">
+        </div>
+        <div class="item-card-text-box">
+            <div class="item-card-text">60 min workshop by a mentor(s) of the chosen topic </div>
+        </div>
+    </div>
+
+</section>
+<footer class="primary-footer">
+    <div class="logo">
+        <a href="index.html">
+            <img src="assets/images/logo.png" alt="Logo">
+        </a>
+    </div>
+    <div>
+        <small>&copy; CodeClimbersCorp</small>
+    </div>
+    <div>
+
+    </div>
+</footer>
+<script src="Scripts/script.js"></script>
+</body>
+</html>
