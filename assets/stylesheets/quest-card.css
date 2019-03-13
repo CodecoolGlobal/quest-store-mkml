@@ -12,10 +12,17 @@
     border-radius: 20px;
     width: 300px;
     height: 450px;
-    background-image:url("../quest-card/quest-card-background.png");
 
     display: flex;
     flex-flow: column nowrap;
+}
+
+.quest-card-basic{
+    background-image:url("../quest-card/quest-card-background-basic.png");
+}
+
+.quest-card-extra{
+    background-image: url("../quest-card/quest-card-background-extra.png");
 }
 
 .quest-card-header{
