@@ -48,7 +48,6 @@
     flex-shrink: 0;
     border-style: solid;
     border-width: 1px;
-    z-index: 1;
     }
 
 .quest-card-price-box{
