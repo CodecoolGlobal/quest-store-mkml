@@ -8,18 +8,23 @@
 <body style="display: flex; flex-flow: column">
 
 <div class="quest-card">
-    <div class="quest-card-header">Exploring a dungeon
+    <div class = "quest-card-header">
+    <div id="description" class="quest-card-description" contenteditable="true">Exploring a dungeon
+    </div>
         <div class="quest-card-price">
-            <div class="quest-card-price-box">100</div>
+            <div id="price" class="quest-card-price-box" contenteditable="true" >100
+            </div>
         </div>
     </div>
     <div class="quest-card-image">
         <img src="assets/quest-card/quest-exploring-a-dungeon" alt="dungeon image">
     </div>
     <div class="quest-card-text-box">
-        <div class="quest-card-text">Finishing a Teamwork week </div>
+        <div id="cardText" class="quest-card-text" contenteditable="true" >Finishing a Teamwork week </div>
+        <button class="myButton" onclick="sendInfoQuestCard()">Save changes</button>
     </div>
 </div>
+
 
 <div class="quest-card">
     <div class="quest-card-header">Solving the magic puzzle
@@ -31,9 +36,9 @@
         <img src="assets/quest-card/quest-magic-puzzle.jpg" alt="magic puzzle">
     </div>
     <div class="quest-card-text-box">
-        <div class="quest-card-text">Finishing an SI assignment </div>
+        <div class="quest-card-text" >Finishing an SI assignment </div>
     </div>
 </div>
-
+<script src="Scripts/script.js"></script>
 </body>
 </html>

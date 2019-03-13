@@ -3,7 +3,14 @@
     Quest Card
 ============================
  */
+.quest-card-header{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding-top: 5px;
+    margin-bottom: 50px;
 
+}
 .quest-card{
     margin: 20px;
     border-style: solid;
@@ -25,7 +32,7 @@
     background-image: url("../quest-card/quest-card-background-extra.png");
 }
 
-.quest-card-header{
+.quest-card-description{
     text-align: center;
     font-size: 25px;
     margin: 25px 10px 20px 10px;
@@ -62,6 +69,10 @@
 }
 
 .quest-card-text-box{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column;
     background-image:url("../quest-card/quest-card-text.png");
     width: 280px;
     height: 100%;
@@ -72,4 +83,34 @@
     font-size: 20px;
     line-height: 1.5em;
     padding: 10px;
+}
+textarea {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 20px;
+    min-height: 20px;
+
+}
+
+.myButton {
+    background-color:#3870a4;
+    -moz-border-radius:28px;
+    -webkit-border-radius:28px;
+    border-radius:28px;
+    border:1px solid #3870a4;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:12px;
+    padding:11px 22px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #3870a4;
+}
+.myButton:hover {
+    background-color:#3870a4;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
 }

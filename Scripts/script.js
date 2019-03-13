@@ -17,3 +17,11 @@ function progressBar() {
 
 
 }
+
+function sendInfoQuestCard() {
+    var questCardDescrip = document.getElementById("description").innerHTML;
+    var questCardPriceBox = document.getElementById("price").innerHTML;
+    var questCardText = document.getElementById("cardText").innerHTML;
+
+    //Here add function that send these data to DB
+}
