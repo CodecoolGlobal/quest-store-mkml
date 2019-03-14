@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Quest store</title>
+    <link rel="stylesheet" href="assets/stylesheets/student-card.css">
     <link rel="stylesheet" href="assets/stylesheets/main.css">
 </head>
 <body>
@@ -38,7 +39,69 @@
     </div>
 </header>
 <section class="main-info">
+    <div class="student-info-container">
+        <div class="student-info-table">
 
+            <div class="user-category-name"></div>
+
+            <div class="student-profile-picture">
+                <img src="assets/images/student-card/student.png" alt="Student" class="student-picture">
+            </div>
+
+            <div class="profile-picture-upload">
+                <label for="file-input" class="file-upload">
+                    <img src="assets/images/user-cards/photo-upload.png">
+                </label>
+
+                <input type="file" name="file-input" accept="image/*">
+            </div>
+
+            <div class="student-editable">
+                <ul class="student-information">
+                    <li class="student-name" contenteditable="true" id="student-default-name">Name</li>
+                    <li class="student-email" contenteditable="true" id="student-default-email">E-mail</li>
+                    <li class="student-class" contenteditable="true" id="student-default-class">Class</li>
+                    <li class="students-atrifacts"></li>
+                    <button type="button" class="students-artifacts-button">Artifacts</button>
+                    </li>
+                </ul>
+
+                <button type="submit" name="submit-button" class="submit-button" onclick="sendInfoStudentCard()">Save</button>
+            </div>
+        </div>
+
+        <div class="student-info-table">
+
+            <div class="user-category-name"></div>
+
+            <div class="student-profile-picture">
+                <img src="assets/images/student-card/student.png" alt="Student" class="student-picture">
+            </div>
+
+            <div class="profile-picture-upload">
+                <label for="file-input" class="file-upload">
+                    <img src="assets/images/user-cards/photo-upload.png">
+                </label>
+
+                <input type="file" name="file-input" accept="image/*">
+            </div>
+
+            <div class="student-editable">
+                <ul class="student-information">
+                    <li class="student-name" contenteditable="true" id="student-default-name">Name</li>
+                    <li class="student-email" contenteditable="true" id="student-default-email">E-mail</li>
+                    <li class="student-class" contenteditable="true" id="student-default-class">Class</li>
+                    <li class="students-atrifacts"></li>
+                    <button type="button" class="students-artifacts-button">Artifacts</button>
+                    </li>
+                </ul>
+
+                <button type="submit" name="submit-button" class="submit-button" onclick="sendInfoStudentCard()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="Scripts/user-cards.js"></script>
 </section>
 <footer class="primary-footer">
     <div class="logo">

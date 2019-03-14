@@ -10,12 +10,12 @@ html, body {
 
 /* centering */
 
-/* div.student-info-container {
+div.student-info-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-} */
+}
 
 div.student-info-table {
     border: 1px solid #dddddd;
