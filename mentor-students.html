@@ -40,7 +40,7 @@
 </header>
 <section class="main-info">
     <div class="student-info-container">
-        <div class="student-info-table">
+        <form class="student-info-table new-student">
 
             <div class="user-category-name"></div>
 
@@ -48,19 +48,14 @@
                 <img src="assets/images/student-card/student.png" alt="Student" class="student-picture">
             </div>
 
-            <div class="student-editable">
-                <ul class="student-information">
-                    <li class="student-name" contenteditable="true">Name</li>
-                    <li class="student-email" contenteditable="true">E-mail</li>
-                    <li class="student-class" contenteditable="true">Class</li>
-                    <li class="students-atrifacts">
-                        <button type="button" class="students-artifacts-button">Artifacts</button>
-                    </li>
-                </ul>
-
-                <button type="submit" name="submit-button" class="submit-button" onclick="sendInfoStudentCard()">Save</button>
+            <div class="student-information">
+                <input type="text" name="name" placeholder="Enter codecooler's name" required="required" class="new-student-template">
+                <input type="email" name="email" placeholder="Enter codecooler's email" required="required" class="new-student-template">
+                <input type="text" name="text" placeholder="Enter codecooler's class" required="required" class="new-student-template">
             </div>
-        </div>
+
+            <input type="submit" name="submit-button" class="submit-button" value="Recruit Codecooler">
+        </form>
 
         <div class="student-info-table">
 
