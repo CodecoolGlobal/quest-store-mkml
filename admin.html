@@ -31,6 +31,23 @@
 </header>
 <section class="main-info">
     <div class="mentor-info-container">
+        <form class="mentor-info-table new-mentor">
+
+            <div class="user-category-name"></div>
+
+            <div class="mentor-profile-picture">
+                <img src="assets/images/mentor-card/mentor.png" alt="Mentor" class="mentor-picture">
+            </div>
+
+            <div class="mentor-information">
+                <input type="text" name="name" placeholder="Enter mentor's name" required="required" class="new-mentor-template">
+                <input type="email" name="email" placeholder="Enter mentor's email" required="required" class="new-mentor-template">
+                <input type="text" name="text" placeholder="Enter mentor's class" required="required" class="new-mentor-template">
+            </div>
+
+            <input type="submit" name="submit-button" class="submit-button" value="Recruit Mentor">
+        </form>
+
         <div class="mentor-info-table">
 
             <div class="user-category-name"></div>
@@ -39,28 +56,46 @@
                 <img src="assets/images/mentor-card/mentor.png" alt="Mentor" class="mentor-picture">
             </div>
 
-            <div class="profile-picture-upload">
-                <label for="file-input" class="file-upload">
-                    <img src="assets/images/user-cards/photo-upload.png">
-                </label>
-
-                <input type="file" name="file-input" accept="image/*">
-            </div>
-
             <div class="mentor-editable">
                 <ul class="mentor-information">
                     <li class="mentor-name" contenteditable="true" id="mentor-default-name">Name</li>
                     <li class="mentor-email" contenteditable="true" id="mentor-default-email">E-mail</li>
                     <li class="mentor-class" contenteditable="true" id="mentor-default-class">Class</li>
-                    <li class="mentors-students"></li><button type="button" class="mentor-students-button">Students</button></li>
+                    <li class="mentors-students">
+                        <button type="button" class="mentor-students-button">Students</button>
+                    </li>
+                </ul>
+
+                <button type="submit" name="submit-button" class="submit-button" onclick="sendInfoMentorCard()">Save</button>
+            </div>
+        </div>
+
+        <div class="mentor-info-table">
+
+            <div class="user-category-name"></div>
+
+            <div class="mentor-profile-picture">
+                <img src="assets/images/mentor-card/mentor.png" alt="Mentor" class="mentor-picture">
+            </div>
+
+            <div class="mentor-editable">
+                <ul class="mentor-information">
+                    <li class="mentor-name" contenteditable="true">Name</li>
+                    <li class="mentor-email" contenteditable="true">E-mail</li>
+                    <li class="mentor-class" contenteditable="true">Class</li>
+                    <li class="mentors-students">
+                        <button type="button" class="mentor-students-button">Students</button>
+                    </li>
                 </ul>
 
                 <button type="submit" name="submit-button" class="submit-button" onclick="sendInfoMentorCard()">Save</button>
             </div>
         </div>
     </div>
+    </div>
 
 </section>
+
 <footer class="primary-footer">
     <div class="logo">
         <a href="admin.html">
