@@ -14,6 +14,17 @@ function progressBar() {
             width++;
             elem.style.width = width + '%';
         }
+}
 
 
+function sendInfoQuestCard() {
+    let questCardDescrip = document.getElementById("description").innerHTML;
+    let questCardPriceBox = document.getElementById("price").innerHTML;
+    let questCardText = document.getElementById("cardText").innerHTML;
+
+    //Here add function that send these data to DB
+}
+
+function changeCardColor(){
+    document.getElementById("p2").style.color = "blue";
 }

@@ -67,6 +67,10 @@
 }
 
 .quest-card-text-box{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column;
     background-image:url("../images/quest-card/quest-card-text.png");
     width: 280px;
     height: 100%;
@@ -76,5 +80,28 @@
 .quest-card-text{
     font-size: 20px;
     line-height: 1.5em;
-    padding: 10px;
+    padding: 5px;
+}
+
+
+.myButton {
+    background-color:#3870a4;
+    -moz-border-radius:28px;
+    -webkit-border-radius:28px;
+    border-radius:28px;
+    border:1px solid #3870a4;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:12px;
+    padding:11px 22px;
+    text-decoration:none;
+    text-shadow:0 1px 0 #3870a4;
+}
+.myButton:hover {
+    background-color:#3870a4;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
 }
