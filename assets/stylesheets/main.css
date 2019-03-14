@@ -180,6 +180,7 @@ table {
 
 .main-info {
     padding: 200px 75px;
+    background: #E1F7FC;
 }
 
 
@@ -280,4 +281,56 @@ table {
 .main-info h2 {
     font-size: 20px;
     text-transform: uppercase;
+}
+
+/*
+======================================
+    Class Table
+======================================
+ */
+
+.class-table{
+    overflow-x: auto;
+    text-align: left;
+    font-size: 25px;
+}
+
+.class-table tr{
+    height: 50px;
+    vertical-align: center;
+    border: 1px solid #9BE7F6;
+}
+
+
+.class-table tr th, td{
+    padding: 10px 20px;
+}
+
+.class-table td{
+    vertical-align: center;
+}
+
+.class-table-top-row{
+    background-color: #133C55;
+    color: white
+}
+
+.class-table tr:nth-child(even){background-color: #9BE7F6;}
+.class-table tr:hover{ background-color: #59A5D8;}
+
+.class-table-top-row:hover{background-color: #133C55;}
+
+.add-class-button{
+
+}
+
+.delete-class-button{
+    border-style: none;
+    background-color: transparent;
+    display: block;
+    margin: auto;
+
+}
+.delete-class-button img{
+    width: 40px;
 }
