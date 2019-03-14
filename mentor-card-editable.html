@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mentor Card</title>
+    <link rel="stylesheet" href="assets/stylesheets/mentor-card.css">
+</head>
+
+<body>
+    <div class="mentor-info-container">
+        <div class="mentor-info-table">
+
+            <div class="user-category-name"></div>
+    
+            <div class="mentor-profile-picture">
+                <img src="assets/images/mentor-card/mentor.png" alt="Mentor" class="mentor-picture">
+            </div>
+
+            <div class="profile-picture-upload">
+                <label for="file-input" class="file-upload">
+                    <img src="assets/images/user-cards/photo-upload.png">
+                </label>
+
+                <input type="file" name="file-input" accept="image/*">
+            </div>
+
+            <div class="mentor-editable">
+                <ul class="mentor-information">
+                    <li class="mentor-name" contenteditable="true" id="mentor-default-name">Name</li>
+                    <li class="mentor-email" contenteditable="true" id="mentor-default-email">E-mail</li>
+                    <li class="mentor-class" contenteditable="true" id="mentor-default-class">Class</li>
+                    <li class="mentors-students"></li><button type="button" class="mentor-students-button">Students</button></li>
+                </ul>
+
+                <button type="submit" name="submit-button" class="submit-button" onclick="sendInfoMentorCard()">Save</button>
+           </div>
+        </div>
+    </div>
+
+    <script src"Scripts/user-cards.js"></script>
+
+</body>
+</html>
