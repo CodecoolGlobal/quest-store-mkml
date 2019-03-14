@@ -129,7 +129,6 @@ table {
     font-weight: bolder;
 }
 
-
 #logout {
     padding: 0 20px;
 }
@@ -339,3 +338,28 @@ table {
 .delete-class-button img{
     width: 40px;
 }
+
+/*
+======================================
+    Slider
+======================================
+ */
+
+#range{
+    height: 20px !important;
+}
+
+.slider-range{
+
+    display: flex;
+    padding-top: 30px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+}
+.c-1-color { background: #91E5F6 !important; }
+.c-2-color { background: #84D2F6 !important; }
+.c-3-color { background: #59A5D8 !important; }
+.c-4-color { background: #386FA4 !important; }
+.c-5-color { background: #133C55 !important; }
