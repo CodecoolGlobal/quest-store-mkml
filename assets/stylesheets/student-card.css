@@ -47,9 +47,8 @@ img.student-picture {
     box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
 }
 
-
 .student-info-table ul {
-    margin-top: -120px;
+    margin-top: -160px;
     margin-left: -30px;
     list-style-type: none;
     font-size: 20px;
@@ -83,4 +82,24 @@ button.students-artifacts-button:hover {
         0 1.25rem 0 rgba(255, 255, 255, 0.08) inset,
         0 -1.25rem 1.25rem rgba(0, 0, 0, 0.3) inset,
         0 1.25rem 1.25rem rgba(255, 255, 255, 0.1) inset;
+}
+
+input[type=file] {
+    position: relative;
+    bottom: 200px;
+    left: 85px;
+    width: 40px;
+    opacity: 0;
+}
+
+.profile-picture-upload img {
+    opacity: 0.6;
+    width: 40px;
+    position: relative;
+    bottom: 190px;
+    left: 130px;
+}
+
+.profile-picture-upload img:hover {
+    opacity: 0.9;
 }
