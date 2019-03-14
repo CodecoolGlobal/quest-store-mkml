@@ -152,6 +152,26 @@ table {
     background-color: #91E5F6;
 }
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #133C55;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: aliceblue;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 /*
 ======================================
     Custom style
@@ -236,12 +256,25 @@ table {
     max-width: 100px;
 }
 
-.decline-button:hover {
-    content: url("../images/buttons/decline_button_hover.png");
+.img-hover {
+    max-width: 64px;
+    max-height: 64px;
+    display: none;
 }
 
-.accept-button:hover {
-    content: url("../images/buttons/accept_button_hover.png");
+.decline-button:hover .img-hover, .accept-button:hover .img-hover{
+    display: block;
+}
+
+.decline-button:hover .img-basic , .accept-button:hover .img-basic{
+    display: none;
+}
+
+.decision-buttons button {
+    padding: 0;
+    border: none;
+    background: none;
+    border-radius: 50%;
 }
 
 .main-info h2 {
