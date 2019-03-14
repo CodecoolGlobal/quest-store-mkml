@@ -129,12 +129,17 @@ table {
     font-weight: bolder;
 }
 
+
 #logout {
     padding: 0 20px;
 }
 
 #logout img {
     max-width: 25px;
+}
+
+#logout a {
+    padding: 10px 10px;
 }
 
 .primary-nav a:hover {
