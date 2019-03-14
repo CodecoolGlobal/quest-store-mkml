@@ -256,12 +256,25 @@ table {
     max-width: 100px;
 }
 
-.decline-button:hover {
-    content: url("../images/buttons/decline_button_hover.png");
+.img-hover {
+    max-width: 64px;
+    max-height: 64px;
+    display: none;
 }
 
-.accept-button:hover {
-    content: url("../images/buttons/accept_button_hover.png");
+.decline-button:hover .img-hover, .accept-button:hover .img-hover{
+    display: block;
+}
+
+.decline-button:hover .img-basic , .accept-button:hover .img-basic{
+    display: none;
+}
+
+.decision-buttons button {
+    padding: 0;
+    border: none;
+    background: none;
+    border-radius: 50%;
 }
 
 .main-info h2 {
