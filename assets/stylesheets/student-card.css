@@ -10,22 +10,25 @@ html, body {
 
 /* centering */
 
-div.student-info-container {
+.student-info-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-div.student-info-table {
+/* main container */
+
+.student-info-table {
     border: 1px solid #dddddd;
     color: #333333;
-
     width: 300px;
     height: 450px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-image: linear-gradient(to right, #1a1a1a, #2d2d2d, #414141, #575757);
 }
+
+/* gradient behind picture */
 
 .user-category-name {
     height: 140px;
@@ -33,6 +36,8 @@ div.student-info-table {
     background-image: linear-gradient(to left, #5eb3c0, #69b3d7, #8cb0e5, #b7aae5, #dea3d6);
     border: 2px solid #726c6c;
 }
+
+/* avatar */
 
 img.student-picture {
     display: block;
@@ -47,7 +52,10 @@ img.student-picture {
     box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
 }
 
-.student-info-table ul {
+/* personal information container */
+
+.student-info-table ul,
+.student-information {
     margin-top: -60px;
     list-style-type: none;
     font-size: 20px;
@@ -58,12 +66,17 @@ img.student-picture {
     color: #cac7c7;
 }
 
-.student-info-table li {
+/* personal information values */
+
+.student-info-table li,
+input.new-student-template {
     line-height: 45px;
     width: 70%;
     margin: 3px;
     background-color: #c0c0c048;
 }
+
+/* artifacts button */
 
 .student-info-table li.students-atrifacts {
     background-color: unset;
@@ -90,7 +103,10 @@ button.students-artifacts-button:hover {
         0 1.25rem 1.25rem rgba(255, 255, 255, 0.1) inset;
 }
 
-button.submit-button {
+/* save button for editable cards */
+
+button.submit-button,
+input.submit-button {
     margin-top: 10px;
     border: none;
     width: 100%;
@@ -100,7 +116,8 @@ button.submit-button {
     height: 40px;
 }
 
-button.submit-button:hover {
+button.submit-button:hover,
+input.submit-button {
     cursor: pointer;
     box-shadow:
         0 1px 0 rgba(255, 255, 255, 0.25),
@@ -109,4 +126,25 @@ button.submit-button:hover {
         0 1.25rem 0 rgba(255, 255, 255, 0.08) inset,
         0 -1.25rem 1.25rem rgba(0, 0, 0, 0.3) inset,
         0 1.25rem 1.25rem rgba(255, 255, 255, 0.1) inset;
+}
+
+/* recruit codecooler's button */
+
+input.submit-button {
+    margin-top: 44px;
+}
+
+/* input fields */
+
+input.new-student-template {
+    color: #cac7c7;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* color of the add new student card */
+
+.new-student {
+    -webkit-filter: hue-rotate(180deg);
+    filter: hue-rotate(180deg);
 }
