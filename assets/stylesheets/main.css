@@ -187,6 +187,11 @@ table {
     background: #E1F7FC;
 }
 
+.cards-display {
+    display: flex;
+    flex-flow: row wrap;
+}
+
 
 /*
 ======================================
