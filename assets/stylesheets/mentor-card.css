@@ -10,29 +10,33 @@ html, body {
 
 /* centering */
 
-/* div.mentor-info-container {
+.mentor-info-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-} */
+}
 
-div.mentor-info-table {
+/* main container */
+
+.mentor-info-table {
     border: 1px solid #dddddd;
     color: #333333;
-    padding: 20px;
     width: 300px;
     height: 450px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-image: linear-gradient(to right, #1a1a1a, #2d2d2d, #414141, #575757);
 }
 
+/* gradient behind picture */
+
 .user-category-name {
-    margin: -20px -20px 50px -20px;
-    height: 160px;
+    height: 140px;
     background-image: linear-gradient(to right, #5eb3c0, #5dc3bc, #73d1ae, #98dc9b, #c7e388);
     border: 2px solid #726c6c;
 }
+
+/* avatar */
 
 img.mentor-picture {
     display: block;
@@ -40,33 +44,47 @@ img.mentor-picture {
     margin-right: auto;
     padding-bottom: 2px;
     position: relative;
-    bottom: 170px;
-    width: 180px;
+    bottom: 100px;
+    width: 150px;
     border-radius: 50%;
     border: 2px double #6b6b6b;
     box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
 }
 
-.mentor-info-table ul {
-    margin-top: -160px;
-    margin-left: -30px;
+/* personal information container */
+
+.mentor-info-table ul,
+.mentor-information {
+    margin-top: -60px;
     list-style-type: none;
     font-size: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: #cac7c7;
 }
 
-.mentor-info-table li {
+/* personal information values */
+
+.mentor-info-table li,
+input.new-mentor-template {
     line-height: 45px;
-    display: block;
-    margin: 4px;
+    width: 70%;
+    margin: 3px;
     background-color: #c0c0c048;
+}
+
+/* students button */
+
+.mentor-info-table li.mentors-students {
+    background-color: unset;
 }
 
 button.mentor-students-button {
     color: #cac7c7;
     font-size: 18px;
-    width: 282px;
+    width: 100%;
     height: 45px;
     background-color: #c0c0c048;
     border: none;
@@ -84,44 +102,21 @@ button.mentor-students-button:hover {
         0 1.25rem 1.25rem rgba(255, 255, 255, 0.1) inset;
 }
 
-input[type=file] {
-    position: relative;
-    bottom: 200px;
-    left: 85px;
-    width: 40px;
-    opacity: 0;
-}
+/* save button for editable cards */
 
-.profile-picture-upload img {
-    opacity: 0.6;
-    width: 40px;
-    position: relative;
-    bottom: 190px;
-    left: 130px;
-}
-
-.profile-picture-upload img:hover {
-    opacity: 0.9;
-}
-
-.mentor-editable {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-}
-
-button.submit-button {
+button.submit-button,
+input.submit-button {
+    margin-top: 10px;
     border: none;
+    width: 100%;
     background-color: #5eb3c0;
     color: #ffffff;
     font-size: 18px;
-    margin-left: 12px;
-    margin-top: -10px;
     height: 40px;
 }
 
-button.submit-button:hover {
+button.submit-button:hover,
+input.submit-button:hover {
     cursor: pointer;
     box-shadow:
         0 1px 0 rgba(255, 255, 255, 0.25),
@@ -130,4 +125,25 @@ button.submit-button:hover {
         0 1.25rem 0 rgba(255, 255, 255, 0.08) inset,
         0 -1.25rem 1.25rem rgba(0, 0, 0, 0.3) inset,
         0 1.25rem 1.25rem rgba(255, 255, 255, 0.1) inset;
+}
+
+/* recruit mentor button */
+
+input.submit-button {
+    margin-top: 44px;
+}
+
+/* input fields */
+
+input.new-mentor-template {
+    color: #cac7c7;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* color of the add new mentor card */
+
+.new-mentor {
+    -webkit-filter: hue-rotate(180deg);
+    filter: hue-rotate(180deg);
 }
