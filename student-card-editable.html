@@ -18,20 +18,14 @@
                 <img src="assets/images/student-card/student.png" alt="Student" class="student-picture">
             </div>
 
-            <div class="profile-picture-upload">
-                <label for="file-input" class="file-upload">
-                    <img src="assets/images/user-cards/photo-upload.png">
-                </label>
-
-                <input type="file" name="file-input" accept="image/*">
-            </div>
-
             <div class="student-editable">
                 <ul class="student-information">
                     <li class="student-name" contenteditable="true" id="student-default-name">Name</li>
                     <li class="student-email" contenteditable="true" id="student-default-email">E-mail</li>
                     <li class="student-class" contenteditable="true" id="student-default-class">Class</li>
-                    <li class="students-atrifacts"></li><button type="button" class="students-artifacts-button">Artifacts</button></li>
+                    <li class="students-atrifacts">
+                        <button type="button" class="students-artifacts-button">Artifacts</button>
+                    </li>
                 </ul>
 
                 <button type="submit" name="submit-button" class="submit-button" onclick="sendInfoStudentCard()">Save</button>
@@ -39,7 +33,7 @@
         </div>
     </div>
 
-    <script src"Scripts/user-cards.js"></script>
+    <script src="Scripts/user-cards.js"></script>
 
 </body>
 </html>
