@@ -60,7 +60,7 @@ table {
  */
 
 .primary-header {
-    z-index: 1;
+    z-index: 5;
     background-color: #133C55;
     background-image: linear-gradient(#081A26, #133C55);
     color: aliceblue;
@@ -129,7 +129,6 @@ table {
     font-weight: bolder;
 }
 
-
 #logout {
     padding: 0 20px;
 }
@@ -188,6 +187,11 @@ table {
     background: #E1F7FC;
 }
 
+.cards-display {
+    display: flex;
+    flex-flow: row wrap;
+}
+
 
 /*
 ======================================
@@ -241,8 +245,6 @@ table {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
-    position: relative;
-    top: -50px;
 }
 
 .decline-button {
@@ -254,8 +256,15 @@ table {
     max-height: 64px;
 }
 
+
 .decision-buttons img {
     max-width: 64px;
+}
+
+.black-arrow-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .black-arrow-right img {
@@ -327,15 +336,51 @@ table {
 
 .add-class-button{
 
+    border: none;
+    background-color: #59A5D8;
+    color: #ffffff;
+    font-size: 18px;
+    height: 40px;
+
 }
 
 .delete-class-button{
     border-style: none;
     background-color: transparent;
     display: block;
-    margin: auto;
+    margin: 10px auto;
 
 }
 .delete-class-button img{
     width: 40px;
 }
+
+/*
+======================================
+    Slider
+======================================
+ */
+
+#range{
+    height: 20px !important;
+}
+
+.slider-header{
+    margin: 0px 0px 50px 0px;
+}
+
+.slider-range{
+
+    margin: 20px 0px;
+    display: flex;
+    padding-top: 30px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+}
+.c-1-color { background: #91E5F6 !important; }
+.c-2-color { background: #84D2F6 !important; }
+.c-3-color { background: #59A5D8 !important; }
+.c-4-color { background: #386FA4 !important; }
+.c-5-color { background: #133C55 !important; }

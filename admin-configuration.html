@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="node_modules/nouislider/distribute/nouislider.css">
     <link rel="stylesheet" href="assets/stylesheets/main.css">
 </head>
-<body>
+<body onpageshow="slider()">
 <header class="primary-header">
     <div class="container">
         <div class="sub-header">
@@ -18,15 +19,31 @@
         <nav class="primary-nav">
             <ul>
                 <li><a href="admin.html">Mentors</a></li>
-                <li><a href="#">Configuration</a></li>
+                <li><a href="admin-configuration.html">Configuration</a></li>
             </ul>
             <div id="logout">
-                <img src="assets/images/logout.png" alt="Logout">
+                <a href="login.html">
+                    <img src="assets/images/logout.png" alt="Logout">
+                </a>
             </div>
         </nav>
     </div>
 </header>
 <section class="main-info">
+    <h2 class="slider-header">Configure experience thresholds</h2>
+
+    <div id="range"></div>
+    <section class="slider-range">
+        <div id="range-value-1"></div>
+        <div id="range-diff-1"></div>
+        <div id="range-value-2"></div>
+        <div id="range-diff-2"></div>
+        <div id="range-value-3"></div>
+        <div id="range-diff-3"></div>
+        <div id="range-value-4"></div>
+    </section>
+    <br>
+    <h2 class="slider-header">Manage classes</h2>
     <div class="class-table">
         <table>
             <tr class="class-table-top-row">
@@ -69,7 +86,7 @@
                 </button> </td>
             </tr>
         </table>
-        <button class="add-class-button">New</button>
+        <button class="add-class-button">Add New Student</button>
     </div>
 
 </section>
@@ -86,5 +103,8 @@
 
     </div>
 </footer>
+<script src="node_modules/nouislider/distribute/nouislider.js"></script>
+<script src="Scripts/script.js"></script>
+<script src="node_modules/wnumb/wNumb.js"></script>
 </body>
 </html>

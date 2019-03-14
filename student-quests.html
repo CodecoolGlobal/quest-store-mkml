@@ -5,6 +5,7 @@
     <title>Quest store</title>
     <link rel="stylesheet" href="assets/stylesheets/main.css">
     <link rel="stylesheet" href="assets/stylesheets/item-cards.css">
+    <link rel="stylesheet" href="assets/stylesheets/quest-card.css">
 </head>
 <body onpageshow="progressBar()">
 <header class="primary-header">
@@ -45,8 +46,41 @@
         </nav>
     </div>
 </header>
-<section class="main-info">
-    Here bought items go
+<section class="main-info cards-display">
+    <div id="quest-card" class="quest-card quest-card-basic">
+        <div id="description" class="quest-card-header" contenteditable="true">Exploring a dungeon
+            <div class="quest-card-price">
+                <div id="price" class="quest-card-price-box" contenteditable="true">100</div>
+            </div>
+        </div>
+        <div class="quest-card-image">
+            <img src="assets/images/quest-card/quest-exploring-a-dungeon" alt="dungeon image">
+        </div>
+
+
+        <div class="quest-card-category">Basic Quest</div>
+        <div class="quest-card-text-box">
+            <div id="cardText" class="quest-card-text" contenteditable="true">Finishing an SI assignment </div>
+            <button class="myButton" onclick="sendInfoQuestCard()">Save changes</button>
+        </div>
+    </div>
+    <div id="quest-card" class="quest-card quest-card-extra">
+        <div id="description" class="quest-card-header" contenteditable="true">Solving the magic puzzle
+            <div class="quest-card-price">
+                <div id="price" class="quest-card-price-box" contenteditable="true">100</div>
+            </div>
+        </div>
+        <div class="quest-card-image">
+            <img src="assets/images/quest-card/quest-magic-puzzle.jpg" alt="dungeon image">
+        </div>
+
+
+        <div class="quest-card-category">Extra Quest</div>
+        <div class="quest-card-text-box">
+            <div id="cardText" class="quest-card-text" contenteditable="true">Finishing an SI assignment </div>
+            <button class="myButton" onclick="sendInfoQuestCard()">Save changes</button>
+        </div>
+    </div>
 </section>
 <footer class="primary-footer">
     <div class="logo">
