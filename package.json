@@ -1,0 +1,11 @@
+{
+  "name": "QuestStore",
+  "version": "1.0.0",
+  "main": "script.js",
+  "repository": "https://github.com/CodecoolGlobal/quest-store-mkml.git",
+  "license": "MIT",
+  "dependencies": {
+    "nouislider": "^13.1.1",
+    "wnumb": "^1.1.0"
+  }
+}
