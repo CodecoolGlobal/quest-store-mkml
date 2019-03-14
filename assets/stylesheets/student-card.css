@@ -1,0 +1,86 @@
+/*
+  ========================================
+  Student-Card Styles
+  ========================================
+*/
+
+html, body {
+    height: 100%;
+}
+
+/* centering */
+
+/* div.student-info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+} */
+
+div.student-info-table {
+    border: 1px solid #dddddd;
+    color: #333333;
+    padding: 20px;
+    width: 300px;
+    height: 450px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-image: linear-gradient(to right, #1a1a1a, #2d2d2d, #414141, #575757);
+}
+
+.user-category-name {
+    margin: -20px -20px 50px -20px;
+    height: 160px;
+    background-image: linear-gradient(to right, #5eb3c0, #5dc3bc, #73d1ae, #98dc9b, #c7e388);background-image: linear-gradient(to left, #5eb3c0, #69b3d7, #8cb0e5, #b7aae5, #dea3d6);
+    border: 2px solid #726c6c;
+}
+
+img.student-picture {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2px;
+    position: relative;
+    bottom: 170px;
+    width: 180px;
+    border-radius: 50%;
+    border: 2px double #6b6b6b;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+}
+
+
+.student-info-table ul {
+    margin-top: -120px;
+    margin-left: -30px;
+    list-style-type: none;
+    font-size: 20px;
+    text-align: center;
+    color: #cac7c7;
+}
+
+.student-info-table li {
+    line-height: 45px;
+    display: block;
+    margin: 4px;
+    background-color: #c0c0c048;
+}
+
+button.students-artifacts-button {
+    color: #cac7c7;
+    font-size: 18px;
+    width: 282px;
+    height: 40px;
+    background-color: #c0c0c048;
+    border: none;
+    transition: all 0.2s linear 0s;
+}
+
+button.students-artifacts-button:hover {
+    cursor: pointer;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.25),
+        0 1px 0 rgba(255, 255, 255, 0.25) inset,
+        0 0 0 rgba(0, 0, 0, 0.5) inset,
+        0 1.25rem 0 rgba(255, 255, 255, 0.08) inset,
+        0 -1.25rem 1.25rem rgba(0, 0, 0, 0.3) inset,
+        0 1.25rem 1.25rem rgba(255, 255, 255, 0.1) inset;
+}
