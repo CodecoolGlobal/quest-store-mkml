@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mentor Store</title>
     <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <link rel="stylesheet" href="assets/stylesheets/item-cards.css">
+
 </head>
 <body>
 <header class="primary-header">
@@ -37,12 +39,12 @@
         </nav>
     </div>
 </header>
-<section class="main-info">
+<section class="main-info cards-display">
 
     <div class="item-card item-card-gold">
-        <div class="item-card-header" contenteditable="true">Circle of Sorcery
+        <div id="description" class="item-card-header" contenteditable="true">Circle of Sorcery
             <div class="item-card-price">
-                <div class="item-card-price-box" contenteditable="true">1000</div>
+                <div id="price" class="item-card-price-box" contenteditable="true">1000</div>
             </div>
         </div>
         <div class="item-card-image">
@@ -52,13 +54,44 @@
             Magic Item
         </div>
         <div class="item-card-text-box">
-            <div class="item-card-text" contenteditable="true">60 min workshop by a mentor(s) of the chosen topic </div>
-            <button class="buy-btn">
-                <img src="assets/images/buttons/buy_icon.png" alt="buy">
+            <div id="cardText" class="item-card-text" contenteditable="true">60 min workshop by a mentor(s) of the chosen topic </div>
+            <button class="myButton" onclick="sendInfoItemsCard()">Save changes
             </button>
         </div>
     </div>
 
+
+    <div class="item-card item-card-gold">
+        <div id="newDescription" class="item-card-header" contenteditable="true">Enter Description
+            <div class="item-card-price">
+                <div id="newPrice" class="item-card-price-box" contenteditable="true">???</div>
+            </div>
+        </div>
+        <div class="item-card-image">
+            <!--<img id="emptyImage"  class="item-card-image" src="assets/images/empty-photo-resize.jpg" alt="emptyPhoto">-->
+
+
+            <label for="file-upload" class="custom-file-upload">
+                <!--<img id="output"/>-->
+                <img id="emptyImage" src="assets/images/empty-photo-resize.jpg" alt="emptyPhoto">
+            </label>
+            <input id="file-upload" type="file" accept="image/png, image/jpeg" onchange="loadFile(event)"/>
+
+            <!--<input type="file"-->
+                   <!--id="avatar" name="avatar"-->
+                   <!--accept="image/png, image/jpeg" onchange="loadFile(event)">-->
+
+        </div>
+        <div class="item-card-category">
+            Choose category
+        </div>
+        <div class="item-card-text-box">
+            <div id="newCardText" class="item-card-text" contenteditable="true">Enter item description</div>
+            <button class="myButton" onclick="sendInfoToCreateCard()">Create new card
+            </button>
+
+        </div>
+    </div>
 
 
 </section>
@@ -75,5 +108,6 @@
 
     </div>
 </footer>
+<script src="Scripts/script.js"></script>
 </body>
 </html>
