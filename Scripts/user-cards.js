@@ -5,3 +5,11 @@ function sendInfoMentorCard() {
 
     //Here add function that send these data to DB
 }
+
+function sendInfoStudentCard() {
+    let studentName = document.getElementById("student-default-name").innerHTML;
+    let studentEmail = document.getElementById("student-default-email").innerHTML;
+    let studentClass = document.getElementById("student-default-class").innerHTML;
+
+    //Here add function that send these data to DB
+}
