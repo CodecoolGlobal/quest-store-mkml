@@ -18,24 +18,18 @@
                 <img src="assets/images/mentor-card/mentor.png" alt="Mentor" class="mentor-picture">
             </div>
 
-            <div class="profile-picture-upload">
-                <label for="file-input" class="file-upload">
-                    <img src="assets/images/user-cards/photo-upload.png">
-                </label>
-
-                <input type="file" name="file-input" accept="image/*">
-            </div>
-
             <div class="mentor-editable">
                 <ul class="mentor-information">
                     <li class="mentor-name" contenteditable="true" id="mentor-default-name">Name</li>
                     <li class="mentor-email" contenteditable="true" id="mentor-default-email">E-mail</li>
                     <li class="mentor-class" contenteditable="true" id="mentor-default-class">Class</li>
-                    <li class="mentors-students"></li><button type="button" class="mentor-students-button">Students</button></li>
+                    <li class="mentors-students">
+                        <button type="button" class="mentor-students-button">Students</button>
+                    </li>
                 </ul>
 
                 <button type="submit" name="submit-button" class="submit-button" onclick="sendInfoMentorCard()">Save</button>
-           </div>
+            </div>
         </div>
     </div>
 
