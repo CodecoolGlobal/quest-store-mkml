@@ -25,9 +25,37 @@ function sendInfoQuestCard() {
     //Here add function that send these data to DB
 }
 
+
+function sendInfoItemsCard() {
+    let itemCardDescrip = document.getElementById("description").innerHTML;
+    let itemCardPriceBox = document.getElementById("price").innerHTML;
+    let itemCardText = document.getElementById("cardText").innerHTML;
+
+    //Here add function that send these data to DB
+}
+
+function sendInfoToCreateCard(){
+    let itemCardDescrip = document.getElementById("newDescription").innerHTML;
+    let itemCardPriceBox = document.getElementById("newPrice").innerHTML;
+    let itemCardText = document.getElementById("newCardText").innerHTML;
+    //add image to send to serwer
+//Here add function that send these data to DB
+
+  
+    alert("Card Processing successfully completed");
+    location.reload();
+};
+
+
+function loadFile(event){
+
+        let output = document.getElementById('emptyImage');
+        output.src = URL.createObjectURL(event.target.files[0]);
+};
+
 function changeCardColor(){
     document.getElementById("p2").style.color = "blue";
-}
+};
 
 
 /* When the user clicks on the button,
