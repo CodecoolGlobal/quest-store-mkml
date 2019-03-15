@@ -41,11 +41,9 @@ function sendInfoToCreateCard(){
     //add image to send to serwer
 //Here add function that send these data to DB
 
-    document.getElementById("newDescription").innerHTML ="Enter Description";
-    // document.getElementById("newPrice").innerHTML = "???";
-    document.getElementById("newCardText").innerHTML = "Enter item description";
-    document.getElementById('emptyImage').src =  "assets/images/empty-photo-resize.jpg";
+  
     alert("Card Processing successfully completed");
+    location.reload();
 };
 
 
