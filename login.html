@@ -13,49 +13,45 @@
 
     <div class="primary-login-container">
         <form class="login-form" id="primary-login-form" action="student.html" method="POST">
-    
             <div class="login-header-gradient">
-                <img src="assets/images/login/logo.png" alt="Login Image" class="login-header-image">
+                <img src="assets/images/login/logo.png" alt="Login Image" class="login-header-image" />
             </div>
-    
+
             <div class="half-way-of-logo"></div>
-    
+
             <div class="login-form-container">
-                <label for="name">Name:</label>
+                <label>Name:</label>
+                <br />
+                <input type="text" name="name" placeholder="Username" required="required" />
+
+                <label>Password:</label>
+                <br />
+                <input type="password" name="password" placeholder="Password" required="required" />
+
                 <br>
-                <input type="text" name="name" placeholder="Username" required="required">
-    
-                <label for="password">Password:</label>
-                <br>
-                <input type="password" name="password" placeholder="Password" required="required">
-                
-                <br>
-               
+
                 <div class="remember-me-container">
-                    <label class="remember-me">
-                        <input type="checkbox" name="remember-me">
-                        Remember me
-                    </label>
+                    <label class="remember-me"> <input type="checkbox" name="remember-me" /> Remember me</label>
                 </div>
-                <br>
-    
-                <input type="submit" value="Login" class="submit-button">
+                <br />
+
+                <input type="submit" value="Login" class="submit-button" />
             </div>
-    
+
         </form>
     </div>
 
     <footer class="primary-footer">
         <div class="logo">
             <a href="student.html">
-                <img src="assets/images/logo.png" alt="Logo">
+                <img src="assets/images/logo.png" alt="Logo" />
             </a>
         </div>
         <div>
             <small>&copy; CodeClimbersCorp</small>
         </div>
         <div>
-    
+
         </div>
     </footer>
 
