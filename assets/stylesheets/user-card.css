@@ -1,6 +1,6 @@
 /*
   ========================================
-  Student-Card Styles
+  User-Card Styles
   ========================================
 */
 
@@ -10,7 +10,8 @@ html, body {
 
 /* centering */
 
-.student-info-container {
+.student-info-container,
+.mentor-info-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +20,8 @@ html, body {
 
 /* main container */
 
-.student-info-table {
+.student-info-table,
+.mentor-info-table {
     border: 1px solid #dddddd;
     color: #333333;
     width: 300px;
@@ -32,14 +34,25 @@ html, body {
 
 .user-category-name {
     height: 140px;
-    background-image: linear-gradient(to right, #5eb3c0, #5dc3bc, #73d1ae, #98dc9b, #c7e388);
-    background-image: linear-gradient(to left, #5eb3c0, #69b3d7, #8cb0e5, #b7aae5, #dea3d6);
     border: 2px solid #726c6c;
+}
+
+/* student category*/
+
+.student-category {
+    background-image: linear-gradient(to left, #5eb3c0, #69b3d7, #8cb0e5, #b7aae5, #dea3d6);
+}
+
+/* mentor category */
+
+.mentor-category {
+    background-image: linear-gradient(to right, #5eb3c0, #5dc3bc, #73d1ae, #98dc9b, #c7e388);
 }
 
 /* avatar */
 
-img.student-picture {
+img.student-picture,
+img.mentor-picture {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -55,7 +68,9 @@ img.student-picture {
 /* personal information container */
 
 .student-info-table ul,
-.student-information {
+.student-information,
+.mentor-info-table ul,
+.mentor-information {
     margin-top: -60px;
     list-style-type: none;
     font-size: 20px;
@@ -69,20 +84,24 @@ img.student-picture {
 /* personal information values */
 
 .student-info-table li,
-input.new-student-template {
+input.new-student-template,
+.mentor-info-table li,
+input.new-mentor-template {
     line-height: 45px;
     width: 70%;
     margin: 3px;
     background-color: #c0c0c048;
 }
 
-/* artifacts button */
+/* artifacts and students buttons */
 
-.student-info-table li.students-atrifacts {
+.student-info-table li.students-atrifacts,
+.mentor-info-table li.mentors-students {
     background-color: unset;
 }
 
-button.students-artifacts-button {
+button.students-artifacts-button,
+button.mentor-students-button {
     color: #cac7c7;
     font-size: 18px;
     width: 100%;
@@ -92,7 +111,12 @@ button.students-artifacts-button {
     transition: all 0.2s linear 0s;
 }
 
-button.students-artifacts-button:hover {
+/* + save buttons of editable cards */
+
+button.students-artifacts-button:hover,
+button.mentor-students-button:hover,
+button.submit-button:hover,
+input.submit-button:hover {
     cursor: pointer;
     box-shadow:
         0 1px 0 rgba(255, 255, 255, 0.25),
@@ -116,19 +140,7 @@ input.submit-button {
     height: 40px;
 }
 
-button.submit-button:hover,
-input.submit-button:hover {
-    cursor: pointer;
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.25),
-        0 1px 0 rgba(255, 255, 255, 0.25) inset,
-        0 0 0 rgba(0, 0, 0, 0.5) inset,
-        0 1.25rem 0 rgba(255, 255, 255, 0.08) inset,
-        0 -1.25rem 1.25rem rgba(0, 0, 0, 0.3) inset,
-        0 1.25rem 1.25rem rgba(255, 255, 255, 0.1) inset;
-}
-
-/* recruit codecooler's button */
+/* recruit button */
 
 input.submit-button {
     margin-top: 44px;
@@ -136,15 +148,17 @@ input.submit-button {
 
 /* input fields */
 
-input.new-student-template {
+input.new-student-template,
+input.new-mentor-template {
     color: #ffffff;
     font-size: 15px;
     text-align: center;
 }
 
-/* color of the add new student card */
+/* color of the add new user card */
 
-.new-student {
+.new-student,
+.new-mentor {
     -webkit-filter: hue-rotate(180deg);
     filter: hue-rotate(180deg);
 }
