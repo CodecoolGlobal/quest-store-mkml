@@ -1,0 +1,100 @@
+CREATE TABLE users(
+id serial PRIMARY KEY,
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(40) NOT NULL,
+email VARCHAR(40) UNIQUE NOT NULL,
+class_id INTEGER,
+avatar BYTEA,
+user_type_id INTEGER NOT NULL,
+is_active BOOLEAN
+);
+
+
+CREATE TABLE user_typ(
+id serial REFERENCES users(id),
+name VARCHAR(20),
+PRIMARY KEY (id)
+);
+
+
+CREATE TABLE classes(
+id serial,
+nama VARCHAR(20) UNIQUE NOT NULL,
+is_active BOOLEAN NOT NULL,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE students_classes(
+student_id INTEGER NOT NULL,
+class_id INTEGER NOT NULL,
+PRIMARY KEY(student_id, class_id),
+CONSTRAINT student_classes_class_id_fkey FOREIGN KEY (class_id)
+      REFERENCES classes (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT student_classes_student_id_fkey FOREIGN KEY (student_id)
+      REFERENCES users (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+
+
+CREATE TABLE mentors_classes(
+mentor_id INTEGER NOT NULL,
+class_id INTEGER NOT NULL,
+PRIMARY KEY(mentor_id, class_id),
+CONSTRAINT mentors_classes_mentor_id_fkey FOREIGN KEY (mentor_id)
+      REFERENCES users (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT classes_class_id_fkey FOREIGN KEY (class_id)
+      REFERENCES classes (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+CREATE TABLE levels(
+id serial PIMARY KEY,
+name VARCHAR(20),
+level_start INTEGER NOT NULL
+);
+
+CREATE TABLE transactions(
+id serial PRIMARY KEY,
+date DATE NOT NULL DEFAULT CURRENT_DATE,
+user_id INTEGER,
+card_id INTEGER,
+status_id INTEGER?????????????????????????????????????????,
+cost INTEGER NOT NULL
+);
+
+CREATE TABLE quest_status (
+id serial PRIMARY KEY,???????
+name VARCHAR(20) UNIQUE NOT NULL
+);
+
+CREATE TABLE cards(
+id serial PRIMARY KEY,
+name VARCHAR(30) UNIQUE NOT NULL,
+description VARCHAR(60) NOT NULL,
+category_ID INTEGER ?????????????????????????????????????,
+photo BLOB NOT NULL,
+value INTEGER NOT NULL,
+card_type_id INTEGER ????????????????????,
+is_active BOOLEAN
+);
+
+CREATE TABLE card_types(
+id PRIMARY KEY,
+name VARCHAR(30)
+);
+
+CREATE TABLE categories_card_types(
+id PRIMARY KEY,
+	card_type_id ????????????????,
+	category_id INTEGER???????????/
+);
+
+CREATE TABLE categories(
+id PRIMARY KEY,
+name VARCHAR(20)
+);
+
+
