@@ -9,8 +9,8 @@ public class CreateTables {
     public void createAllTables() throws SQLException {
 
 
-        String userTypeSQL = "CREATE TABLE IF NOT EXISTS user_typ(\n" +
-                "id serial REFERENCES users(id),\n" +
+        String userTypeSQL = "CREATE TABLE IF NOT EXISTS user_type(\n" +
+                "id serial,\n" +
                 "name VARCHAR(20),\n" +
                 "PRIMARY KEY (id)\n" +
                 ");";
@@ -18,7 +18,7 @@ public class CreateTables {
 
         String classesSQL = "CREATE TABLE IF NOT EXISTS classes(\n" +
                 "id serial,\n" +
-                "nama VARCHAR(20) UNIQUE NOT NULL,\n" +
+                "name VARCHAR(20) UNIQUE NOT NULL,\n" +
                 "is_active BOOLEAN NOT NULL,\n" +
                 "PRIMARY KEY (id)\n" +
                 ");";
@@ -79,6 +79,7 @@ public class CreateTables {
 
         String usersSQL = "CREATE TABLE IF NOT EXISTS users(\n" +
                 "id serial PRIMARY KEY,\n" +
+                "password VARCHAR(50) NOT NULL,\n" +
                 "firstname VARCHAR(30) NOT NULL,\n" +
                 "lastname VARCHAR(40) NOT NULL,\n" +
                 "email VARCHAR(40) UNIQUE NOT NULL,\n" +
@@ -86,7 +87,8 @@ public class CreateTables {
                 "avatar BYTEA,\n" +
                 "user_type_id INTEGER NOT NULL,\n" +
                 "is_active BOOLEAN,\n" +
-                "FOREIGN KEY (class_id) REFERENCES classes (id)\n" +
+                "FOREIGN KEY (class_id) REFERENCES classes (id),\n" +
+                "FOREIGN KEY (user_type_id) REFERENCES user_type (id)\n" +
                 ");";
 
 
@@ -99,8 +101,8 @@ public class CreateTables {
         stmt.execute(cardTypesSQL);
         stmt.execute(categoriesSQL);
         stmt.execute(cardsSQL);
-        stmt.execute(usersSQL);
         stmt.execute(userTypeSQL);
+        stmt.execute(usersSQL);
         stmt.execute(transactionsSQL);
         stmt.execute(categoriesCardTypesSQL);
     }
