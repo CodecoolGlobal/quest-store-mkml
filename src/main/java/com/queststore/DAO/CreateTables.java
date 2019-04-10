@@ -18,7 +18,7 @@ public class CreateTables {
 
         String classesSQL = "CREATE TABLE IF NOT EXISTS classes(\n" +
                 "id serial,\n" +
-                "nama VARCHAR(20) UNIQUE NOT NULL,\n" +
+                "name VARCHAR(20) UNIQUE NOT NULL,\n" +
                 "is_active BOOLEAN NOT NULL,\n" +
                 "PRIMARY KEY (id)\n" +
                 ");";
@@ -29,7 +29,7 @@ public class CreateTables {
                 "level_start INTEGER NOT NULL\n" +
                 ");\n";
 
-        String questStatusSQL = "CREATE TABLE IF NOT EXISTS quest_status (\n" +
+        String transactionsStatusSQL = "CREATE TABLE IF NOT EXISTS quest_status (\n" +
                 "id serial PRIMARY KEY,\n" +
                 "name VARCHAR(20) UNIQUE NOT NULL\n" +
                 ");";
@@ -79,6 +79,7 @@ public class CreateTables {
 
         String usersSQL = "CREATE TABLE IF NOT EXISTS users(\n" +
                 "id serial PRIMARY KEY,\n" +
+                "password VARCHAR(50) NOT NULL,\n" +
                 "firstname VARCHAR(30) NOT NULL,\n" +
                 "lastname VARCHAR(40) NOT NULL,\n" +
                 "email VARCHAR(40) UNIQUE NOT NULL,\n" +
@@ -95,7 +96,7 @@ public class CreateTables {
         Statement stmt = DBCPDataSource.getConnection().createStatement();
         stmt.execute(classesSQL);
         stmt.execute(levelsSQL);
-        stmt.execute(questStatusSQL);
+        stmt.execute(transactionsStatusSQL);
         stmt.execute(cardTypesSQL);
         stmt.execute(categoriesSQL);
         stmt.execute(cardsSQL);
