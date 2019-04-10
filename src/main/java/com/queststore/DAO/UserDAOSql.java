@@ -20,6 +20,9 @@ public class UserDAOSql implements UserDAO {
             if (user.isPresent()) {
                 System.out.println(user.get().getFirstName());
                 System.out.println(user.get().getUserClass().getName());
+                User u = user.get();
+                u.setFirstName("Karararumba");
+                dao.update(u);
             }
             for (User u :  dao.getStudentsFrom(1)) {
                 System.out.println(u.getFirstName());
@@ -72,6 +75,25 @@ public class UserDAOSql implements UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("An error occured during getting students from class from db");
+        }
+    }
+
+    @Override
+    public void update(User user) throws DaoException {
+        try (Connection connection = DBCPDataSource.getConnection()){
+            PreparedStatement statement = connection.prepareStatement("UPDATE users SET " +
+                    "firstname = ?, lastname = ?, email = ?, class_id = ? " +
+                    "WHERE id = ?;");
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getEmail());
+            statement.setInt(4, user.getUserClass().getId());
+            statement.setInt(5, user.getId());
+            //leave avatar be
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during updating user");
         }
     }
 

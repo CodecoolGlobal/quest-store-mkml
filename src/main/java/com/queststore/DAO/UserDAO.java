@@ -10,4 +10,6 @@ public interface UserDAO {
     Optional<User> getUser(String email, String password) throws DaoException;
 
     List<User> getStudentsFrom(int classId) throws DaoException;
+
+    void update(User user) throws DaoException;
 }
