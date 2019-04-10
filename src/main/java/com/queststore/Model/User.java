@@ -8,16 +8,16 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private Integer classId;
+    private String className;
     private Blob avatar;
     private String userType;
 
-    private User(Integer id, String firstName, String lastName, String email, Integer classId, Blob avatar, String userType) {
+    private User(Integer id, String firstName, String lastName, String email, String className, Blob avatar, String userType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.classId = classId;
+        this.className = className;
         this.avatar = avatar;
         this.userType = userType;
     }
@@ -54,12 +54,12 @@ public class User {
         this.email = email;
     }
 
-    public Integer getClassId() {
-        return classId;
+    public String getClassName() {
+        return className;
     }
 
-    public void setClassId(Integer classId) {
-        this.classId = classId;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
     public Blob getAvatar() {
@@ -83,7 +83,7 @@ public class User {
         private String nestedFirstName;
         private String nestedLastName;
         private String nestedEmail;
-        private Integer nestedClassId;
+        private String nestedClassName;
         private Blob nestedAvatar;
         private String nestedUserType;
 
@@ -107,8 +107,8 @@ public class User {
             return this;
         }
 
-        public UserBuilder classId(Integer classId) {
-            this.nestedClassId = classId;
+        public UserBuilder classId(String className) {
+            this.nestedClassName = className;
             return this;
         }
 
@@ -125,7 +125,7 @@ public class User {
         public User createUser() {
             return new User(
                     nestedId, nestedFirstName, nestedLastName, nestedEmail,
-                    nestedClassId, nestedAvatar, nestedUserType);
+                    nestedClassName, nestedAvatar, nestedUserType);
         }
 
     }
