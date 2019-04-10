@@ -29,7 +29,7 @@ public class CreateTables {
                 "level_start INTEGER NOT NULL\n" +
                 ");\n";
 
-        String transactionsStatusSQL = "CREATE TABLE IF NOT EXISTS quest_status (\n" +
+        String transactionsStatusSQL = "CREATE TABLE IF NOT EXISTS transactions_status (\n" +
                 "id serial PRIMARY KEY,\n" +
                 "name VARCHAR(20) UNIQUE NOT NULL\n" +
                 ");";

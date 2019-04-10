@@ -1,15 +1,13 @@
 package com.queststore.Model;
 
-public class ExperienceLevel {
+public class CardTypes {
 
     private int id;
     private String name;
-    private int levelStart;
 
-    public ExperienceLevel(int id, String name, int levelStart) {
+    public CardTypes(int id, String name) {
         this.id = id;
         this.name = name;
-        this.levelStart = levelStart;
     }
 
     public int getId() {
@@ -26,13 +24,5 @@ public class ExperienceLevel {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getLevelStart() {
-        return levelStart;
-    }
-
-    public void setLevelStart(int levelStart) {
-        this.levelStart = levelStart;
     }
 }
