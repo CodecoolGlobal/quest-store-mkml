@@ -24,9 +24,10 @@ public class UserDAOSql implements UserDAO {
                 User u = user.get();
                 u.setFirstName("Karararumba");
                 dao.update(u);
-                u.setFirstName("Lama");
-                u.setEmail("dfdfd@dfdfd");
-                dao.add(u, "olalalal");
+//                u.setFirstName("Lama");
+//                u.setEmail("dfdfd@dfdfd");
+//                dao.add(u, "olalalal");
+                dao.delete(7);
             }
             for (User u :  dao.getStudentsFrom(1)) {
                 System.out.println(u.getFirstName());
@@ -119,6 +120,19 @@ public class UserDAOSql implements UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("An error occured during updating user");
+        }
+    }
+
+    @Override
+    public void delete(int userId) throws DaoException {
+        try (Connection connection = DBCPDataSource.getConnection()){
+            PreparedStatement statement = connection.prepareStatement("UPDATE users SET is_active = false " +
+                    "WHERE id = ?;");
+            statement.setInt(1, userId);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during deleting user");
         }
     }
 
