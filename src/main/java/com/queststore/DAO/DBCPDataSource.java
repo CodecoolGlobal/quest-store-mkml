@@ -25,5 +25,5 @@ public class DBCPDataSource {
         return ds.getConnection();
     }
 
-    private DBCPDataSource(){ }
+    DBCPDataSource(){ }
 }
