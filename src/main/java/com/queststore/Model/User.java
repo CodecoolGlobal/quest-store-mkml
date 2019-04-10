@@ -8,16 +8,16 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private String className;
+    private Class userClass;
     private Blob avatar;
     private String userType;
 
-    private User(Integer id, String firstName, String lastName, String email, String className, Blob avatar, String userType) {
+    private User(Integer id, String firstName, String lastName, String email, Class userClass, Blob avatar, String userType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.className = className;
+        this.userClass = userClass;
         this.avatar = avatar;
         this.userType = userType;
     }
@@ -54,12 +54,12 @@ public class User {
         this.email = email;
     }
 
-    public String getClassName() {
-        return className;
+    public Class getUserClass() {
+        return userClass;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setUserClass(Class userClass) {
+        this.userClass = userClass;
     }
 
     public Blob getAvatar() {
@@ -83,7 +83,7 @@ public class User {
         private String nestedFirstName;
         private String nestedLastName;
         private String nestedEmail;
-        private String nestedClassName;
+        private Class nestedUserClass;
         private Blob nestedAvatar;
         private String nestedUserType;
 
@@ -107,8 +107,8 @@ public class User {
             return this;
         }
 
-        public UserBuilder classId(String className) {
-            this.nestedClassName = className;
+        public UserBuilder userClass(Class userClass) {
+            this.nestedUserClass = userClass;
             return this;
         }
 
@@ -125,7 +125,7 @@ public class User {
         public User createUser() {
             return new User(
                     nestedId, nestedFirstName, nestedLastName, nestedEmail,
-                    nestedClassName, nestedAvatar, nestedUserType);
+                    nestedUserClass, nestedAvatar, nestedUserType);
         }
 
     }
