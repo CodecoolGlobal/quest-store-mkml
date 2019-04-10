@@ -93,7 +93,6 @@ public class CreateTables {
 
 
 
-
         Statement stmt = DBCPDataSource.getConnection().createStatement();
         stmt.execute(classesSQL);
         stmt.execute(levelsSQL);
@@ -106,6 +105,5 @@ public class CreateTables {
         stmt.execute(transactionsSQL);
         stmt.execute(categoriesCardTypesSQL);
     }
-
-
 }
+
