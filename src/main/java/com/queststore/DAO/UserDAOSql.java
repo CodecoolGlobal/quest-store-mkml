@@ -2,22 +2,32 @@ package com.queststore.DAO;
 
 import com.queststore.Model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Optional;
 
 public class UserDAOSql implements UserDAO {
 
+    public static void main(String[] args) {
+        UserDAO dao = new UserDAOSql();
+        try {
+            Optional<User> user = dao.getUser("kamil@bed", "asdfsdf");
+            if (user.isPresent()) {
+                System.out.println(user.get().getFirstName());
+            }
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public Optional<User> getUser(String email, String password) throws DaoException{
         try (Connection connection = DBCPDataSource.getConnection()){
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT id, first_name, last_name, email, classes.name AS class_name, avatar, user_type.name AS type " +
+                    "SELECT users.id as id, firstname, lastname, email, classes.name AS class_name, avatar, user_type.name AS type " +
                             "FROM users " +
                             "JOIN user_type ON users.user_type_id = user_type.id " +
                             "JOIN classes ON users.class_id = classes.id " +
-                            "WHERE email = ? AND password = ? AND is_active = true");
+                            "WHERE email = ? AND password = ? AND users.is_active = true");
             statement.setString(1, email);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
@@ -27,6 +37,7 @@ public class UserDAOSql implements UserDAO {
                 return Optional.empty();
             }
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new DaoException("An error occured during getting user from db");
         }
     }
@@ -38,7 +49,7 @@ public class UserDAOSql implements UserDAO {
                 .lastName(resultSet.getString("lastname"))
                 .email(resultSet.getString("email"))
                 .classId(resultSet.getString("class_name"))
-                .avatar(resultSet.getBlob("avatar"))
+//                .avatar(resultSet.getBlob("avatar"))
                 .userType(resultSet.getString("type"))
                 .createUser();
     }
