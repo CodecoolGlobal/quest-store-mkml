@@ -12,4 +12,10 @@ public interface UserDAO {
     List<User> getStudentsFrom(int classId) throws DaoException;
 
     User getUserById(int id) throws DaoException;
+
+    void update(User user) throws DaoException;
+
+    void add(User user, String password) throws DaoException;
+
+    void delete(int userId) throws DaoException;
 }

@@ -61,11 +61,12 @@ public class ClassDAOSql implements ClassDAO {
     }
 
     public Class createClassFromId(int id) throws DaoException{
-        String SQL = "SELECT * FROM classess WHERE id = ?";
+        String SQL = "SELECT * FROM classes WHERE id = ?";
         try (Connection connection = DBCPDataSource.getConnection()){
             PreparedStatement pstmt = connection.prepareStatement(SQL);
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
+            rs.next();
             return createClass(rs);
         } catch (SQLException e) {
             e.printStackTrace();

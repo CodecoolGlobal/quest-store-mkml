@@ -3,7 +3,10 @@ package com.queststore.Services;
 import com.queststore.DAO.*;
 import com.queststore.Model.Class;
 import com.queststore.Model.User;
+import com.queststore.Model.UserType;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +40,7 @@ public class UserService {
         }
         return students;
     }
+
 
 
 
