@@ -49,7 +49,7 @@ public class CreateTables {
                 "name VARCHAR(30) UNIQUE NOT NULL,\n" +
                 "description VARCHAR(60) NOT NULL,\n" +
                 "category_ID INTEGER,\n" +
-                "photo BYTEA NOT NULL,\n" +
+                "photo BYTEA,\n" +
                 "value INTEGER NOT NULL,\n" +
                 "card_type_id INTEGER,\n" +
                 "is_active BOOLEAN,\n" +

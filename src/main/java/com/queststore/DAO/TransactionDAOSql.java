@@ -1,7 +1,9 @@
 package com.queststore.DAO;
 
+import com.queststore.Model.Card;
 import com.queststore.Model.Transaction;
 import com.queststore.Model.TransactionStatus;
+import com.queststore.Model.User;
 import com.queststore.Services.TransactionService;
 
 import java.sql.Connection;
@@ -13,10 +15,10 @@ import java.util.List;
 
 public class TransactionDAOSql implements TransactionDAO {
 
-    private TransactionService transactionService;
+    private TransactionService transactionService = new TransactionService();
 
-    public TransactionDAOSql(TransactionService transactionService) {
-        this.transactionService = transactionService;
+    public TransactionDAOSql() {
+
     }
 
     @Override
@@ -30,26 +32,29 @@ public class TransactionDAOSql implements TransactionDAO {
             pstmt.setInt(2, type);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                transactionList.add(transactionService.createTransactionObject(rs));
+
+                transactionList.add(transactionService.createTransactionObject(rs, getTransactionStatusById(rs.getInt("status_id"))));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-
+            throw new DaoException("An error occured during get transactions list");
         }
         return transactionList;
-
     }
 
-    public TransactionStatus getTransactionStatusById(int id){
+
+    public TransactionStatus getTransactionStatusById(int id) throws DaoException{
         String SQL = "SELECT name FROM transactions_status WHERE id=?";
         TransactionStatus transactionStatus = null;
         try(Connection connection = DBCPDataSource.getConnection()){
             PreparedStatement pstmt = connection.prepareStatement(SQL);
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
+            rs.next();
             transactionStatus = new TransactionStatus(id, rs.getString("name"));
         }catch (SQLException ex){
             ex.printStackTrace();
+            throw new DaoException("An error occured during get transaction status");
         }
         return transactionStatus;
     }
