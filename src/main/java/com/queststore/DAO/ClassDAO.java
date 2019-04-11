@@ -15,5 +15,7 @@ public interface ClassDAO {
     void update(Class cls) throws DaoException;
 
     void delete(int classId) throws DaoException;
+  
+    Class createClassFromId(int id) throws DaoException;
 
 }

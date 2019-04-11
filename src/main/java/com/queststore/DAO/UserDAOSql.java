@@ -3,6 +3,7 @@ package com.queststore.DAO;
 import com.queststore.Model.Class;
 import com.queststore.Model.User;
 import com.queststore.Model.UserType;
+import com.queststore.Services.UserService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,25 +17,33 @@ public class UserDAOSql implements UserDAO {
 
     public static void main(String[] args) {
         UserDAO dao = new UserDAOSql();
+//        try {
+//            Optional<User> user = dao.getUser("kamil@bed", "asdfsdf");
+//            if (user.isPresent()) {
+//                System.out.println(user.get().getFirstName());
+//                System.out.println(user.get().getUserClass().getName());
+//                User u = user.get();
+//                u.setFirstName("Karararumba");
+//                dao.update(u);
+////                u.setFirstName("Lama");
+////                u.setEmail("dfdfd@dfdfd");
+////                dao.add(u, "olalalal");
+//                dao.delete(7);
+//            }
+//            for (User u :  dao.getStudentsFrom(1)) {
+//                System.out.println(u.getFirstName());
+//            }
+//        } catch (DaoException e) {
+//            e.printStackTrace();
+//        }
         try {
-            Optional<User> user = dao.getUser("kamil@bed", "asdfsdf");
-            if (user.isPresent()) {
-                System.out.println(user.get().getFirstName());
-                System.out.println(user.get().getUserClass().getName());
-                User u = user.get();
-                u.setFirstName("Karararumba");
-                dao.update(u);
-//                u.setFirstName("Lama");
-//                u.setEmail("dfdfd@dfdfd");
-//                dao.add(u, "olalalal");
-                dao.delete(7);
-            }
-            for (User u :  dao.getStudentsFrom(1)) {
-                System.out.println(u.getFirstName());
-            }
-        } catch (DaoException e) {
-            e.printStackTrace();
+
+            System.out.println(dao.getUserById(1).getUserType().getName());
+
+        }catch (DaoException ex){
+            ex.printStackTrace();
         }
+
 
     }
 
@@ -60,6 +69,45 @@ public class UserDAOSql implements UserDAO {
             e.printStackTrace();
             throw new DaoException("An error occured during getting user from db");
         }
+    }
+
+
+
+    @Override
+    public User getUserById(int id) throws DaoException {
+        String SQL = "SELECT * FROM  users WHERE id=?";
+        ClassDAO classDAOSql = new ClassDAOSql();
+        try (Connection conn = DBCPDataSource.getConnection()){
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            return new User(rs.getInt("id"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email")
+            , classDAOSql.createClassFromId(rs.getInt("id")), null, getUserTypeFromId(rs.getInt("user_type_id")));
+            //TODO: userType powinien byc obiektem i Blob
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("From getUserById cannot create user");
+        }
+    }
+
+    public UserType getUserTypeFromId (int id) throws DaoException{
+        String SQL = "SELECT * FROM user_type WHERE id = ?";
+        try (Connection connection = DBCPDataSource.getConnection()){
+            PreparedStatement pstmt = connection.prepareStatement(SQL);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            return createUserTypeObject(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during getting user type from db");
+        }
+    }
+
+    private UserType createUserTypeObject(ResultSet rs) throws SQLException {
+        return new UserType(rs.getInt("id"), rs.getString("name"));
+
     }
 
     @Override

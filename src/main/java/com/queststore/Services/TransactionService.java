@@ -1,34 +1,35 @@
 package com.queststore.Services;
 
-import com.queststore.DAO.DaoException;
-import com.queststore.DAO.TransactionDAO;
-import com.queststore.DAO.TransactionDAOSql;
+import com.queststore.DAO.*;
+import com.queststore.Model.Card;
 import com.queststore.Model.Transaction;
 import com.queststore.Model.TransactionStatus;
+import com.queststore.Model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TransactionService {
     private TransactionDAO transactionDAO;
-
-    public TransactionService(TransactionDAO transactionDAO) {
+    private CardDAO cardDAO;
+    private UserDAO userDAOSql = new UserDAOSql();
+    public TransactionService(TransactionDAO transactionDAO, CardDAO cardDAO) {
         this.transactionDAO = transactionDAO;
+        this.cardDAO = cardDAO;
+
     }
 
-    public Transaction createTransactionObject(ResultSet rs) throws SQLException {
-        TransactionStatus transactionStatus = null;
-        while(rs.next()){
-            try {
-                transactionStatus = transactionDAO.getTransactionStatusById(rs.getInt("id"));
+    public Transaction createTransactionObject(ResultSet rs) throws DaoException {
+        try {
+            User user = userDAOSql.getUserById(rs.getInt("user_id"));
+            TransactionStatus transactionStatus = transactionDAO.getTransactionStatusById(rs.getInt("id"));
+            Card card = cardDAO.getCardById(rs.getInt("card_id"));
+            return new Transaction(rs.getInt("id"), rs.getDate("date"), user, card
+            , transactionStatus, rs.getInt("cost"));
 
-
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("TransactionServices can't create transaction");
         }
-
-
-        return null;
     }
 }
