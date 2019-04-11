@@ -10,4 +10,6 @@ public interface ClassDAO {
 
     List<Class> getAllClasses(int mentorId) throws DaoException;
 
+    Class createClassFromId(int id) throws DaoException;
+
 }

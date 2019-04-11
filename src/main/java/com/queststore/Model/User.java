@@ -12,7 +12,7 @@ public class User {
     private Blob avatar;
     private String userType;
 
-    private User(Integer id, String firstName, String lastName, String email, Class userClass, Blob avatar, String userType) {
+    public User(Integer id, String firstName, String lastName, String email, Class userClass, Blob avatar, String userType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

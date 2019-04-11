@@ -60,7 +60,23 @@ public class ClassDAOSql implements ClassDAO {
         }
     }
 
-    private Class createClass(ResultSet resultSet) throws SQLException {
+    public Class createClassFromId(int id) throws DaoException{
+        String SQL = "SELECT * FROM classess WHERE id = ?";
+        try (Connection connection = DBCPDataSource.getConnection()){
+            PreparedStatement pstmt = connection.prepareStatement(SQL);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            return createClass(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during getting class by id from db");
+
+        }
+    }
+
+
+
+    public Class createClass(ResultSet resultSet) throws SQLException {
         return new Class(resultSet.getInt("id"), resultSet.getString("name"));
     }
 

@@ -53,6 +53,24 @@ public class UserDAOSql implements UserDAO {
         }
     }
 
+    @Override
+    public User getUserById(int id) throws DaoException {
+        String SQL = "SELECT * FROM  users WHERE id=?";
+        ClassDAO classDAOSql = new ClassDAOSql();
+        try (Connection conn = DBCPDataSource.getConnection()){
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            return new User(rs.getInt("id"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email")
+            , classDAOSql.createClassFromId(rs.getInt("id")), null, rs.getString("user_type_id"));
+            //TODO: userType powinien byc obiektem i Blob
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("From getUserById cannot create user");
+        }
+    }
+
     public List<User> getStudentsFrom(int classId) throws DaoException {
         try (Connection connection = DBCPDataSource.getConnection()){
             List<User> students = new ArrayList<>();
