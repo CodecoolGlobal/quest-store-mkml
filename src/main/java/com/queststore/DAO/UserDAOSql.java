@@ -5,10 +5,7 @@ import com.queststore.Model.User;
 import com.queststore.Model.UserType;
 import com.queststore.Services.UserService;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -91,6 +88,7 @@ public class UserDAOSql implements UserDAO {
         }
     }
 
+    @Override
     public UserType getUserTypeFromId (int id) throws DaoException{
         String SQL = "SELECT * FROM user_type WHERE id = ?";
         try (Connection connection = DBCPDataSource.getConnection()){
@@ -108,6 +106,23 @@ public class UserDAOSql implements UserDAO {
     private UserType createUserTypeObject(ResultSet rs) throws SQLException {
         return new UserType(rs.getInt("id"), rs.getString("name"));
 
+    }
+
+    @Override
+    public List<User> getAllMentors() throws DaoException {
+        String SQL ="SELECT * FROM users LEFT JOIN user_type ON users.user_type_id = user_type.id where user_type.name='mentor'";
+        try (Connection connection = DBCPDataSource.getConnection()){
+            List<User> mentors = new ArrayList<>();
+            PreparedStatement pstmt = connection.prepareStatement(SQL);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                mentors.add(createUser(rs));
+            }
+            return mentors;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during create mentor user type from db");
+        }
     }
 
     @Override
