@@ -10,4 +10,10 @@ public interface ClassDAO {
 
     List<Class> getAllClasses(int mentorId) throws DaoException;
 
+    void add(String name) throws DaoException;
+
+    void update(Class cls) throws DaoException;
+
+    void delete(int classId) throws DaoException;
+
 }
