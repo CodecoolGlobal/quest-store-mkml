@@ -10,9 +10,9 @@ public class User {
     private String email;
     private Class userClass;
     private Blob avatar;
-    private String userType;
+    private UserType userType;
 
-    private User(Integer id, String firstName, String lastName, String email, Class userClass, Blob avatar, String userType) {
+    private User(Integer id, String firstName, String lastName, String email, Class userClass, Blob avatar, UserType userType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -70,11 +70,11 @@ public class User {
         this.avatar = avatar;
     }
 
-    public String getUserType() {
+    public UserType getUserType() {
         return userType;
     }
 
-    public void setUserType(String userType) {
+    public void setUserType(UserType userType) {
         this.userType = userType;
     }
 
@@ -85,7 +85,7 @@ public class User {
         private String nestedEmail;
         private Class nestedUserClass;
         private Blob nestedAvatar;
-        private String nestedUserType;
+        private UserType nestedUserType;
 
         public UserBuilder id(Integer id) {
             this.nestedId = id;
@@ -117,7 +117,7 @@ public class User {
             return this;
         }
 
-        public UserBuilder userType(String userType) {
+        public UserBuilder userType(UserType userType) {
             this.nestedUserType = userType;
             return this;
         }
