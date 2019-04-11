@@ -14,8 +14,12 @@ public class ClassDAOSql implements ClassDAO {
     public static void main(String[] args) {
         ClassDAO dao = new ClassDAOSql();
         try {
+            dao.add("myclass");
             for (Class c : dao.getAllClasses()) {
                 System.out.println(c.getName());
+//                c.setName("newClass");
+//                dao.update(c);
+//                dao.delete(c.getId());
             }
         } catch (DaoException e) {
             e.printStackTrace();
@@ -60,6 +64,48 @@ public class ClassDAOSql implements ClassDAO {
         }
     }
 
+    @Override
+    public void add(String name) throws DaoException {
+        try (Connection connection = DBCPDataSource.getConnection()){
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO classes (" +
+                    "name, is_active) " +
+                    "VALUES (?, true);");
+            statement.setString(1, name);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during adding new class");
+        }
+    }
+
+    @Override
+    public void update(Class cls) throws DaoException {
+        try (Connection connection = DBCPDataSource.getConnection()){
+            PreparedStatement statement = connection.prepareStatement("UPDATE classes SET " +
+                    "name = ? " +
+                    "WHERE id = ?;");
+            statement.setString(1, cls.getName());
+            statement.setInt(2, cls.getId());
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during updating class");
+        }
+    }
+
+    @Override
+    public void delete(int classId) throws DaoException {
+        try (Connection connection = DBCPDataSource.getConnection()){
+            PreparedStatement statement = connection.prepareStatement("UPDATE classes SET is_active = false " +
+                    "WHERE id = ?;");
+            statement.setInt(1, classId);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during deleting class");
+        }
+    }
+
     public Class createClassFromId(int id) throws DaoException{
         String SQL = "SELECT * FROM classes WHERE id = ?";
         try (Connection connection = DBCPDataSource.getConnection()){
@@ -75,9 +121,7 @@ public class ClassDAOSql implements ClassDAO {
         }
     }
 
-
-
-    public Class createClass(ResultSet resultSet) throws SQLException {
+    private Class createClass(ResultSet resultSet) throws SQLException {
         return new Class(resultSet.getInt("id"), resultSet.getString("name"));
     }
 
