@@ -4,6 +4,7 @@ public class Class {
 
     private int id;
     private String name;
+    private boolean is_active;
 
     public Class(int id, String name) {
         this.id = id;
