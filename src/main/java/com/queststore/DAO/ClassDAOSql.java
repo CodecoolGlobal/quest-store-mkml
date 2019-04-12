@@ -14,9 +14,10 @@ public class ClassDAOSql implements ClassDAO {
     public static void main(String[] args) {
         ClassDAO dao = new ClassDAOSql();
         try {
-            dao.add("myclass");
+//            dao.add("myclass");
             for (Class c : dao.getAllClasses()) {
                 System.out.println(c.getName());
+                System.out.println(dao.getStudentsCountByClassId(c.getId()));
 //                c.setName("newClass");
 //                dao.update(c);
 //                dao.delete(c.getId());
@@ -25,6 +26,16 @@ public class ClassDAOSql implements ClassDAO {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public int getMentorsCountByClassId(int id) throws DaoException {
+        return getUserCountByClassId(id, "mentor");
+    }
+
+    @Override
+    public int getStudentsCountByClassId(int id) throws DaoException {
+        return getUserCountByClassId(id, "student");
     }
 
     @Override
@@ -66,7 +77,7 @@ public class ClassDAOSql implements ClassDAO {
 
     @Override
     public void add(String name) throws DaoException {
-        try (Connection connection = DBCPDataSource.getConnection()){
+        try (Connection connection = DBCPDataSource.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO classes (" +
                     "name, is_active) " +
                     "VALUES (?, true);");
@@ -80,7 +91,7 @@ public class ClassDAOSql implements ClassDAO {
 
     @Override
     public void update(Class cls) throws DaoException {
-        try (Connection connection = DBCPDataSource.getConnection()){
+        try (Connection connection = DBCPDataSource.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("UPDATE classes SET " +
                     "name = ? " +
                     "WHERE id = ?;");
@@ -95,7 +106,7 @@ public class ClassDAOSql implements ClassDAO {
 
     @Override
     public void delete(int classId) throws DaoException {
-        try (Connection connection = DBCPDataSource.getConnection()){
+        try (Connection connection = DBCPDataSource.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("UPDATE classes SET is_active = false " +
                     "WHERE id = ?;");
             statement.setInt(1, classId);
@@ -106,9 +117,9 @@ public class ClassDAOSql implements ClassDAO {
         }
     }
 
-    public Class createClassFromId(int id) throws DaoException{
+    public Class createClassFromId(int id) throws DaoException {
         String SQL = "SELECT * FROM classes WHERE id = ?";
-        try (Connection connection = DBCPDataSource.getConnection()){
+        try (Connection connection = DBCPDataSource.getConnection()) {
             PreparedStatement pstmt = connection.prepareStatement(SQL);
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
@@ -123,6 +134,26 @@ public class ClassDAOSql implements ClassDAO {
 
     private Class createClass(ResultSet resultSet) throws SQLException {
         return new Class(resultSet.getInt("id"), resultSet.getString("name"));
+    }
+
+    private int getUserCountByClassId(int id, String userType) throws DaoException {
+        try (Connection connection = DBCPDataSource.getConnection()) {
+            int count = 0;
+            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS count FROM users " +
+                    "JOIN user_type " +
+                    "ON user_type.id = users.user_type_id " +
+                    "WHERE class_id = ? AND is_active = true AND user_type.name = ?");
+            statement.setInt(1, id);
+            statement.setString(2, userType);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("count");
+            }
+            return count;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during getting user count for specific class");
+        }
     }
 
 }

@@ -23,4 +23,12 @@ public class ClassService {
     public void deleteClass(int classId) throws DaoException {
         classDAO.delete(classId);
     }
+
+    public int getMentorsCountByClassId(int id) throws DaoException {
+        return classDAO.getMentorsCountByClassId(id);
+    }
+
+    public int getStrudentsCountByClassId(int id) throws DaoException{
+        return classDAO.getStudentsCountByClassId(id);
+    }
 }
