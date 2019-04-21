@@ -13,6 +13,17 @@ import java.sql.SQLException;
 public class CardDAOSql implements CardDAO {
     CardService cardService;
 
+    public static void main(String[] args) {
+        CardDAO cardDAO = new CardDAOSql();
+        Categories categories = new Categories(1, "name");
+        CardTypes cardTypes = new CardTypes(1, "name");
+        Card card = new Card(1, "myCard", "this is a card", categories, null, 300, cardTypes, true);
+        try {
+            cardDAO.delete(card.getId());
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+    }
 
     public CardDAOSql(){
         this.cardService = new CardService();
@@ -68,5 +79,56 @@ public class CardDAOSql implements CardDAO {
         }
 
         return cardType;
+    }
+
+    @Override
+    public void add(Card card) throws DaoException {
+        try(Connection connection = DBCPDataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(
+                "INSERT INTO cards (name, description, category_id, photo, value, card_type_id, is_active) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, true);"
+        )){
+            setStatementValues(statement, card);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update(Card card) throws DaoException {
+        try(Connection connection = DBCPDataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE cards SET name = ?, description = ?, category_id = ?, photo = ?, value = ?, card_type_id = ? " +
+                            "WHERE id = ?;"
+            )){
+            setStatementValues(statement, card);
+            statement.setInt(7, card.getId());
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setStatementValues(PreparedStatement statement, Card card) throws SQLException {
+        statement.setString(1, card.getName());
+        statement.setString(2, card.getDescription());
+        statement.setInt(3, card.getCategories().getId());
+        statement.setBytes(4, "dupa".getBytes());
+        statement.setInt(5, card.getValue());
+        statement.setInt(6, card.getCardTypes().getId());
+    }
+
+    @Override
+    public void delete(int cardId) throws DaoException {
+        try(Connection connection = DBCPDataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE cards SET is_active = false WHERE id = ?;"
+            )){
+            statement.setInt(1, cardId);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

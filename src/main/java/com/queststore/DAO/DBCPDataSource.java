@@ -5,7 +5,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class DBCPDataSource {
+class DBCPDataSource {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/queststore";
     private static final String USER = "postgres";
@@ -21,7 +21,7 @@ public class DBCPDataSource {
         ds.setMaxOpenPreparedStatements(100);
     }
 
-    public static Connection getConnection() throws SQLException {
+    static Connection getConnection() throws SQLException {
         return ds.getConnection();
     }
 
