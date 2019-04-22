@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardDAOSql implements CardDAO {
 
@@ -21,6 +23,25 @@ public class CardDAOSql implements CardDAO {
             cardDAO.delete(card.getId());
         } catch (DaoException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<Card> getCardsOfType(CardTypes cardTypes) throws DaoException {
+        try (Connection connection = DBCPDataSource.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(
+                     "SELECT * FROM cards WHERE card_type_id = ? AND is_active = true;"
+             )){
+            List<Card> cards = new ArrayList<>();
+            pstmt.setInt(1, cardTypes.getId());
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+                cards.add(createCardObject(rs));
+            }
+            return cards;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during fetching all cards");
         }
     }
 
