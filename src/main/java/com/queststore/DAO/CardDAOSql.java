@@ -47,7 +47,7 @@ public class CardDAOSql implements CardDAO {
 
     @Override
     public Card getCardById(int id) {
-        String SQL = "SELECT * FROM cards WHERE id=?";
+        String SQL = "SELECT * FROM cards WHERE id=? AND is_active = true;";
         Card card = null;
         try (Connection connection = DBCPDataSource.getConnection()){
             PreparedStatement pstmt = connection.prepareStatement(SQL);
@@ -64,7 +64,7 @@ public class CardDAOSql implements CardDAO {
 
     @Override
     public Categories getCategoryById(int id) {
-        String SQL = "SELECT * FROM categories WHERE id = ?";
+        String SQL = "SELECT * FROM categories WHERE id = ?;";
         Categories category = null;
 
         try(Connection connection = DBCPDataSource.getConnection()){
