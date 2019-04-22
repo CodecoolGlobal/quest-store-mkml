@@ -1,14 +1,10 @@
 package com.queststore.Services;
 
 import com.queststore.DAO.CardDAO;
-import com.queststore.DAO.CardDAOSql;
 import com.queststore.DAO.DaoException;
 import com.queststore.Model.Card;
 import com.queststore.Model.CardTypes;
-import com.queststore.Model.Categories;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 public class CardService {
@@ -21,5 +17,17 @@ public class CardService {
 
     public List<Card> getAllCards(CardTypes cardTypes) throws DaoException {
         return cardDAO.getCardsOfType(cardTypes);
+    }
+
+    public void addNew(Card card) throws DaoException {
+        cardDAO.add(card);
+    }
+
+    public void update(Card card) throws DaoException {
+        cardDAO.update(card);
+    }
+
+    public void deleteCard(int cardId) throws DaoException {
+        cardDAO.delete(cardId);
     }
 }
