@@ -18,4 +18,8 @@ public interface ClassDAO {
   
     Class createClassFromId(int id) throws DaoException;
 
+    int getMentorsCountByClassId(int id) throws DaoException;
+
+    int getStudentsCountByClassId(int id) throws DaoException;
+
 }
