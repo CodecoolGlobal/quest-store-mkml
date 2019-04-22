@@ -18,6 +18,8 @@ public interface UserDAO {
 
     List<User> getAllMentors() throws DaoException;
 
+
+
     void update(User user) throws DaoException;
 
     void add(User user, String password) throws DaoException;
