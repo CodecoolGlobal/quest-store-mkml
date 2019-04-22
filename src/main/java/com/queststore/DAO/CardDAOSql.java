@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CardDAOSql implements CardDAO {
-    CardService cardService;
 
     public static void main(String[] args) {
         CardDAO cardDAO = new CardDAOSql();
@@ -25,10 +24,6 @@ public class CardDAOSql implements CardDAO {
         }
     }
 
-    public CardDAOSql(){
-        this.cardService = new CardService();
-    }
-
     @Override
     public Card getCardById(int id) {
         String SQL = "SELECT * FROM cards WHERE id=?";
@@ -37,7 +32,8 @@ public class CardDAOSql implements CardDAO {
             PreparedStatement pstmt = connection.prepareStatement(SQL);
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
-            card = cardService.createCardObject(rs);
+            rs.next();
+            card = createCardObject(rs);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -130,5 +126,14 @@ public class CardDAOSql implements CardDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private Card createCardObject(ResultSet rs) throws SQLException {
+        Categories category = getCategoryById(rs.getInt("category_id"));
+        CardTypes cardType = getCardTypeById(rs.getInt("card_type_id"));
+
+        return new Card(rs.getInt("id"),rs.getString("name"), rs.getString("description")
+                , category, null, rs.getInt("value"), cardType, rs.getBoolean("is_active"));
+        //TODO: Wstawić pobranie zdjecia (poki co problem z BLOB dlatego null)
     }
 }
