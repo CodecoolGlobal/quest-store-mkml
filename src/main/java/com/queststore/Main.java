@@ -16,7 +16,7 @@ public class Main {
             ex.printStackTrace();
         }
         CardDAO cardDAOSql = new CardDAOSql();
-        System.out.println(cardDAOSql.getCardById(1).getCategories().getName());
+//        System.out.println(cardDAOSql.getCardById(1).getCategories().getName());
 
     }
 }

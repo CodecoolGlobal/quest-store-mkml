@@ -64,7 +64,7 @@ public class CreateTables {
                 "card_id INTEGER,\n" +
                 "status_id INTEGER,\n" +
                 "cost INTEGER NOT NULL,\n" +
-                "FOREIGN KEY (status_id) REFERENCES quest_status (id),\n" +
+                "FOREIGN KEY (status_id) REFERENCES transactions_status (id),\n" +
                 "FOREIGN KEY (user_id) REFERENCES users (id),\n" +
                 "FOREIGN KEY (card_id) REFERENCES cards (id)\n" +
                 ");";

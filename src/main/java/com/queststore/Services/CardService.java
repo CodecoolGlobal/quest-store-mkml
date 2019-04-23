@@ -1,26 +1,33 @@
 package com.queststore.Services;
 
 import com.queststore.DAO.CardDAO;
-import com.queststore.DAO.CardDAOSql;
+import com.queststore.DAO.DaoException;
 import com.queststore.Model.Card;
 import com.queststore.Model.CardTypes;
-import com.queststore.Model.Categories;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
 public class CardService {
 
+    private CardDAO cardDAO;
 
-    public Card createCardObject(ResultSet rs) throws SQLException {
-        CardDAO cardDAOSql = new CardDAOSql();
-        rs.next();
-        Categories category = cardDAOSql.getCategoryById(rs.getInt("category_id"));
-        CardTypes cardType = cardDAOSql.getCardTypeById(rs.getInt("card_type_id"));
+    public CardService(CardDAO cardDAO) {
+        this.cardDAO = cardDAO;
+    }
 
-        return new Card(rs.getInt("id"),rs.getString("name"), rs.getString("description")
-        , category, null, rs.getInt("value"), cardType, rs.getBoolean("is_active"));
-//TODO: Wstawić pobranie zdjecia (poki co problem z BLOB dlatego null)
+    public List<Card> getAllCards(CardTypes cardTypes) throws DaoException {
+        return cardDAO.getCardsOfType(cardTypes);
+    }
 
+    public void addNew(Card card) throws DaoException {
+        cardDAO.add(card);
+    }
+
+    public void update(Card card) throws DaoException {
+        cardDAO.update(card);
+    }
+
+    public void deleteCard(int cardId) throws DaoException {
+        cardDAO.delete(cardId);
     }
 }
