@@ -17,6 +17,23 @@ function progressBar() {
 }
 
 
+function addNewArtifactCard() {
+    let itemCardDescrip = document.getElementById("newDescription").innerHTML;
+    let itemCardPriceBox = document.getElementById("newPrice").innerHTML;
+    let itemCardText = document.getElementById("newCardText").innerHTML;
+    console.log(itemCardText);
+    //TODO: create list or map to read all data from this Card
+    let itemsList = [itemCardDescrip, itemCardPriceBox, itemCardText];
+    let request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:8000/mentor-items");
+    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+    request.send(JSON.stringify(itemsList));
+
+    location.reload();
+};
+//add image to send to serwer
+//Here add function that send these data to DB
+
 function sendInfoQuestCard() {
     let questCardDescrip = document.getElementById("description").innerHTML;
     let questCardPriceBox = document.getElementById("price").innerHTML;
@@ -34,17 +51,8 @@ function sendInfoItemsCard() {
     //Here add function that send these data to DB
 }
 
-function sendInfoToCreateCard(){
-    let itemCardDescrip = document.getElementById("newDescription").innerHTML;
-    let itemCardPriceBox = document.getElementById("newPrice").innerHTML;
-    let itemCardText = document.getElementById("newCardText").innerHTML;
-    //add image to send to serwer
-//Here add function that send these data to DB
 
-  
-    alert("Card Processing successfully completed");
-    location.reload();
-};
+
 
 
 function loadFile(event){

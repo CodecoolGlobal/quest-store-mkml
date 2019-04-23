@@ -1,6 +1,7 @@
 package com.queststore;
 
 import com.queststore.Controller.Mentor;
+import com.queststore.Controller.MentorItems;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class Main {
 
         // set routes
         server.createContext("/mentor", new Mentor());
+        server.createContext("/mentor-items", new MentorItems());
         server.createContext("/static", new Static());
 
 
