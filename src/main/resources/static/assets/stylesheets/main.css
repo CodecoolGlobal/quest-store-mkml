@@ -1,0 +1,386 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*
+======================================
+    Header
+======================================
+ */
+
+.primary-header {
+    z-index: 5;
+    background-color: #133C55;
+    background-image: linear-gradient(#081A26, #133C55);
+    color: aliceblue;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    padding: 10px 100px 0 100px;
+}
+
+.sub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sub-header div {
+    display: flex;
+}
+
+.user-status h2 {
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.level {
+    flex-flow: column nowrap;
+}
+
+.user-status > div {
+    padding: 0 25px;
+}
+
+.logo img {
+    max-width: 80px;
+}
+
+.primary-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: #0A2333 solid 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.primary-nav ul {
+    display: flex;
+    flex-grow: 1;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.primary-nav a {
+    display: block;
+    padding: 15px 20px;
+    color: aliceblue;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+#logout {
+    padding: 0 20px;
+}
+
+#logout img {
+    max-width: 25px;
+}
+
+#logout a {
+    padding: 10px 10px;
+}
+
+.primary-nav a:hover {
+    background-color: #30618E;
+}
+
+#myProgress {
+    width: 100%;
+    background-color: #fff;
+}
+
+#myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #91E5F6;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #133C55;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: aliceblue;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*
+======================================
+    Custom style
+======================================
+ */
+
+.main-info {
+    padding: 200px 75px;
+    background: #E1F7FC;
+}
+
+.cards-display {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+
+/*
+======================================
+    Footer
+======================================
+ */
+
+.primary-footer {
+    background-color: #133C55;
+    background-image: linear-gradient(#081A26, #133C55);
+    color: aliceblue;
+    display: flex;
+    padding: 10px 100px 0 100px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.primary-footer small {
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+/*
+======================================
+    Transaction acceptance
+======================================
+ */
+
+.cooler-done-quest {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-image: linear-gradient(#91E5F6, #386FA4);
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.codecooler { /*temporary*/
+    flex: 1;
+    max-width: 300px;
+    max-height: 450px;
+    background-color: #91E5F6;
+}
+
+.acceptance-field {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.decision-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+.decline-button {
+    max-width: 64px;
+    max-height: 64px;
+}
+.accept-button {
+    max-width: 64px;
+    max-height: 64px;
+}
+
+
+.decision-buttons img {
+    max-width: 64px;
+}
+
+.black-arrow-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.black-arrow-right img {
+    max-width: 100px;
+}
+
+.img-hover {
+    max-width: 64px;
+    max-height: 64px;
+    display: none;
+}
+
+.decline-button:hover .img-hover, .accept-button:hover .img-hover{
+    display: block;
+}
+
+.decline-button:hover .img-basic , .accept-button:hover .img-basic{
+    display: none;
+}
+
+.decision-buttons button {
+    padding: 0;
+    border: none;
+    background: none;
+    border-radius: 50%;
+}
+
+.main-info h2 {
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+/*
+======================================
+    Class Table
+======================================
+ */
+
+.class-table{
+    overflow-x: auto;
+    text-align: left;
+    font-size: 25px;
+}
+
+.class-table tr{
+    height: 50px;
+    vertical-align: center;
+    border: 1px solid #9BE7F6;
+}
+
+
+.class-table tr th, td{
+    padding: 10px 20px;
+}
+
+.class-table td{
+    vertical-align: center;
+}
+
+.class-table-top-row{
+    background-color: #133C55;
+    color: white
+}
+
+.class-table tr:nth-child(even){background-color: #9BE7F6;}
+.class-table tr:hover{ background-color: #59A5D8;}
+
+.class-table-top-row:hover{background-color: #133C55;}
+
+.add-class-button{
+
+    border: none;
+    background-color: #59A5D8;
+    color: #ffffff;
+    font-size: 18px;
+    height: 40px;
+
+}
+
+.delete-class-button{
+    border-style: none;
+    background-color: transparent;
+    display: block;
+    margin: 10px auto;
+
+}
+.delete-class-button img{
+    width: 40px;
+}
+
+/*
+======================================
+    Slider
+======================================
+ */
+
+#range{
+    height: 20px !important;
+}
+
+.slider-header{
+    margin: 0px 0px 50px 0px;
+}
+
+.slider-range{
+
+    margin: 20px 0px;
+    display: flex;
+    padding-top: 30px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+}
+.c-1-color { background: #91E5F6 !important; }
+.c-2-color { background: #84D2F6 !important; }
+.c-3-color { background: #59A5D8 !important; }
+.c-4-color { background: #386FA4 !important; }
+.c-5-color { background: #133C55 !important; }

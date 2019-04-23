@@ -1,0 +1,136 @@
+/*
+================================
+    Item Card
+============================
+ */
+
+.item-card{
+    margin: 20px;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    border-radius: 20px;
+    width: 300px;
+    height: 450px;
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.item-card-silver{
+    background-image:url("../images/item-card/item-background-silver.png");
+
+}
+.item-card-gold{
+    background-image:url("../images/item-card/item-background-gold.png");
+
+}
+
+.item-card-header{
+    text-align: center;
+    font-size: 25px;
+    margin: 25px 10px 20px 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-card-price{
+    background-image: url("../images/quest-card/quest-card-price.png");
+    height: 60px;
+    width: 60px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-width: 1px;
+    border-style: solid;
+    }
+
+.item-card-price-box{
+    position: absolute;
+    font-size: 20px;
+}
+
+.item-card-image img{
+    /*position: fixed;*/
+    width: 280px;
+    margin-left: 10px;
+}
+
+.item-card-category{
+    font-size: 20px;
+    margin: 5px 10px 5px 10px;
+}
+
+.item-card-text-box{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column;
+    background-image:url("../images/quest-card/quest-card-text.png");
+    width: 280px;
+    height: 100%;
+    margin: 10px;
+}
+
+.item-card-text{
+    font-size: 20px;
+    line-height: 1.5em;
+    padding: 10px;
+}
+
+.buy-btn {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    float:right;
+}
+
+.buy-btn img {
+    background-color: #ffab00;
+    box-shadow: white;
+    border: 1px solid grey;
+    border-radius: 10%;
+    padding: 0;
+    margin: 0;
+    max-width: 30px;
+}
+
+.myButton {
+    background-color:#3870a4;
+    -moz-border-radius:28px;
+    -webkit-border-radius:28px;
+    border-radius:28px;
+    border:1px solid #3870a4;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:12px;
+    padding:11px 22px;
+    text-decoration:none;
+    text-shadow:0 1px 0 #3870a4;
+}
+.myButton:hover {
+    background-color:#3870a4;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+
+    border: 0px solid #ccc;
+    display: inline-block;
+    padding: 0;
+    cursor: pointer;
+}
