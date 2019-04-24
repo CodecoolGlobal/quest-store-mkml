@@ -19,7 +19,7 @@ public class Mentor implements HttpHandler {
     public void handle(HttpExchange httpExchange) throws IOException {
 
         //Get Mentor id from session
-        int mentorId = 3;
+        int mentorId = 1;
 
         UserDAO userDAO = new UserDAOSql();
         List<User> userList = new ArrayList<>();
