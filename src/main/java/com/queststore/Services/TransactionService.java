@@ -8,6 +8,7 @@ import com.queststore.Model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class TransactionService {
     private CardDAO cardDAO = new CardDAOSql();
@@ -19,9 +20,10 @@ public class TransactionService {
 
     public Transaction createTransactionObject(ResultSet rs, TransactionStatus transactionStatus) throws DaoException {
         try {
-            User user = userDAOSql.getUserById(rs.getInt("user_id"));
+            Optional<User> user = userDAOSql.getUserById(rs.getInt("user_id"));
+            //todo change logic chain to use Optional
             Card card = cardDAO.getCardById(rs.getInt("card_id"));
-            return new Transaction(rs.getInt("id"), rs.getDate("date"), user, card
+            return new Transaction(rs.getInt("id"), rs.getDate("date"), user.get(), card
             , transactionStatus, rs.getInt("cost"));
 
         } catch (SQLException e) {
