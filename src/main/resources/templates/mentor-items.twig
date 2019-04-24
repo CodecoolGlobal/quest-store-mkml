@@ -1,0 +1,52 @@
+{% include "../static/mentor-header.html" %}
+
+<section class="main-info cards-display">
+
+
+<div class="item-card item-card-gold">
+    <div id="newDescription2" class="item-card-header" contenteditable="true"><span id="newDescription">Enter Description</span>
+        <div class="item-card-price">
+            <div id="newPrice" class="item-card-price-box" contenteditable="true">???</div>
+        </div>
+    </div>
+    <div class="item-card-image">
+        <label for="file-upload" class="custom-file-upload">
+            <img id="emptyImage" src="../static/assets/images/empty-photo-resize.jpg" alt="emptyPhoto">
+        </label>
+        <input id="file-upload" type="file" accept="image/png, image/jpeg" onchange="loadFile(event)"/>
+    </div>
+    <div class="item-card-category">
+        Choose category
+    </div>
+    <div class="item-card-text-box">
+        <div id="newCardText" class="item-card-text" contenteditable="true">Enter item description</div>
+        <button class="myButton" onclick="addNewItemCard()">Create new card
+        </button>
+    </div>
+</div>
+
+
+    {% for card in cardsList %}
+    <div id="{{ card.getId }}" class="item-card item-card-gold">
+        <div class="item-card-header" contenteditable="true"><span class="getName">{{ card.getName }}</span>
+            <div class="item-card-price">
+                <div class="item-card-price-box getPrice" contenteditable="true">{{ card.getValue }}</div>
+            </div>
+        </div>
+        <div class="item-card-image">
+            <img src="../static/assets/images/item-card/item-sorcery-circle.jpg" alt="Circle of sorcery">
+        </div>
+        <div class="item-card-category getCategory">
+            {{ card.getCategories.getName }}
+        </div>
+        <div class="item-card-text-box">
+            <div class="item-card-text getDescription" contenteditable="true">{{ card.getDescription }} </div>
+            <button class="myButton" onclick="sendInfoItemsCard({{ card.getId }})">Save changes
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+
+</section>
+
+{% include "../static/footer.html" %}
