@@ -1,14 +1,19 @@
 package com.queststore;
 
-import com.queststore.Controller.ItemCardAdd;
-import com.queststore.Controller.ItemCardUpdate;
+import com.queststore.Controller.Login;
+import com.queststore.Controller.Logout;
+import com.queststore.Services.ItemCardAdd;
+import com.queststore.Services.ItemCardUpdate;
 import com.queststore.Controller.Mentor;
 import com.queststore.Controller.MentorItems;
+import com.queststore.DAO.LoginDao;
+import com.queststore.DAO.UserDAOSql;
+import com.queststore.Services.UserCardUpdate;
+import com.queststore.helpers.CookieHelper;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -21,6 +26,12 @@ public class Main {
         server.createContext("/static", new Static());
         server.createContext("/mentor-add-items", new ItemCardAdd());
         server.createContext("/mentor-update-items", new ItemCardUpdate());
+        server.createContext("/user-update", new UserCardUpdate());
+
+        LoginDao dao = new LoginDao();
+        CookieHelper cookieHelper = new CookieHelper();
+        server.createContext("/login", new Login(dao, cookieHelper, new UserDAOSql()));
+        server.createContext("/logout", new Logout(dao, cookieHelper));
 
 
         server.setExecutor(null); // creates a default executor

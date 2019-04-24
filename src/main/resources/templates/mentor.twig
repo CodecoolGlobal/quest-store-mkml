@@ -12,7 +12,7 @@
         <img src="../static/assets/images/student-card/student.png" alt="Student" class="student-picture" />
     </div>
 
-    <div class="student-editable">
+    <div class="student-editable" id="{{ student.getId }}">
         <ul class="student-information">
             <li class="student-name" contenteditable="true">{{ student.getFirstName }} {{ student.getLastName }}</li>
             <li class="student-email" contenteditable="true">{{ student.getEmail }}</li>

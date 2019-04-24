@@ -8,15 +8,17 @@ function sendInfoMentorCard() {
 
 function sendInfoStudentCard(e) {
     let content = document.getElementById(e);
+    console.log(content);
 
     let studentId = e;
     let studentName = content.getElementsByClassName("student-name")[0].innerHTML;
     let studentEmail = content.getElementsByClassName("student-email")[0].innerHTML;
     let studentClass = content.getElementsByClassName("student-class-id")[0].innerHTML;
-    let itemList = [studentId, studentName, studentEmail,studentClass];
+    let studentIdInDBuserType = 1;
+    let itemList = [studentId, studentName, studentEmail,studentClass,studentIdInDBuserType];
 
     let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:8000/mentor");
+    request.open("POST", "http://localhost:8000/user-update");
     request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
     request.send(JSON.stringify(itemList));
 

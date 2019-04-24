@@ -34,7 +34,6 @@ function addNewItemCard() {
 
 function sendInfoItemsCard(e) {
     let content = document.getElementById(e);
-
     let itemCardId = e;
     let itemCardDescrip = content.getElementsByClassName("getName")[0].innerHTML;
     let itemCardPriceBox = content.getElementsByClassName("getPrice")[0].innerHTML;
@@ -45,7 +44,7 @@ function sendInfoItemsCard(e) {
     request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
     request.send(JSON.stringify(itemList));
 
-    location.reload();
+    // location.reload();
 
 }
 

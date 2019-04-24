@@ -1,4 +1,4 @@
-package com.queststore.Controller;
+package com.queststore.Services;
 
 import com.sun.net.httpserver.HttpExchange;
 import org.json.JSONArray;

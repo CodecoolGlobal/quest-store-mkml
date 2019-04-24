@@ -1,4 +1,4 @@
-package com.queststore.Controller;
+package com.queststore.Services;
 
 import com.queststore.DAO.CardDAO;
 import com.queststore.DAO.CardDAOSql;
@@ -16,7 +16,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemCardAdd implements HttpHandler {
+public class ItemCardUpdate implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -24,13 +24,12 @@ public class ItemCardAdd implements HttpHandler {
         String method = httpExchange.getRequestMethod();
         List<String> items = new ArrayList<>();
         List<Card> cardList = new ArrayList<>();
-
         if(method.equals("POST")) {
             items = jsonParser.parseJSONlistToArray(jsonParser.convertJSONtoString(httpExchange));
         }
 
         try {
-            cardList = addCardToDB(items);
+            cardList = updateCardInDB(items);
 
         } catch (DaoException e) {
             e.printStackTrace();
@@ -49,19 +48,20 @@ public class ItemCardAdd implements HttpHandler {
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
-
     }
 
-    public List<Card> addCardToDB(List<String> items) throws DaoException {
 
+    private List<Card> updateCardInDB(List<String> items) throws DaoException {
         CardDAO cardDAO = new CardDAOSql();
         List<Card> cardList = new ArrayList<>();
         int artifactTypeId = 2;
-        Card newCard = new Card(4, items.get(0), items.get(2), new Categories(1, "easy"), null,
-                Integer.parseInt((String) items.get(1)), new CardTypes(artifactTypeId, "artifact"), true);
-        cardDAO.add(newCard);
+
+        Card createCart = new Card(Integer.parseInt(items.get(0)), items.get(1), items.get(3), new Categories(1, "easy"), null,
+                Integer.parseInt(items.get(2)), new CardTypes(2, "artifact"), true);
+        cardDAO.update(createCart);
         cardList.addAll(cardDAO.getCardsOfType(cardDAO.getCardTypeById(artifactTypeId)));
         return cardList;
+
     }
 
 }
