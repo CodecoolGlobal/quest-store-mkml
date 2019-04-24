@@ -6,21 +6,26 @@ import com.queststore.DAO.UserDAOSql;
 import com.queststore.Model.User;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import org.json.JSONArray;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Mentor implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        //Get Mentor id from session
-        int mentorId = 3;
+        int mentorId = 2;
+        //TODO: take mentor id from session
 
+        String method = httpExchange.getRequestMethod();
+        if(method.equals("POST")) {
+//            parseEditUserFromJSON(httpExchange);
+        }
         UserDAO userDAO = new UserDAOSql();
         List<User> userList = new ArrayList<>();
         try {
@@ -44,4 +49,5 @@ public class Mentor implements HttpHandler {
         os.close();
 
     }
+
 }

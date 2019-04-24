@@ -1,5 +1,7 @@
 package com.queststore;
 
+import com.queststore.Controller.ItemCardAdd;
+import com.queststore.Controller.ItemCardUpdate;
 import com.queststore.Controller.Mentor;
 import com.queststore.Controller.MentorItems;
 import com.sun.net.httpserver.HttpServer;
@@ -17,6 +19,8 @@ public class Main {
         server.createContext("/mentor", new Mentor());
         server.createContext("/mentor-items", new MentorItems());
         server.createContext("/static", new Static());
+        server.createContext("/mentor-add-items", new ItemCardAdd());
+        server.createContext("/mentor-update-items", new ItemCardUpdate());
 
 
         server.setExecutor(null); // creates a default executor
@@ -24,15 +28,6 @@ public class Main {
         // start listening
         server.start();
 
-
-//        CreateTables createTables = new CreateTables();
-//        try {
-//            createTables.createAllTables();
-//        }catch (SQLException ex){
-//            ex.printStackTrace();
-//        }
-//        CardDAO cardDAOSql = new CardDAOSql();
-////        System.out.println(cardDAOSql.getCardById(1).getCategories().getName());
 
     }
 }
