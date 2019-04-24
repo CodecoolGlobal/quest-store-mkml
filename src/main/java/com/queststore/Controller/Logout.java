@@ -8,7 +8,6 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.HttpCookie;
 import java.util.Optional;
 
@@ -26,12 +25,8 @@ public class Logout implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         System.out.println("hello from the other side");
         deleteSessionCookie(exchange);
-        String path = getCurrentUrl(exchange);
-        exchange.getResponseHeaders().set("Location", path + "/login");
-        exchange.sendResponseHeaders(200, 0);
-        OutputStream os = exchange.getResponseBody();
-        os.write("".getBytes());
-        os.close();
+        exchange.getResponseHeaders().set("Location", "/login");
+        exchange.sendResponseHeaders(303, 0);
     }
 
     private void deleteSessionCookie(HttpExchange exchange) {
@@ -43,9 +38,5 @@ public class Logout implements HttpHandler {
         } catch (DaoException e) {
             e.printStackTrace();
         }
-    }
-
-    private String getCurrentUrl(HttpExchange exchange) {
-        return "http://"+ exchange.getRequestHeaders().getFirst("Host");
     }
 }

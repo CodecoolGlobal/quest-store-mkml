@@ -19,8 +19,10 @@ public class Mentor implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
+
         int mentorId = 2;
         //TODO: take mentor id from session
+
 
         String method = httpExchange.getRequestMethod();
         if(method.equals("POST")) {
