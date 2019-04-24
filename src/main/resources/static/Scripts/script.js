@@ -17,12 +17,11 @@ function progressBar() {
 }
 
 
-function addNewArtifactCard() {
+function addNewItemCard() {
     let itemCardDescrip = document.getElementById("newDescription").innerHTML;
     let itemCardPriceBox = document.getElementById("newPrice").innerHTML;
     let itemCardText = document.getElementById("newCardText").innerHTML;
-    console.log(itemCardText);
-    //TODO: create list or map to read all data from this Card
+
     let itemsList = [itemCardDescrip, itemCardPriceBox, itemCardText];
     let request = new XMLHttpRequest();
     request.open("POST", "http://localhost:8000/mentor-items");
@@ -30,23 +29,31 @@ function addNewArtifactCard() {
     request.send(JSON.stringify(itemsList));
 
     location.reload();
-};
-//add image to send to serwer
-//Here add function that send these data to DB
+}
+
+
+function sendInfoItemsCard(e) {
+    let content = document.getElementById(e);
+
+    let itemCardId = e;
+    let itemCardDescrip = content.getElementsByClassName("getName")[0].innerHTML;
+    let itemCardPriceBox = content.getElementsByClassName("getPrice")[0].innerHTML;
+    let itemCardText = content.getElementsByClassName("getDescription")[0].innerHTML;
+    let itemList = [itemCardId, itemCardDescrip, itemCardPriceBox, itemCardText];
+    let request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:8000/mentor-items");
+    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+    request.send(JSON.stringify(itemList));
+
+    location.reload();
+
+}
+
 
 function sendInfoQuestCard() {
     let questCardDescrip = document.getElementById("description").innerHTML;
     let questCardPriceBox = document.getElementById("price").innerHTML;
     let questCardText = document.getElementById("cardText").innerHTML;
-
-    //Here add function that send these data to DB
-}
-
-
-function sendInfoItemsCard() {
-    let itemCardDescrip = document.getElementById("description").innerHTML;
-    let itemCardPriceBox = document.getElementById("price").innerHTML;
-    let itemCardText = document.getElementById("cardText").innerHTML;
 
     //Here add function that send these data to DB
 }

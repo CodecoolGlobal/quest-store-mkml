@@ -31,10 +31,12 @@ public class MentorItems implements HttpHandler {
             BufferedReader br = new BufferedReader(isr);
             formData = br.readLine();
             formData = formData.replace("\"", "");
-            System.out.println(formData);
-            items = Arrays.asList(formData.split("[\\s,]+"));
+            formData = formData.replace("[", "");
+            formData = formData.replace("]", "");
 
-            System.out.println(items.get(1) + " " + items.get(2));
+            System.out.println(formData);
+            items = Arrays.asList(formData.split("[,]"));
+
         }
 
 //        System.out.println(formData);
@@ -44,10 +46,14 @@ public class MentorItems implements HttpHandler {
         int artifactTypeId = 2;
 //        System.out.println(newCard.getDescription());
         try {
-            if(!items.isEmpty()){
+            if(!items.isEmpty() & items.size()==3){
                 Card newCard = new Card(4, items.get(0), items.get(2), new Categories(1, "easy"), null,
                         Integer.parseInt(items.get(1)), new CardTypes(2, "artifact"), true);
             cardDAO.add(newCard);
+            } else if(!items.isEmpty() & items.size()==4){
+                Card createCart = new Card(Integer.parseInt(items.get(0)), items.get(1), items.get(3), new Categories(1, "easy"), null,
+                        Integer.parseInt(items.get(2)), new CardTypes(2, "artifact"), true);
+                cardDAO.update(createCart);
             }
             cardList.addAll(cardDAO.getCardsOfType(cardDAO.getCardTypeById(artifactTypeId)));
         } catch (DaoException e) {

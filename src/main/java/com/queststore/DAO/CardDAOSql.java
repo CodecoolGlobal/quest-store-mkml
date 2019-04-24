@@ -30,7 +30,7 @@ public class CardDAOSql implements CardDAO {
     public List<Card> getCardsOfType(CardTypes cardTypes) throws DaoException {
         try (Connection connection = DBCPDataSource.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(
-                     "SELECT * FROM cards WHERE card_type_id = ? AND is_active = true;"
+                     "SELECT * FROM cards WHERE card_type_id = ? AND is_active = true ORDER BY id ASC;"
              )){
             List<Card> cards = new ArrayList<>();
             pstmt.setInt(1, cardTypes.getId());
