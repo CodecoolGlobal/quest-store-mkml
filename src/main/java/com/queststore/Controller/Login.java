@@ -81,8 +81,8 @@ public class Login implements HttpHandler {
 
     private LoginUser createUser(String rawData) throws Exception {
         String[] entries = rawData.split("&");
-        String name = URLDecoder.decode(entries[0].split("=")[1].trim(), StandardCharsets.UTF_8);
-        String password = URLDecoder.decode(entries[1].split("=")[1].trim(), StandardCharsets.UTF_8);
+        String name = URLDecoder.decode(entries[0].split("=")[1].trim(), StandardCharsets.UTF_8.toString());
+        String password = URLDecoder.decode(entries[1].split("=")[1].trim(), StandardCharsets.UTF_8.toString());
         System.out.println("Password: " + password);
         return new LoginUser(null, name, password);
     }
