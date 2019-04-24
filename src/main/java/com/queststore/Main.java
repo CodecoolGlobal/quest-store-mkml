@@ -2,10 +2,14 @@ package com.queststore;
 
 import com.queststore.Controller.Login;
 import com.queststore.Controller.Logout;
+import com.queststore.Services.ItemCardAdd;
+import com.queststore.Services.ItemCardUpdate;
+
 import com.queststore.Controller.Mentor;
 import com.queststore.Controller.MentorItems;
 import com.queststore.DAO.LoginDao;
 import com.queststore.DAO.UserDAOSql;
+import com.queststore.Services.UserCardUpdate;
 import com.queststore.helpers.CookieHelper;
 import com.sun.net.httpserver.HttpServer;
 
@@ -21,6 +25,9 @@ public class Main {
         server.createContext("/mentor", new Mentor());
         server.createContext("/mentor-items", new MentorItems());
         server.createContext("/static", new Static());
+        server.createContext("/mentor-add-items", new ItemCardAdd());
+        server.createContext("/mentor-update-items", new ItemCardUpdate());
+        server.createContext("/user-update", new UserCardUpdate());
 
         LoginDao dao = new LoginDao();
         CookieHelper cookieHelper = new CookieHelper();
@@ -33,15 +40,6 @@ public class Main {
         // start listening
         server.start();
 
-
-//        CreateTables createTables = new CreateTables();
-//        try {
-//            createTables.createAllTables();
-//        }catch (SQLException ex){
-//            ex.printStackTrace();
-//        }
-//        CardDAO cardDAOSql = new CardDAOSql();
-////        System.out.println(cardDAOSql.getCardById(1).getCategories().getName());
 
     }
 }

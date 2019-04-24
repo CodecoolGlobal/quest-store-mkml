@@ -5,7 +5,10 @@ import java.sql.*;
 
 public class CreateTables {
 
-
+    public static void main(String[] args) throws SQLException {
+        CreateTables createTables = new CreateTables();
+        createTables.createAllTables();
+    }
     public void createAllTables() throws SQLException {
 
 

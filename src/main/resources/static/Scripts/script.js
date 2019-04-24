@@ -24,7 +24,7 @@ function addNewItemCard() {
 
     let itemsList = [itemCardDescrip, itemCardPriceBox, itemCardText];
     let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:8000/mentor-items");
+    request.open("POST", "http://localhost:8000/mentor-add-items");
     request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
     request.send(JSON.stringify(itemsList));
 
@@ -34,18 +34,17 @@ function addNewItemCard() {
 
 function sendInfoItemsCard(e) {
     let content = document.getElementById(e);
-
     let itemCardId = e;
     let itemCardDescrip = content.getElementsByClassName("getName")[0].innerHTML;
     let itemCardPriceBox = content.getElementsByClassName("getPrice")[0].innerHTML;
     let itemCardText = content.getElementsByClassName("getDescription")[0].innerHTML;
     let itemList = [itemCardId, itemCardDescrip, itemCardPriceBox, itemCardText];
     let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:8000/mentor-items");
+    request.open("POST", "http://localhost:8000/mentor-update-items");
     request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
     request.send(JSON.stringify(itemList));
 
-    location.reload();
+    // location.reload();
 
 }
 

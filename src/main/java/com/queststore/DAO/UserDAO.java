@@ -17,7 +17,7 @@ public interface UserDAO {
 
     UserType getUserTypeFromId (int id) throws DaoException;
 
-    List<User> getAllMentors() throws DaoException;
+    List<User> getAllUser(String userType) throws DaoException;
 
     Optional<User> getUserOfSession(HttpCookie cookie) throws DaoException;
 
