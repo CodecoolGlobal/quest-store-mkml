@@ -79,7 +79,7 @@ public class CreateTables {
 
         String usersSQL = "CREATE TABLE IF NOT EXISTS users(\n" +
                 "id serial PRIMARY KEY,\n" +
-                "password VARCHAR(50) NOT NULL,\n" +
+                "password BYTEA NOT NULL,\n" +
                 "firstname VARCHAR(30) NOT NULL,\n" +
                 "lastname VARCHAR(40) NOT NULL,\n" +
                 "email VARCHAR(40) UNIQUE NOT NULL,\n" +

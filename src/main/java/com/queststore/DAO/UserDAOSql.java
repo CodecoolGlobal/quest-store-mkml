@@ -1,11 +1,16 @@
 package com.queststore.DAO;
 
+import com.queststore.Controller.PasswordHasher;
 import com.queststore.Model.Class;
 import com.queststore.Model.User;
 import com.queststore.Model.UserType;
-import com.queststore.Services.UserService;
 
-import java.sql.*;
+import java.io.ByteArrayOutputStream;
+import java.net.HttpCookie;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,14 +39,39 @@ public class UserDAOSql implements UserDAO {
 //            e.printStackTrace();
 //        }
         try {
-
-            System.out.println(dao.getUserById(1).getUserType().getName());
-
-        }catch (DaoException ex){
-            ex.printStackTrace();
+            dao.setTestPassword();
+        } catch (DaoException e) {
+            e.printStackTrace();
         }
+//        try {
+//
+//            System.out.println(dao.getUserById(1).getUserType().getName());
+//
+//        }catch (DaoException ex){
+//            ex.printStackTrace();
+//        }
 
 
+    }
+
+    //just for testing, delete later
+    public void setTestPassword() throws DaoException {
+        try (Connection connection = DBCPDataSource.getConnection()){
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE users SET password = ? WHERE id = 1");
+            PasswordHasher ph = new PasswordHasher();
+            byte[] salt = ph.getSalt();
+            byte[] password = ph.getHashed("kamil", salt);
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
+            outputStream.write(password);
+            outputStream.write(salt);
+            byte[] passSalt = outputStream.toByteArray();
+            statement.setBytes(1, passSalt);
+            statement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during getting user from db");
+        }
     }
 
     @Override
@@ -57,11 +87,7 @@ public class UserDAOSql implements UserDAO {
             statement.setString(1, email);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return Optional.of(createUser(resultSet));
-            } else {
-                return Optional.empty();
-            }
+            return resultSet.next() ? Optional.of(createUser(resultSet)) : Optional.empty();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("An error occured during getting user from db");
@@ -71,17 +97,18 @@ public class UserDAOSql implements UserDAO {
 
 
     @Override
-    public User getUserById(int id) throws DaoException {
-        String SQL = "SELECT * FROM  users WHERE id=?";
-        ClassDAO classDAOSql = new ClassDAOSql();
+    public Optional<User> getUserById(int id) throws DaoException {
+        String SQL = "SELECT users.id as id, firstname, lastname, email, classes.name AS class_name, " +
+                "avatar, user_type.name AS type, user_type.id as typeId, classes.id as classId " +
+                "FROM users " +
+                "JOIN user_type ON users.user_type_id = user_type.id " +
+                "JOIN classes ON users.class_id = classes.id " +
+                "WHERE users.id = ? AND users.is_active = true";
         try (Connection conn = DBCPDataSource.getConnection()){
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
-            rs.next();
-            return new User(rs.getInt("id"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email")
-            , classDAOSql.createClassFromId(rs.getInt("id")), null, getUserTypeFromId(rs.getInt("user_type_id")));
-            //TODO: userType powinien byc obiektem i Blob
+            return rs.next() ? Optional.of(createUser(rs)) : Optional.empty();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("From getUserById cannot create user");
@@ -110,7 +137,12 @@ public class UserDAOSql implements UserDAO {
 
     @Override
     public List<User> getAllMentors() throws DaoException {
-        String SQL ="SELECT * FROM users LEFT JOIN user_type ON users.user_type_id = user_type.id where user_type.name='mentor'";
+        String SQL = "SELECT users.id as id, firstname, lastname, email, classes.name AS class_name, " +
+                "avatar, user_type.name AS type, user_type.id as typeId, classes.id as classId " +
+                "FROM users " +
+                "JOIN user_type ON users.user_type_id = user_type.id " +
+                "JOIN classes ON users.class_id = classes.id " +
+                "WHERE user_type.name = 'mentor' AND users.is_active = true";
         try (Connection connection = DBCPDataSource.getConnection()){
             List<User> mentors = new ArrayList<>();
             PreparedStatement pstmt = connection.prepareStatement(SQL);
@@ -121,7 +153,7 @@ public class UserDAOSql implements UserDAO {
             return mentors;
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DaoException("An error occured during create mentor user type from db");
+            throw new DaoException("An error occured during paring all mentors from db");
         }
     }
 
@@ -196,6 +228,27 @@ public class UserDAOSql implements UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("An error occured during deleting user");
+        }
+    }
+
+    @Override
+    public Optional<User> getUserOfSession(HttpCookie cookie) throws DaoException {
+        try (Connection connection = DBCPDataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "SELECT users.id as id, firstname, lastname, email, classes.name AS class_name, " +
+                             "avatar, user_type.name AS type, user_type.id as typeId, classes.id as classId " +
+                             "FROM users " +
+                             "JOIN user_type ON users.user_type_id = user_type.id " +
+                             "JOIN classes ON users.class_id = classes.id " +
+                             "JOIN sessions ON users.id = sessions.user_id " +
+                             "WHERE sessions.session_id = ? AND users.is_active = true;"
+             )) {
+            statement.setString(1, cookie.getValue());
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next() ? Optional.of(createUser(resultSet)) : Optional.empty();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("Error occured during getting user of session");
         }
     }
 
