@@ -91,7 +91,10 @@ public class CreateTables {
                 "FOREIGN KEY (user_type_id) REFERENCES user_type (id)\n" +
                 ");";
 
-
+        String sessionSQL = "CREATE TABLE IF NOT EXISTS sessions( " +
+                "session_id VARCHAR(50) NOT NULL, " +
+                "user_id INTEGER NOT NULL, " +
+                "CONSTRAINT sessions_pkey PRIMARY KEY (session_id));";
 
         Statement stmt = DBCPDataSource.getConnection().createStatement();
         stmt.execute(classesSQL);
@@ -104,6 +107,7 @@ public class CreateTables {
         stmt.execute(usersSQL);
         stmt.execute(transactionsSQL);
         stmt.execute(categoriesCardTypesSQL);
+        stmt.execute(sessionSQL);
     }
 }
 
