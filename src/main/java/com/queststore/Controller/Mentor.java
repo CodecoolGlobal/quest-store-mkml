@@ -6,13 +6,13 @@ import com.queststore.DAO.UserDAOSql;
 import com.queststore.Model.User;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import org.jtwig.JtwigModel;
+import org.jtwig.JtwigTemplate;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.*;
-
-import org.jtwig.JtwigModel;
-import org.jtwig.JtwigTemplate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mentor implements HttpHandler {
     @Override
@@ -24,7 +24,7 @@ public class Mentor implements HttpHandler {
         UserDAO userDAO = new UserDAOSql();
         List<User> userList = new ArrayList<>();
         try {
-            int mentorClass = userDAO.getUserById(mentorId).getUserClass().getId();
+            int mentorClass = userDAO.getUserById(mentorId).get().getUserClass().getId();
             userList.addAll(userDAO.getStudentsFrom(mentorClass));
         } catch (DaoException e) {
             e.printStackTrace();

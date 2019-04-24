@@ -3,7 +3,6 @@ package com.queststore;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
