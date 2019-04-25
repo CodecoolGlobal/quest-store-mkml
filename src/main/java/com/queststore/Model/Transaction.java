@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class Transaction {
 
-    private int id;
+    private Integer id;
     private Date date;
     private User user;
     private Card card;
     private TransactionStatus transactionStatus;
     private int cost;
 
-    public Transaction(int id, Date date, User user, Card card, TransactionStatus transactionStatus, int cost) {
+    public Transaction(Integer id, Date date, User user, Card card, TransactionStatus transactionStatus, int cost) {
         this.id = id;
         this.date = date;
         this.user = user;

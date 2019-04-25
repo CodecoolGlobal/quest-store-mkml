@@ -22,7 +22,7 @@
             <div class="quest-card-category">{{ quest.getCategories.getName }}</div>
             <div class="quest-card-text-box">
                 <div class="quest-card-text">{{ quest.getDescription }} </div>
-                <button class="myButton">Claim</button>
+                <button class="myButton" onclick="sendQuestToBuy({{ quest.getId }})">Claim</button>
             </div>
         </div>
     {% endfor %}

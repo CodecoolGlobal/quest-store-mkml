@@ -1,12 +1,15 @@
 package com.queststore.Services;
 
 import com.queststore.DAO.*;
-import com.queststore.Model.*;
 import com.queststore.Model.Class;
+import com.queststore.Model.ExperienceLevel;
+import com.queststore.Model.Transaction;
+import com.queststore.Model.User;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 public class UserService {
 
@@ -82,16 +85,17 @@ public class UserService {
             }
         }
 
+        int balance = coinBalance;
+
         List<ExperienceLevel> experienceLevelList = configurationDAOsql.getAllLevels();
         experienceLevelList.sort(Comparator.comparing(ExperienceLevel::getName));
-        String lvlName = null;
-        for (ExperienceLevel expLvl: experienceLevelList) {
-            if(expLvl.getLevelStart()<=coinBalance){
-                lvlName = expLvl.getName();
-            }
-        }
 
-        return lvlName;
+        Optional<ExperienceLevel> level = experienceLevelList.stream()
+                .filter(experienceLevel -> experienceLevel.getLevelStart() <= balance)
+                .max((Comparator.comparingInt(ExperienceLevel::getLevelStart)));
+
+        return level.isPresent() ? level.get().getName() : "noname";
+
     }
 
 }

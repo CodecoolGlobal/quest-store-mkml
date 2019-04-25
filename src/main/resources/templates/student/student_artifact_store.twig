@@ -21,7 +21,7 @@
             </div>
             <div class="item-card-category">
                 {{ artifact.getCategories.getName }}
-                <button class="buy-btn">
+                <button class="buy-btn" onclick="sendArtifactToBuy({{ artifact.getId }})">
                     <img src="../static/assets/images/buttons/buy_icon.png" alt="buy">
                 </button>
             </div>
