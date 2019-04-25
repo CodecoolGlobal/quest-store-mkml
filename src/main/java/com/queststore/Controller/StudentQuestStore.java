@@ -56,9 +56,9 @@ public class StudentQuestStore implements HttpHandler {
 
     private String getRenderedPage(User user) throws DaoException {
 
-        List<Card> artifacts = new ArrayList<>();
+        List<Card> quests = new ArrayList<>();
         try {
-            artifacts.addAll(cardService.getAllCards(new CardTypes(1, "quest")));
+            quests.addAll(cardService.getAllCards(new CardTypes(1, "quest")));
         } catch (DaoException e) {
             e.printStackTrace();
         }
@@ -67,7 +67,7 @@ public class StudentQuestStore implements HttpHandler {
         JtwigModel model = JtwigModel.newModel();
 
         setUserWallet(model, user);
-        model.with("questList", artifacts);
+        model.with("questList", quests);
 
         return template.render(model);
     }
