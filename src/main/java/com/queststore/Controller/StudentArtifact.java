@@ -1,13 +1,11 @@
 package com.queststore.Controller;
 
-import com.queststore.DAO.DaoException;
-import com.queststore.DAO.TransactionDAO;
-import com.queststore.DAO.TransactionDAOSql;
-import com.queststore.DAO.UserDAOSql;
+import com.queststore.DAO.*;
 import com.queststore.Model.Card;
 import com.queststore.Model.Transaction;
 import com.queststore.Model.User;
 import com.queststore.Services.CardService;
+import com.queststore.Services.UserService;
 import com.queststore.helpers.CookieHelper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -24,6 +22,7 @@ public class StudentArtifact implements HttpHandler {
 
     private CardService cardService;
     private TransactionDAO transactionDAO = new TransactionDAOSql();
+    private UserService userService = new UserService(new UserDAOSql(), new ClassDAOSql(), new TransactionDAOSql());
 
     public StudentArtifact(CardService cardService) {
         this.cardService = cardService;
@@ -47,7 +46,7 @@ public class StudentArtifact implements HttpHandler {
 
     }
 
-    private void sendContent(HttpExchange exchange, User user) throws IOException {
+    private void sendContent(HttpExchange exchange, User user) throws IOException, DaoException {
         String page = getRenderedPage(user);
         exchange.sendResponseHeaders(200, page.length());
         OutputStream os = exchange.getResponseBody();
@@ -55,7 +54,7 @@ public class StudentArtifact implements HttpHandler {
         os.close();
     }
 
-    private String getRenderedPage(User user) {
+    private String getRenderedPage(User user) throws DaoException {
 
         List<Card> artifacts = new ArrayList<>();
         try {
@@ -70,16 +69,16 @@ public class StudentArtifact implements HttpHandler {
 
         JtwigTemplate template = JtwigTemplate.classpathTemplate("/templates/student/student.twig");
         JtwigModel model = JtwigModel.newModel();
-        //todo get actual values for level and coins
-        model.with("level", 2);
-        model.with("coins", 12);
+
+        setUserWallet(model, user);
         model.with("artifactList", artifacts);
 
         return template.render(model);
     }
 
-    private void setUserWallet(JtwigModel model) {
-
+    private void setUserWallet(JtwigModel model, User user) throws DaoException {
+        model.with("coins", userService.getCoinBalance(user.getId()));
+        model.with("level", userService.calculateUserLvl(user.getId()));
     }
 
     private void send500(HttpExchange httpExchange) throws IOException {
