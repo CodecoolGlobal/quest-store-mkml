@@ -2,6 +2,7 @@ package com.queststore;
 
 import com.queststore.Controller.*;
 import com.queststore.DAO.CardDAOSql;
+import com.queststore.DAO.TransactionDAOSql;
 import com.queststore.Services.CardService;
 import com.queststore.Services.ItemCardAdd;
 import com.queststore.Services.ItemCardUpdate;
@@ -35,7 +36,7 @@ public class Main {
         CardService cardService = new CardService(new CardDAOSql());
         server.createContext("/login", new Login(dao, cookieHelper, new UserDAOSql()));
         server.createContext("/logout", new Logout(dao, cookieHelper));
-        server.createContext("/student", new StudentArtifact(cardService));
+        server.createContext("/student", new StudentArtifact(new TransactionDAOSql()));
         server.createContext("/student-item-store", new StudentArtifactStore(cardService));
         server.createContext("/student-quest-store", new StudentQuestStore(cardService));
 

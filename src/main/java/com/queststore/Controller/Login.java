@@ -7,6 +7,7 @@ import com.queststore.DAO.UserDAO;
 import com.queststore.Model.LoginUser;
 import com.queststore.Model.User;
 import com.queststore.helpers.CookieHelper;
+import com.queststore.helpers.HttpUtils;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -14,7 +15,6 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpCookie;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -47,7 +47,7 @@ public class Login implements HttpHandler {
                 }
             } catch (DaoException e) {
                 e.printStackTrace();
-                send500(exchange);
+                HttpUtils.send500(exchange);
             }
 
         }
@@ -99,7 +99,7 @@ public class Login implements HttpHandler {
                 headers.set("Location", "/student");
                 break;
             case "admin":
-                headers.set("Location", "/student");
+                headers.set("Location", "/admin");
                 break;
             default:
                 headers.set("Location", "/login");
@@ -110,14 +110,6 @@ public class Login implements HttpHandler {
     private void redirectToMainPage(HttpExchange exchange, User user, HttpCookie cookie) throws IOException {
         exchange.getResponseHeaders().set("Set-Cookie", cookie.toString());
         redirectToMainPage(exchange, user);
-    }
-
-    private void send500(HttpExchange httpExchange) throws IOException {
-        String response = "500 Server internal error\n";
-        httpExchange.sendResponseHeaders(500, response.length());
-        OutputStream os = httpExchange.getResponseBody();
-        os.write(response.toString().getBytes());
-        os.close();
     }
 
 }
