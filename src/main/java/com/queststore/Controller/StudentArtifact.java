@@ -78,6 +78,10 @@ public class StudentArtifact implements HttpHandler {
         return template.render(model);
     }
 
+    private void setUserWallet(JtwigModel model) {
+
+    }
+
     private void send500(HttpExchange httpExchange) throws IOException {
         String response = "500 Server internal error\n";
         httpExchange.sendResponseHeaders(500, response.length());
