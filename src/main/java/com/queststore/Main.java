@@ -27,6 +27,8 @@ public class Main {
         server.createContext("/login", new Login(dao, cookieHelper, new UserDAOSql()));
         server.createContext("/logout", new Logout(dao, cookieHelper));
         server.createContext("/student", new StudentArtifact(cardService));
+        server.createContext("/student-item-store", new StudentArtifactStore(cardService));
+        server.createContext("/student-quest-store", new StudentQuestStore(cardService));
 
 
         server.setExecutor(null); // creates a default executor
