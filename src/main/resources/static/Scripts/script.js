@@ -178,10 +178,20 @@ function sendArtifactToBuy(artifactId) {
     request.send(JSON.stringify(buyData));
 }
 
+function sendQuestToBuy(questId) {
+    let buyData = {"id":questId};
+    let request = new XMLHttpRequest();
+    request.onload = handleBuyResponse;
+    request.open("POST", getLocation() + "claim-quest", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(buyData));
+}
+
 function handleBuyResponse() {
     let status = this.status;
     if (status === 200) {
-        window.location = this.responseURL;
+        window.location.reload();
+        // window.location = this.responseURL;
     } else if (status === 500) {
         alert("Transaction failed");
     }
