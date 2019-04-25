@@ -9,6 +9,7 @@ import com.queststore.Controller.Mentor;
 import com.queststore.Controller.MentorItems;
 import com.queststore.DAO.LoginDao;
 import com.queststore.DAO.UserDAOSql;
+import com.queststore.Services.UserCardAdd;
 import com.queststore.Services.UserCardUpdate;
 import com.queststore.helpers.CookieHelper;
 import com.sun.net.httpserver.HttpServer;
@@ -27,7 +28,9 @@ public class Main {
         server.createContext("/static", new Static());
         server.createContext("/mentor-add-items", new ItemCardAdd());
         server.createContext("/mentor-update-items", new ItemCardUpdate());
-        server.createContext("/user-update", new UserCardUpdate());
+
+        server.createContext("/mentor-students-addupdate", new UserCardUpdate());
+        server.createContext("/mentor-students-add", new UserCardAdd());
 
         LoginDao dao = new LoginDao();
         CookieHelper cookieHelper = new CookieHelper();

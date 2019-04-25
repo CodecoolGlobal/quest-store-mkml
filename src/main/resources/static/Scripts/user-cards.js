@@ -6,9 +6,28 @@ function sendInfoMentorCard() {
     //Here add function that send these data to DB
 }
 
+function editStudentInfoFromMainPage(e){
+    let itemList = sendInfoStudentCard(e);
+    let request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:8000/mentor-students-addupdate");
+    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+    request.send(JSON.stringify(itemList));
+
+    location.reload();
+}
+
+function editStudentInfoFromAddUpdateSite(e) {
+    let itemList = sendInfoStudentCard(e);
+    let request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:8000/mentor-student-update");
+    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+    request.send(JSON.stringify(itemList));
+
+    location.reload();
+}
+
 function sendInfoStudentCard(e) {
     let content = document.getElementById(e);
-    console.log(content);
 
     let studentId = e;
     let studentName = content.getElementsByClassName("student-name")[0].innerHTML;
@@ -17,10 +36,23 @@ function sendInfoStudentCard(e) {
     let studentIdInDBuserType = 1;
     let itemList = [studentId, studentName, studentEmail,studentClass,studentIdInDBuserType];
 
-    let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:8000/user-update");
-    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
-    request.send(JSON.stringify(itemList));
+    return itemList;
+}
 
-    location.reload();
+
+
+function sendNewStudentData() {
+    let userName = document.getElementById("userName").value;
+    console.log(userName);
+    let userEmail = document.getElementById("userEmail").value;
+    let userClass = document.getElementById("userClass").value;
+
+    let itemsList = [userName, userEmail, userClass];
+    let request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:8000/mentor-students-add");
+    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+    request.send(JSON.stringify(itemsList));
+
+    // location.reload();
+
 }

@@ -3,6 +3,7 @@ package com.queststore.DAO;
 import com.queststore.Model.Class;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ClassDAO {
 
@@ -21,5 +22,7 @@ public interface ClassDAO {
     int getMentorsCountByClassId(int id) throws DaoException;
 
     int getStudentsCountByClassId(int id) throws DaoException;
+
+    Optional<Integer> getClassId(String className) throws  DaoException;
 
 }

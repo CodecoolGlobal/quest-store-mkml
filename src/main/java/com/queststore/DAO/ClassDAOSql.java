@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ClassDAOSql implements ClassDAO {
 
@@ -129,6 +130,19 @@ public class ClassDAOSql implements ClassDAO {
             e.printStackTrace();
             throw new DaoException("An error occured during getting class by id from db");
 
+        }
+    }
+
+    public Optional<Integer> getClassId(String className) throws  DaoException {
+        String SQL = "SELECT id FROM classes WHERE name=?";
+        try (Connection connection = DBCPDataSource.getConnection()) {
+            PreparedStatement pstmt = connection.prepareStatement(SQL);
+            pstmt.setString(1, className);
+            ResultSet resultSet = pstmt.executeQuery();
+            return resultSet.next() ? Optional.of(resultSet.getInt("id")) : Optional.empty();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("getClassId something wrong");
         }
     }
 
