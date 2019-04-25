@@ -25,4 +25,6 @@ public interface ClassDAO {
 
     Optional<Integer> getClassId(String className) throws  DaoException;
 
+    List<String> getAllClassesName() throws DaoException;
+
 }

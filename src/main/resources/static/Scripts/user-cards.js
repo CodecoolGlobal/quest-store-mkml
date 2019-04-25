@@ -32,7 +32,8 @@ function sendInfoStudentCard(e) {
     let studentId = e;
     let studentName = content.getElementsByClassName("student-name")[0].innerHTML;
     let studentEmail = content.getElementsByClassName("student-email")[0].innerHTML;
-    let studentClass = content.getElementsByClassName("student-class-id")[0].innerHTML;
+    let studentClass = content.getElementsByClassName("classes-dropdown")[0].value;
+    console.log(studentClass);
     let studentIdInDBuserType = 1;
     let itemList = [studentId, studentName, studentEmail,studentClass,studentIdInDBuserType];
 
@@ -43,9 +44,9 @@ function sendInfoStudentCard(e) {
 
 function sendNewStudentData() {
     let userName = document.getElementById("userName").value;
-    console.log(userName);
     let userEmail = document.getElementById("userEmail").value;
-    let userClass = document.getElementById("userClass").value;
+    let userClass = document.getElementsByClassName("classes-dropdown-add")[0].value;
+    console.log(userClass);
 
     let itemsList = [userName, userEmail, userClass];
     let request = new XMLHttpRequest();
@@ -53,6 +54,6 @@ function sendNewStudentData() {
     request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
     request.send(JSON.stringify(itemsList));
 
-    // location.reload();
+    location.reload();
 
 }

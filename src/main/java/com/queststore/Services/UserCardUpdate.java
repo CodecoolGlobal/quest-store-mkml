@@ -1,8 +1,6 @@
 package com.queststore.Services;
 
-import com.queststore.DAO.DaoException;
-import com.queststore.DAO.UserDAO;
-import com.queststore.DAO.UserDAOSql;
+import com.queststore.DAO.*;
 import com.queststore.Model.Class;
 import com.queststore.Model.User;
 import com.queststore.Model.UserType;
@@ -22,6 +20,9 @@ public class UserCardUpdate implements HttpHandler {
         JSONparser jsonParser = new JSONparser();
         List<String> items = new ArrayList<>();
         List<User> usersList = new ArrayList<>();
+        ClassDAO classDAO = new ClassDAOSql();
+        List<Object> classesNames = new ArrayList<>();
+
         String method = httpExchange.getRequestMethod();
         if(method.equals("POST")) {
 
@@ -47,6 +48,8 @@ public class UserCardUpdate implements HttpHandler {
 
         try {
             usersList = usersList();
+            classesNames.addAll(classDAO.getAllClasses());
+
         } catch (DaoException e) {
             e.printStackTrace();
         }
@@ -55,6 +58,8 @@ public class UserCardUpdate implements HttpHandler {
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/mentor-students.twig");
         JtwigModel model = JtwigModel.newModel();
         model.with("usersList", usersList);
+        model.with("classList", classesNames);
+
         response = template.render(model);
 
 

@@ -146,6 +146,7 @@ public class ClassDAOSql implements ClassDAO {
         }
     }
 
+
     private Class createClass(ResultSet resultSet) throws SQLException {
         return new Class(resultSet.getInt("id"), resultSet.getString("name"));
     }
@@ -170,4 +171,20 @@ public class ClassDAOSql implements ClassDAO {
         }
     }
 
+    @Override
+    public List<String> getAllClassesName() throws DaoException {
+        String SQL = "SELECT name FROM classes";
+        List<String> classList = new ArrayList<>();
+        try (Connection connection = DBCPDataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                classList.add(resultSet.getString("name"));
+            }
+            return classList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("Issue wit Classes name list");
+        }
+    }
 }

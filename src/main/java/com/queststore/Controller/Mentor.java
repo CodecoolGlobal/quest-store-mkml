@@ -1,8 +1,6 @@
 package com.queststore.Controller;
 
-import com.queststore.DAO.DaoException;
-import com.queststore.DAO.UserDAO;
-import com.queststore.DAO.UserDAOSql;
+import com.queststore.DAO.*;
 import com.queststore.Model.User;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -26,11 +24,15 @@ public class Mentor implements HttpHandler {
         if(method.equals("POST")) {
 //            parseEditUserFromJSON(httpExchange);
         }
+
         UserDAO userDAO = new UserDAOSql();
+        ClassDAO classDAO = new ClassDAOSql();
         List<User> userList = new ArrayList<>();
+        List<Object> classesNames = new ArrayList<>();
         try {
             int mentorClass = userDAO.getUserById(mentorId).get().getUserClass().getId();
             userList.addAll(userDAO.getStudentsFrom(mentorClass));
+            classesNames.addAll(classDAO.getAllClasses());
         } catch (DaoException e) {
             e.printStackTrace();
         }
@@ -39,6 +41,7 @@ public class Mentor implements HttpHandler {
         JtwigModel model = JtwigModel.newModel();
 
         model.with("studentsList", userList);
+        model.with("classList", classesNames);
         // render a template to a string
         String response = template.render(model);
 
