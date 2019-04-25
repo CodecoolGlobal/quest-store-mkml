@@ -19,39 +19,11 @@ public class UserDAOSql implements UserDAO {
 
     public static void main(String[] args) {
         UserDAO dao = new UserDAOSql();
-//        try {
-//            Optional<User> user = dao.getUser("kamil@bed", "asdfsdf");
-//            if (user.isPresent()) {
-//                System.out.println(user.get().getFirstName());
-//                System.out.println(user.get().getUserClass().getName());
-//                User u = user.get();
-//                u.setFirstName("Karararumba");
-//                dao.update(u);
-////                u.setFirstName("Lama");
-////                u.setEmail("dfdfd@dfdfd");
-////                dao.add(u, "olalalal");
-//                dao.delete(7);
-//            }
-//            for (User u :  dao.getStudentsFrom(1)) {
-//                System.out.println(u.getFirstName());
-//            }
-//        } catch (DaoException e) {
-//            e.printStackTrace();
-//        }
         try {
             dao.setTestPassword();
         } catch (DaoException e) {
             e.printStackTrace();
         }
-//        try {
-//
-//            System.out.println(dao.getUserById(1).getUserType().getName());
-//
-//        }catch (DaoException ex){
-//            ex.printStackTrace();
-//        }
-
-
     }
 
     //just for testing, delete later

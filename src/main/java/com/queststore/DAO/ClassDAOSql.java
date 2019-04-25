@@ -11,23 +11,6 @@ import java.util.List;
 
 public class ClassDAOSql implements ClassDAO {
 
-    public static void main(String[] args) {
-        ClassDAO dao = new ClassDAOSql();
-        try {
-//            dao.add("myclass");
-            for (Class c : dao.getAllClasses()) {
-                System.out.println(c.getName());
-                System.out.println(dao.getStudentsCountByClassId(c.getId()));
-//                c.setName("newClass");
-//                dao.update(c);
-//                dao.delete(c.getId());
-            }
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     @Override
     public int getMentorsCountByClassId(int id) throws DaoException {
         return getUserCountByClassId(id, "mentor");
