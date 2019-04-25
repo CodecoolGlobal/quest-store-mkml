@@ -157,4 +157,38 @@ function slider(){
     for (var i = 0; i < connect.length; i++) {
         connect[i].classList.add(classes[i]);
     }
+
+}
+
+function sendArtifactToBuy(artifactId) {
+    let buyData = {"id":artifactId};
+    let request = new XMLHttpRequest();
+    request.onload = handleBuyResponse;
+    request.open("POST", getLocation() + "buy-artifact", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(buyData));
+}
+
+function sendQuestToBuy(questId) {
+    let buyData = {"id":questId};
+    let request = new XMLHttpRequest();
+    request.onload = handleBuyResponse;
+    request.open("POST", getLocation() + "claim-quest", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(buyData));
+}
+
+function handleBuyResponse() {
+    let status = this.status;
+    if (status === 200) {
+        window.location.reload();
+        // window.location = this.responseURL;
+    } else if (status === 500) {
+        alert("Transaction failed");
+    }
+}
+
+function getLocation() {
+    let loc = window.location;
+    return loc.protocol + "\/\/" + loc.host + "\/";
 }

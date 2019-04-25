@@ -11,4 +11,5 @@ public interface TransactionDAO {
 
     TransactionStatus getTransactionStatusById(int id) throws DaoException;
 
+    void saveTransaction(Transaction transaction) throws DaoException;
 }

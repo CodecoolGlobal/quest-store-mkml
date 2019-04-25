@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quest store</title>
+    <link rel="stylesheet" href="../static/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="../static/assets/stylesheets/item-cards.css">
+</head>
+<body onpageshow="progressBar()">
+{% include "student_header.twig" %}
+<section class="main-info cards-display">
+    {% for artifact in artifactList %}
+    <div id = "{{ artifact.getId }}" class="item-card item-card-silver">
+        <div class="item-card-header"> {{ artifact.getName }}
+            <div class="item-card-price">
+                <div class="item-card-price-box">{{ artifact.getValue }}</div>
+            </div>
+        </div>
+        <div class="item-card-image">
+            <img src="../static/assets/images/item-card/item-sword-training.jpg" alt="Combat training">
+        </div>
+        <div class="item-card-category"> {{ artifact.getCategories.getName }}</div>
+        <div class="item-card-text-box">
+            <div class="item-card-text"> {{ artifact.getDescription }} </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% include "../../static/student/student-footer.html" %}
+<script src="../static/Scripts/script.js"></script>
+</body>
+</html>

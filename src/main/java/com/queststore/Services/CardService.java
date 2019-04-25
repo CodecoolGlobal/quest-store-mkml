@@ -19,6 +19,10 @@ public class CardService {
         return cardDAO.getCardsOfType(cardTypes);
     }
 
+    public Card getCardById(int id) throws DaoException {
+        return cardDAO.getCardById(id);
+    }
+
     public void addNew(Card card) throws DaoException {
         cardDAO.add(card);
     }
