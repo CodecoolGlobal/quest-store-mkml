@@ -1,0 +1,38 @@
+<header class="primary-header">
+    <div class="container">
+        <div class="sub-header">
+            <div class="logo">
+                <a href="/student">
+                    <img src="/static/assets/images/logo.png" alt="LOGO">
+                </a>
+            </div>
+            <div class="user-status">
+                <div class="level">
+                    <div>
+                        <h2> Level: &nbsp</h2>
+                        <h2> {{ level }} </h2>
+                    </div>
+                    <div id="myProgress" >
+                        <div id="myBar"></div>
+                    </div>
+                </div>
+                <div class="coins">
+                    <h2>Coins: &nbsp</h2>
+                    <h2> {{ coins }} </h2>
+                </div>
+            </div>
+        </div>
+        <nav class="primary-nav">
+            <ul>
+                <li><a href="/student">My Artifacts</a></li>
+                <li><a href="/student-item-store">Artifacts Store</a></li>
+                <li><a href="/student-quest-store">Quests</a></li>
+            </ul>
+            <div id="logout">
+                <a href="/logout">
+                    <img src="../static/assets/images/logout.png" alt="Logout">
+                </a>
+            </div>
+        </nav>
+    </div>
+</header>

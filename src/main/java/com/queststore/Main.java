@@ -1,12 +1,10 @@
 package com.queststore;
 
-import com.queststore.Controller.Login;
-import com.queststore.Controller.Logout;
+import com.queststore.Controller.*;
+import com.queststore.DAO.CardDAOSql;
+import com.queststore.Services.CardService;
 import com.queststore.Services.ItemCardAdd;
 import com.queststore.Services.ItemCardUpdate;
-
-import com.queststore.Controller.Mentor;
-import com.queststore.Controller.MentorItems;
 import com.queststore.DAO.LoginDao;
 import com.queststore.DAO.UserDAOSql;
 import com.queststore.Services.UserCardUpdate;
@@ -31,8 +29,12 @@ public class Main {
 
         LoginDao dao = new LoginDao();
         CookieHelper cookieHelper = new CookieHelper();
+        CardService cardService = new CardService(new CardDAOSql());
         server.createContext("/login", new Login(dao, cookieHelper, new UserDAOSql()));
         server.createContext("/logout", new Logout(dao, cookieHelper));
+        server.createContext("/student", new StudentArtifact(cardService));
+        server.createContext("/student-item-store", new StudentArtifactStore(cardService));
+        server.createContext("/student-quest-store", new StudentQuestStore(cardService));
 
 
         server.setExecutor(null); // creates a default executor
