@@ -16,7 +16,6 @@ function progressBar() {
         }
 }
 
-
 function addNewItemCard() {
     let itemCardDescrip = document.getElementById("newDescription").innerHTML;
     let itemCardPriceBox = document.getElementById("newPrice").innerHTML;
@@ -31,7 +30,6 @@ function addNewItemCard() {
     location.reload();
 }
 
-
 function sendInfoItemsCard(e) {
     let content = document.getElementById(e);
     let itemCardId = e;
@@ -44,10 +42,8 @@ function sendInfoItemsCard(e) {
     request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
     request.send(JSON.stringify(itemList));
 
-    // location.reload();
-
+    location.reload();
 }
-
 
 function sendInfoQuestCard() {
     let questCardDescrip = document.getElementById("description").innerHTML;
@@ -56,9 +52,6 @@ function sendInfoQuestCard() {
 
     //Here add function that send these data to DB
 }
-
-
-
 
 
 function loadFile(event){
@@ -71,12 +64,10 @@ function changeCardColor(){
     document.getElementById("p2").style.color = "blue";
 };
 
-
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function dropdownMenu() {
     document.getElementById("myDropdown").classList.toggle("show");
-
 
 // Close the dropdown menu if the user clicks outside of it
     window.onclick = function (event) {

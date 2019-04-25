@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ClassDAOSql implements ClassDAO {
 
@@ -132,6 +133,20 @@ public class ClassDAOSql implements ClassDAO {
         }
     }
 
+    public Optional<Integer> getClassId(String className) throws  DaoException {
+        String SQL = "SELECT id FROM classes WHERE name=?";
+        try (Connection connection = DBCPDataSource.getConnection()) {
+            PreparedStatement pstmt = connection.prepareStatement(SQL);
+            pstmt.setString(1, className);
+            ResultSet resultSet = pstmt.executeQuery();
+            return resultSet.next() ? Optional.of(resultSet.getInt("id")) : Optional.empty();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("getClassId something wrong");
+        }
+    }
+
+
     private Class createClass(ResultSet resultSet) throws SQLException {
         return new Class(resultSet.getInt("id"), resultSet.getString("name"));
     }
@@ -156,4 +171,20 @@ public class ClassDAOSql implements ClassDAO {
         }
     }
 
+    @Override
+    public List<String> getAllClassesName() throws DaoException {
+        String SQL = "SELECT name FROM classes";
+        List<String> classList = new ArrayList<>();
+        try (Connection connection = DBCPDataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                classList.add(resultSet.getString("name"));
+            }
+            return classList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("Issue wit Classes name list");
+        }
+    }
 }

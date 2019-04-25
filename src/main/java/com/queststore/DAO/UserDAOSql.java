@@ -58,7 +58,7 @@ public class UserDAOSql implements UserDAO {
     public void setTestPassword() throws DaoException {
         try (Connection connection = DBCPDataSource.getConnection()){
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE users SET password = ? WHERE id = 1");
+                    "UPDATE users SET password = ? WHERE id = 2");
             PasswordHasher ph = new PasswordHasher();
             byte[] salt = ph.getSalt();
             byte[] password = ph.getHashed("kamil", salt);
@@ -191,11 +191,13 @@ public class UserDAOSql implements UserDAO {
             statement.setString(3, user.getEmail());
             statement.setInt(4, user.getUserClass().getId());
             statement.setInt(5, user.getUserType().getId());
-            statement.setString(6, password);
+            statement.setBytes(6, createRandomPassword(password));
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("An error occured during adding new user");
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 
@@ -250,6 +252,7 @@ public class UserDAOSql implements UserDAO {
             e.printStackTrace();
             throw new DaoException("Error occured during getting user of session");
         }
+
     }
 
     private User createUser(ResultSet resultSet) throws SQLException {
@@ -264,5 +267,16 @@ public class UserDAOSql implements UserDAO {
 //                .avatar(resultSet.getBlob("avatar"))
                 .userType(userType)
                 .createUser();
+    }
+
+    private byte[] createRandomPassword(String newPassword) throws Exception {
+        PasswordHasher ph = new PasswordHasher();
+        byte[] salt = ph.getSalt();
+        byte[] password = ph.getHashed(newPassword, salt);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
+        outputStream.write(password);
+        outputStream.write(salt);
+        byte[] passSalt = outputStream.toByteArray();
+        return passSalt;
     }
 }

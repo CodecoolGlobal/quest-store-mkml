@@ -1,8 +1,6 @@
 package com.queststore.Services;
 
-import com.queststore.DAO.DaoException;
-import com.queststore.DAO.UserDAO;
-import com.queststore.DAO.UserDAOSql;
+import com.queststore.DAO.*;
 import com.queststore.Model.Class;
 import com.queststore.Model.User;
 import com.queststore.Model.UserType;
@@ -22,34 +20,48 @@ public class UserCardUpdate implements HttpHandler {
         JSONparser jsonParser = new JSONparser();
         List<String> items = new ArrayList<>();
         List<User> usersList = new ArrayList<>();
+        ClassDAO classDAO = new ClassDAOSql();
+        List<Object> classesNames = new ArrayList<>();
 
-        try{
-            items = jsonParser.parseJSONlistToArray(jsonParser.convertJSONtoString(httpExchange));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String[] splited = items.get(1).split("\\s+");
-        items.remove(1);
-        if(splited.length==2) {
-            items.addAll(Arrays.asList(splited));
-        }else if(splited.length==1){
-            items.addAll(Arrays.asList(splited));
-            items.add("UNDEFINDED");
+        String method = httpExchange.getRequestMethod();
+        if(method.equals("POST")) {
+
+            try {
+                items = jsonParser.parseJSONlistToArray(jsonParser.convertJSONtoString(httpExchange));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String[] splited = items.get(1).split("\\s+");
+            items.remove(1);
+            if (splited.length == 2) {
+                items.addAll(Arrays.asList(splited));
+            } else if (splited.length == 1) {
+                items.addAll(Arrays.asList(splited));
+                items.add("UNDEFINDED");
+            }
+            try {
+                updateUsersInDB(items);
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
         }
 
         try {
-            usersList = updateUsersInDB(items);
+            usersList = usersList();
+            classesNames.addAll(classDAO.getAllClasses());
+
         } catch (DaoException e) {
             e.printStackTrace();
         }
         String response = "";
-        if (Integer.parseInt(items.get(items.size()-3))==1) {
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/mentor.twig");
-            JtwigModel model = JtwigModel.newModel();
-            model.with("usersList", usersList);
-            response = template.render(model);
-        }
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/mentor-students.twig");
+        JtwigModel model = JtwigModel.newModel();
+        model.with("usersList", usersList);
+        model.with("classList", classesNames);
+
+        response = template.render(model);
+
 
         // send the results to a the client
         httpExchange.sendResponseHeaders(200, response.length());
@@ -58,9 +70,8 @@ public class UserCardUpdate implements HttpHandler {
         os.close();
     }
 
-    private List<User> updateUsersInDB(List<String> items) throws DaoException {
+    private void updateUsersInDB(List<String> items) throws DaoException {
         UserDAO userDAO = new UserDAOSql();
-        List<User> userList = new ArrayList<>();
 
         User createNewUser = new User.UserBuilder()
                 .id(Integer.parseInt(items.get(0)))
@@ -73,10 +84,13 @@ public class UserCardUpdate implements HttpHandler {
 
         userDAO.update(createNewUser);
 
-        userList.addAll(userDAO.getAllUser(userDAO.getUserTypeFromId(Integer.parseInt(items.get(items.size()-3))).getName()));
+    }
+    private List<User> usersList() throws DaoException {
+        UserDAO userDAO = new UserDAOSql();
+        List<User> userList = new ArrayList<>();
+        userList.addAll(userDAO.getAllUser("student"));
         return userList;
     }
-
     private List<User> getAllMentorStudents(int classId){
         //TODO: check mentor classid and take all students with this classId
         return null;
