@@ -36,6 +36,8 @@ public class Main {
         server.createContext("/student-item-store", new StudentArtifactStore(cardService));
         server.createContext("/student-quest-store", new StudentQuestStore(cardService));
 
+        server.createContext("/buy-artifact", new StudentArtifactTransaction());
+
 
         server.setExecutor(null); // creates a default executor
 
