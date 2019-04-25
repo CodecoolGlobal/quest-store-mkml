@@ -99,7 +99,7 @@ public class Login implements HttpHandler {
                 headers.set("Location", "/student");
                 break;
             case "admin":
-                headers.set("Location", "/student");
+                headers.set("Location", "/admin");
                 break;
             default:
                 headers.set("Location", "/login");
