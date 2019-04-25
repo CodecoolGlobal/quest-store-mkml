@@ -7,12 +7,12 @@ import com.queststore.Model.TransactionStatus;
 import com.queststore.Model.User;
 import com.queststore.Services.CardService;
 import com.queststore.helpers.CookieHelper;
+import com.queststore.helpers.HttpUtils;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -38,11 +38,11 @@ public abstract class StudentTransaction implements HttpHandler {
                     saveTransaction(card, user.get());
                     sendSuccess(exchange);
                 } else {
-                    send500(exchange);
+                    HttpUtils.send500(exchange);
                 }
             } catch (DaoException e) {
                 e.printStackTrace();
-                send500(exchange);
+                HttpUtils.send500(exchange);
             }
         }
     }
@@ -63,15 +63,6 @@ public abstract class StudentTransaction implements HttpHandler {
     private JSONObject parseJSON(HttpExchange exchange) {
         Scanner scanner = new Scanner(exchange.getRequestBody());
         return new JSONObject(scanner.nextLine());
-    }
-
-    private void send500(HttpExchange httpExchange) throws IOException {
-        String response = "500 Server internal error\n";
-        httpExchange.getResponseHeaders().set("Status", "500");
-        httpExchange.sendResponseHeaders(500, response.length());
-        OutputStream os = httpExchange.getResponseBody();
-        os.write(response.toString().getBytes());
-        os.close();
     }
 }
 

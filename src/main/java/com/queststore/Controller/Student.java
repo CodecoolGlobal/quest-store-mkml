@@ -7,6 +7,7 @@ import com.queststore.DAO.UserDAOSql;
 import com.queststore.Model.User;
 import com.queststore.Services.UserService;
 import com.queststore.helpers.CookieHelper;
+import com.queststore.helpers.HttpUtils;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -33,7 +34,7 @@ public abstract class Student implements HttpHandler {
             }
         }catch (DaoException e) {
             e.printStackTrace();
-            send500(exchange);
+            HttpUtils.send500(exchange);
         }
 
     }
@@ -63,13 +64,5 @@ public abstract class Student implements HttpHandler {
     private void setUserWallet(JtwigModel model, User user) throws DaoException {
         model.with("coins", userService.getCoinBalance(user.getId()));
         model.with("level", userService.calculateUserLvl(user.getId()));
-    }
-
-    private void send500(HttpExchange httpExchange) throws IOException {
-        String response = "500 Server internal error\n";
-        httpExchange.sendResponseHeaders(500, response.length());
-        OutputStream os = httpExchange.getResponseBody();
-        os.write(response.toString().getBytes());
-        os.close();
     }
 }
