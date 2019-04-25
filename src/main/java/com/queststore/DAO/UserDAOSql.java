@@ -136,13 +136,13 @@ public class UserDAOSql implements UserDAO {
     }
 
     @Override
-    public List<User> getAllMentors() throws DaoException {
+    public List<User> getAllUser(String userType) throws DaoException {
         String SQL = "SELECT users.id as id, firstname, lastname, email, classes.name AS class_name, " +
                 "avatar, user_type.name AS type, user_type.id as typeId, classes.id as classId " +
                 "FROM users " +
                 "JOIN user_type ON users.user_type_id = user_type.id " +
                 "JOIN classes ON users.class_id = classes.id " +
-                "WHERE user_type.name = 'mentor' AND users.is_active = true";
+                "WHERE user_type.name = '"+ userType +"' AND users.is_active = true";
         try (Connection connection = DBCPDataSource.getConnection()){
             List<User> mentors = new ArrayList<>();
             PreparedStatement pstmt = connection.prepareStatement(SQL);
