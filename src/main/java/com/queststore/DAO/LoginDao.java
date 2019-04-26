@@ -16,23 +16,6 @@ public class LoginDao {
 
     private static PasswordHasher passwordHasher = new PasswordHasher();
 
-    public static void main(String[] args) {
-//        try (Connection connection = DBCPDataSource.getConnection();
-//             PreparedStatement statement = connection.prepareStatement(
-//                     "INSERT INTO users(login, password, salt) VALUES (?, ?, ?);"
-//             )) {
-//            byte[] salt = passwordHasher.getSalt();
-//            statement.setString(1, "kamil");
-//            statement.setBytes(2, passwordHasher.getHashed("bed", salt));
-//            statement.setBytes(3, salt);
-//            statement.execute();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-    }
-
     public Optional<Integer> getUserId(LoginUser userToValidate) throws DaoException {
         try (Connection connection = DBCPDataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(

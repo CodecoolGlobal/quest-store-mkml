@@ -3,7 +3,6 @@ package com.queststore.DAO;
 import com.queststore.Model.Card;
 import com.queststore.Model.CardTypes;
 import com.queststore.Model.Categories;
-import com.queststore.Services.CardService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,18 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardDAOSql implements CardDAO {
-
-    public static void main(String[] args) {
-        CardDAO cardDAO = new CardDAOSql();
-        Categories categories = new Categories(1, "name");
-        CardTypes cardTypes = new CardTypes(1, "name");
-        Card card = new Card(1, "myCard", "this is a card", categories, null, 300, cardTypes, true);
-        try {
-            cardDAO.delete(card.getId());
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public List<Card> getCardsOfType(CardTypes cardTypes) throws DaoException {

@@ -23,21 +23,6 @@ public class UserService {
         this.transactionDAO = transactionDAO;
     }
 
-    public static void main(String[] args) throws DaoException{
-        UserService userService = new UserService(new UserDAOSql(), new ClassDAOSql(), new TransactionDAOSql());
-
-//        try {
-//            for (User u : userService.getAllStudentsInMentorClass(1)) {
-//                System.out.println(u.getFirstName());
-//            }
-//        } catch (DaoException e) {
-//            e.printStackTrace();
-//        }
-
-        System.out.println(userService.calculateUserLvl(1));
-
-    }
-
     List<User> getAllStudentsInMentorClass(int mentorId) throws DaoException {
         List<User> students = new ArrayList<>();
         List<Class> cls = classDAO.getAllClasses(mentorId);
