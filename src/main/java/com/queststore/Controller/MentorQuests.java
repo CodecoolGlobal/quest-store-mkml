@@ -1,22 +1,24 @@
 package com.queststore.Controller;
 
-import com.queststore.DAO.*;
+import com.queststore.DAO.CardDAO;
+import com.queststore.DAO.CardDAOSql;
+import com.queststore.DAO.DaoException;
+import com.queststore.DAO.UserDAOSql;
 import com.queststore.Model.Card;
-import com.queststore.Model.CardTypes;
-import com.queststore.Model.Categories;
 import com.queststore.Model.User;
 import com.queststore.helpers.CookieHelper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.*;
-
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
-public class MentorItems implements HttpHandler {
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class MentorQuests implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
@@ -40,16 +42,16 @@ public class MentorItems implements HttpHandler {
 
         CardDAO cardDAO = new CardDAOSql();
         List<Card> cardList = new ArrayList<>();
-        int artifactTypeId = 2;
+        int questTypeId = 1;
 
         try {
-            cardList.addAll(cardDAO.getCardsOfType(cardDAO.getCardTypeById(artifactTypeId)));
+            cardList.addAll(cardDAO.getCardsOfType(cardDAO.getCardTypeById(questTypeId)));
         } catch (DaoException e) {
             e.printStackTrace();
         }
 
 
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/mentor-items.twig");
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/mentor-quests.twig");
         JtwigModel model = JtwigModel.newModel();
 
         model.with("cardsList", cardList);
@@ -73,3 +75,4 @@ public class MentorItems implements HttpHandler {
         os.close();
     }
 }
+

@@ -65,7 +65,7 @@ public class UserCardAdd implements HttpHandler {
     private List<User> addUser(List<String> items) throws DaoException {
         UserDAO addUser = new UserDAOSql();
         List<User> userList = new ArrayList<>();
-        addUser.add(createStudent(items),Double.toString(Math.random()*23457));
+        addUser.add(createStudent(items),"kawa");
         userList.addAll(addUser.getAllUser("student"));
         return userList;
     }

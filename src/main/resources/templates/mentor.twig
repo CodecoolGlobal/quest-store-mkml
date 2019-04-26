@@ -20,7 +20,7 @@
 {#            <li class="student-class" contenteditable="true">{{ student.getUserClass.getName }}</li>#}
             <select class="classes-dropdown">
                 {% for class in classList %}
-                <option class="student-class-dropdown" value="{{ class.getId }}">{{ class.getName }}
+                <option class="student-class-dropdown" value="{{ class.getId }}"{% if student.getUserClass.getName == class.getName %} selected {% endif %}>{{ class.getName }}
                 </option>
                 {% endfor %}
             </select>

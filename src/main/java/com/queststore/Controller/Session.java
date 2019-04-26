@@ -33,6 +33,8 @@ class Session {
         return user.getUserType().getName().equals(type);
     }
 
+
+
     void sendLoginForm(HttpExchange exchange) throws IOException {
         exchange.getResponseHeaders().set("Location", "/static/login.html");
         exchange.sendResponseHeaders(303, 0);
