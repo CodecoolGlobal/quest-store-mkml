@@ -1,9 +1,12 @@
-package com.queststore.Services;
+package com.queststore.Controller;
 
+import com.queststore.Controller.Session;
 import com.queststore.DAO.*;
 import com.queststore.Model.Class;
 import com.queststore.Model.User;
 import com.queststore.Model.UserType;
+import com.queststore.Services.JSONparser;
+import com.queststore.helpers.CookieHelper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -12,11 +15,27 @@ import org.jtwig.JtwigTemplate;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.*;
-
 public class UserCardUpdate implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
+
+        Session session = new Session(new CookieHelper(), new UserDAOSql());
+        try {
+            Optional<User> user = session.getUserOfSession(httpExchange);
+            if (user.isPresent() && session.isUserOfType("mentor", user.get())) {
+                sendContent(httpExchange);
+            } else {
+                session.sendLoginForm(httpExchange);
+            }
+        } catch (DaoException e) {
+            e.printStackTrace();
+            send500(httpExchange);
+        }
+
+    }
+
+    private void sendContent(HttpExchange httpExchange) throws IOException {
         JSONparser jsonParser = new JSONparser();
         List<String> items = new ArrayList<>();
         List<User> usersList = new ArrayList<>();
@@ -69,7 +88,13 @@ public class UserCardUpdate implements HttpHandler {
         os.write(response.getBytes());
         os.close();
     }
-
+    private void send500(HttpExchange httpExchange) throws IOException {
+        String response = "500 Server internal error\n";
+        httpExchange.sendResponseHeaders(500, response.length());
+        OutputStream os = httpExchange.getResponseBody();
+        os.write(response.toString().getBytes());
+        os.close();
+    }
     private void updateUsersInDB(List<String> items) throws DaoException {
         UserDAO userDAO = new UserDAOSql();
 

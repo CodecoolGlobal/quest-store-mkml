@@ -1,0 +1,63 @@
+{% include "../static/mentor-header.html" %}
+
+<section class="main-info">
+    <h2>Accept or decline codecooler's done quests</h2>
+    <section class="cooler-done-quest">
+        {% for transaction in transactionList%}
+        <div class="codecooler">
+            <div class="student-info-table">
+
+                <div class="user-category-name student-category"></div>
+
+                <div class="student-profile-picture">
+                    <img src="../static/assets/images/student-card/student.png" alt="Student" class="student-picture" />
+                </div>
+
+                <ul class="student-information">
+                    <li>{{ transaction.getUser.getName }}</li>
+                    <li>E-mail</li>
+                    <li>Class</li>
+                    <li class="students-atrifacts">
+                        <button type="button" class="students-artifacts-button">Artifacts</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="acceptance-field">
+            <div class="black-arrow-right">
+                <img src="../static/assets/images/right-arrow.png" alt="Arrow" />
+            </div>
+            <div class="decision-buttons">
+                <button class="decline-button">
+                    <img class="img-basic" src="../static/assets/images/buttons/decline_button.png" alt="Decline" />
+                    <img class="img-hover" src="../static/assets/images/buttons/decline_button_hover.png" alt="Decline" />
+                </button>
+                <button class="accept-button">
+                    <img class="img-basic" src="../static/assets/images/buttons/accept_button.png" alt="Accept" />
+                    <img class="img-hover" src="../static/assets/images/buttons/accept_button_hover.png" alt="Accept" />
+                </button>
+            </div>
+        </div>
+
+        <div class="acceptance-field">
+            <div class="quest-card quest-card-basic">
+                <div class="quest-card-header">Exploring a dungeon
+                    <div class="quest-card-price">
+                        <div class="quest-card-price-box">100</div>
+                    </div>
+                </div>
+                <div class="quest-card-image">
+                    <img src="../static/assets/images/quest-card/quest-exploring-a-dungeon" alt="dungeon image" />
+                </div>
+                <div class="quest-card-category">Basic Quest</div>
+                <div class="quest-card-text-box">
+                    <div class="quest-card-text">Finishing a Teamwork week </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </section>
+
+{% include "../static/footer.html" %}
