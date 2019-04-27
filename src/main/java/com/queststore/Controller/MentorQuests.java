@@ -56,10 +56,8 @@ public class MentorQuests implements HttpHandler {
 
         model.with("cardsList", cardList);
 
-        // render a template to a string
         String response = template.render(model);
 
-        // send the results to a the client
         httpExchange.sendResponseHeaders(200, response.length());
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
@@ -71,7 +69,7 @@ public class MentorQuests implements HttpHandler {
         String response = "500 Server internal error\n";
         httpExchange.sendResponseHeaders(500, response.length());
         OutputStream os = httpExchange.getResponseBody();
-        os.write(response.toString().getBytes());
+        os.write(response.getBytes());
         os.close();
     }
 }
