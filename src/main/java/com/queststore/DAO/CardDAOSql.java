@@ -143,5 +143,7 @@ public class CardDAOSql implements CardDAO {
         return new Card(rs.getInt("id"),rs.getString("name"), rs.getString("description")
                 , category, null, rs.getInt("value"), cardType, rs.getBoolean("is_active"));
         //TODO: Wstawić pobranie zdjecia (poki co problem z BLOB dlatego null)
+
+
     }
 }
