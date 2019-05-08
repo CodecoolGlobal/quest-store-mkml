@@ -154,7 +154,6 @@ public class ClassDAOSql implements ClassDAO {
         }
     }
 
-    @Override
     public List<String> getAllClassesName() throws DaoException {
         String SQL = "SELECT name FROM classes";
         List<String> classList = new ArrayList<>();

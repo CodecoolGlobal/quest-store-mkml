@@ -1,0 +1,67 @@
+{% include "../static/admin/admin-header.html" %}
+
+<section class="main-info">
+    <h2 class="slider-header">Configure experience thresholds</h2>
+
+    <div id="range"></div>
+    <section class="slider-range">
+        <div id="range-value-1"></div>
+        <div id="range-diff-1"></div>
+        <div id="range-value-2"></div>
+        <div id="range-diff-2"></div>
+        <div id="range-value-3"></div>
+        <div id="range-diff-3"></div>
+        <div id="range-value-4"></div>
+    </section>
+    <br>
+    <h2 class="slider-header">Manage classes</h2>
+    <div class="class-table">
+        <table>
+            <tr class="class-table-top-row">
+                <th>Class Name</th>
+                <th>Mentors #</th>
+                <th>Students #</th>
+                <th>Delete Class</th>
+            </tr>
+            <tr>
+                <td>ProgBasic</td>
+                <td>3</td>
+                <td>15</td>
+                <td><button class="delete-class-button">
+                    <img src="../static/assets/images/buttons/decline_button.png">
+                </button> </td>
+            </tr>
+            <tr>
+                <td>Java OOP</td>
+                <td>4</td>
+                <td>10</td>
+                <td><button class="delete-class-button">
+                    <img src="../static/assets/images/buttons/decline_button.png">
+                </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Web</td>
+                <td>3</td>
+                <td>14</td>
+                <td><button class="delete-class-button">
+                    <img src="../static/assets/images/buttons/decline_button.png">
+                </button> </td>
+            </tr>
+            <tr>
+                <td>Advanced</td>
+                <td>4</td>
+                <td>50</td>
+                <td><button class="delete-class-button">
+                    <img src="../static/assets/images/buttons/decline_button.png">
+                </button> </td>
+            </tr>
+        </table>
+        <button class="add-class-button">Add New Class</button>
+    </div>
+
+</section>
+
+<script src="node_modules/nouislider/distribute/nouislider.js"></script>
+<script src="node_modules/wnumb/wNumb.js"></script>
+{% include "../static/admin/admin-footer.html" %}
