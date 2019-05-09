@@ -1,6 +1,7 @@
 package com.queststore.DAO;
 
 import com.queststore.Model.Class;
+import com.queststore.Model.ClassInfo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -129,9 +130,40 @@ public class ClassDAOSql implements ClassDAO {
         }
     }
 
+    @Override
+    public List<ClassInfo> getClassesInfo() throws DaoException {
+        try (Connection connection = DBCPDataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT classes.id AS id, classes.name AS name, " +
+                            "SUM(CASE WHEN user_type_id = 2 THEN 1 ELSE 0 END) AS mentor_count, " +
+                            "SUM(CASE WHEN user_type_id = 1 THEN 1 ELSE 0 END) AS student_count " +
+                            "FROM classes " +
+                            "JOIN users " +
+                            "ON users.class_id = classes.id " +
+                            "WHERE users.is_active = true AND classes.is_active = true " +
+                            "GROUP BY classes.id, classes.name"
+            )) {
+            List<ClassInfo> classInfos = new ArrayList<>();
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()) {
+                classInfos.add(createClassInfo(resultSet));
+            }
+            return classInfos;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occur during parsing classes information");
+        }
+    }
 
     private Class createClass(ResultSet resultSet) throws SQLException {
         return new Class(resultSet.getInt("id"), resultSet.getString("name"));
+    }
+
+    private ClassInfo createClassInfo(ResultSet resultSet) throws SQLException {
+        Class klass = createClass(resultSet);
+        return new ClassInfo(klass,
+                resultSet.getInt("mentor_count"),
+                resultSet.getInt("student_count"));
     }
 
     private int getUserCountByClassId(int id, String userType) throws DaoException {
@@ -154,7 +186,6 @@ public class ClassDAOSql implements ClassDAO {
         }
     }
 
-    @Override
     public List<String> getAllClassesName() throws DaoException {
         String SQL = "SELECT name FROM classes";
         List<String> classList = new ArrayList<>();

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/assets/stylesheets/main.css" />
+    <link rel="stylesheet" href="/static/assets/stylesheets/user-card.css" />
+    <link rel="stylesheet" href="/static/Scripts/node_modules/nouislider/distribute/nouislider.css">
+</head>
+
+<body onpageshow="slider()">
+
+<header class="primary-header">
+    <div class="container">
+        <div class="sub-header">
+            <div class="logo">
+                <a href="/admin">
+                    <img src="/static/assets/images/logo.png" alt="LOGO" />
+                </a>
+            </div>
+        </div>
+        <nav class="primary-nav">
+            <ul>
+                <li><a href="/admin">Mentors</a></li>
+                <li><a href="/admin/configuration">Configuration</a></li>
+            </ul>
+            <div id="logout">
+                <a href="/logout">
+                    <img src="/static/assets/images/logout.png" alt="Logout" />
+                </a>
+            </div>
+        </nav>
+    </div>
+</header>

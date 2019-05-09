@@ -1,0 +1,43 @@
+{% include "../../static/admin/admin-header.html" %}
+
+<section class="main-info">
+    <h2 class="slider-header">Configure experience thresholds</h2>
+
+    <div id="range"></div>
+    <section class="slider-range">
+        {% for level in experienceLevels %}
+        <div {% if loop.first == false %}class="slider-value"{% endif %} id="{{ level.getId }}" data-sliderval="{{ level.getLevelStart }}">
+            {#{{ level.getName }}: #}
+            {{ level.getLevelStart }}
+            </div>
+        {% endfor %}
+    </section>
+    <br>
+    <h2 class="slider-header">Manage classes</h2>
+    <div class="class-table">
+        <table>
+            <tr class="class-table-top-row">
+                <th>Class Name</th>
+                <th>Mentors #</th>
+                <th>Students #</th>
+                <th>Delete Class</th>
+            </tr>
+            {% for classInfo in classesInfo %}
+            <tr id = "{{ classInfo.getKlass.getId }}">
+                <td>{{ classInfo.getKlass.getName }}</td>
+                <td>{{ classInfo.getMentorsCount }}</td>
+                <td>{{ classInfo.getStudentsCount }}</td>
+                <td><button class="delete-class-button">
+                        <img src="/static/assets/images/buttons/decline_button.png">
+                    </button> </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button class="add-class-button">Add New Class</button>
+    </div>
+
+</section>
+
+<script src="/static/Scripts/node_modules/nouislider/distribute/nouislider.js"></script>
+<script src="/static/Scripts/node_modules/wnumb/wNumb.js"></script>
+{% include "../../static/admin/admin-footer.html" %}

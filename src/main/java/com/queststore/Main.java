@@ -45,6 +45,9 @@ public class Main {
         server.createContext("/buy-artifact", new StudentArtifactTransaction());
         server.createContext("/claim-quest", new StudentQuestTransaction());
 
+        server.createContext("/admin", new Admin());
+        server.createContext("/admin/configuration", new AdminConfiguration());
+
 
         server.setExecutor(null); // creates a default executor
 

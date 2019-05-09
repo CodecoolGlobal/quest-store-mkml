@@ -1,0 +1,68 @@
+{% include "../../static/admin/admin-header.html" %}
+
+<section class="main-info" xmlns="http://www.w3.org/1999/html">
+
+    <div class="student-info-container">
+
+        <div class="mentor-info-table new-mentor">
+
+            <div class="user-category-name mentor-category"></div>
+
+            <div class="mentor-profile-picture">
+                <img src="/static/assets/images/mentor-card/mentor.png" alt="Mentor" class="mentor-picture" />
+            </div>
+
+            <div class="mentor-information">
+                <input type="text" name="name" placeholder="Enter mentor's name" required="required" class="new-mentor-template" />
+                <input type="email" name="email" placeholder="Enter mentor's email" required="required" class="new-mentor-template" />
+                <select class="classes-dropdown-add">
+                    {% for class in classList %}
+                    <option class="student-class-dropdown" value="{{ class.getName }}">{{ class.getName }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button class="submit-button" onclick="sendNewMentorData()" />Send</button>
+
+        </div>
+
+
+        {% for mentor in mentorsList %}
+
+        <div class="mentor-info-table">
+
+            <div class="user-category-name mentor-category"></div>
+
+            <div class="mentor-profile-picture">
+                <img src="/static/assets/images/mentor-card/mentor.png" alt="Mentor" class="mentor-picture" />
+            </div>
+
+            <div class="mentor-editable" id="{{ mentor.getId }}">
+                <ul class="mentor-information">
+                    <li class="mentor-name" contenteditable="true"> {{ mentor.getFirstName }} {{ mentor.getLastName }}</li>
+                    <li class="mentor-email" contenteditable="true">{{ mentor.getEmail }}</li>
+                    <li class="mentor-class-id" hidden>{{ mentor.getUserClass.getId }}</li>
+                    {# <li class="mentor-class" contenteditable="true">{{ mentor.getUserClass.getName }}</li>#}
+                    <select class="classes-dropdown">
+                        {% for class in classList %}
+                        <option class="student-class-dropdown" value="{{ class.getId }}"
+                                {% if mentor.getUserClass.getName == class.getName %} selected {% endif %}>{{ class.getName }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    <li class="mentors-students">
+                        <button type="button" class="mentor-students-button">Students</button>
+                    </li>
+                </ul>
+
+                <button type="submit" name="submit-button" class="submit-button" onclick="sendInfoMentorCard()">Save</button>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+</section>
+
+{% include "../../static/admin/admin-footer.html" %}
