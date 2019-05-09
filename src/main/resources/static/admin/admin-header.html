@@ -6,9 +6,10 @@
     <title>Title</title>
     <link rel="stylesheet" href="/static/assets/stylesheets/main.css" />
     <link rel="stylesheet" href="/static/assets/stylesheets/user-card.css" />
+    <link rel="stylesheet" href="/static/Scripts/node_modules/nouislider/distribute/nouislider.css">
 </head>
 
-<body>
+<body onpageshow="slider()">
 
 <header class="primary-header">
     <div class="container">
@@ -25,8 +26,8 @@
                 <li><a href="/admin/configuration">Configuration</a></li>
             </ul>
             <div id="logout">
-                <a href="/login">
-                    <img src="assets/images/logout.png" alt="Logout" />
+                <a href="/logout">
+                    <img src="/static/assets/images/logout.png" alt="Logout" />
                 </a>
             </div>
         </nav>

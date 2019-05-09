@@ -1,4 +1,4 @@
-{% include "../static/admin/admin-header.html" %}
+{% include "../../static/admin/admin-header.html" %}
 
 <section class="main-info" xmlns="http://www.w3.org/1999/html">
 
@@ -9,7 +9,7 @@
             <div class="user-category-name mentor-category"></div>
 
             <div class="mentor-profile-picture">
-                <img src="../static/assets/images/mentor-card/mentor.png" alt="Mentor" class="mentor-picture" />
+                <img src="/static/assets/images/mentor-card/mentor.png" alt="Mentor" class="mentor-picture" />
             </div>
 
             <div class="mentor-information">
@@ -28,14 +28,14 @@
         </div>
 
 
-        {% for mentor in usersList %}
+        {% for mentor in mentorsList %}
 
         <div class="mentor-info-table">
 
             <div class="user-category-name mentor-category"></div>
 
             <div class="mentor-profile-picture">
-                <img src="../static/assets/images/mentor-card/mentor.png" alt="Mentor" class="mentor-picture" />
+                <img src="/static/assets/images/mentor-card/mentor.png" alt="Mentor" class="mentor-picture" />
             </div>
 
             <div class="mentor-editable" id="{{ mentor.getId }}">
@@ -65,4 +65,4 @@
 
 </section>
 
-{% include "../static/admin/admin-footer.html" %}
+{% include "../../static/admin/admin-footer.html" %}

@@ -86,6 +86,12 @@ function dropdownMenu() {
 function slider(){
     var range = document.getElementById('range');
 
+    var valueContainers = document.getElementsByClassName("slider-value");
+    let handlesStart = [];
+    for (let con of valueContainers) {
+        handlesStart.push(con.dataset.sliderval);
+    }
+
     noUiSlider.create(range, {
 
         range: {
@@ -96,7 +102,7 @@ function slider(){
         step: 20,
 
         // Handles start at ...
-        start: [1000, 2000, 3000, 4000],
+        start: handlesStart,
 
         // ... must be at least 300 apart
         margin: 200,
@@ -105,7 +111,7 @@ function slider(){
         limit: 3000,
 
         // Display colored bars between handles
-        connect: [false, true, true, true, true],
+        // connect: [false, true, true, true, true],
 
         // Put '0' at the bottom of the slider
         orientation: 'horizontal',
@@ -130,25 +136,8 @@ function slider(){
     range.style.height = '400px';
     range.style.margin = '0 auto 30px';
 
-    var valuesDivs = [
-        document.getElementById('range-value-1'),
-        document.getElementById('range-value-2'),
-        document.getElementById('range-value-3'),
-        document.getElementById('range-value-4')
-    ];
-
-    var diffDivs = [
-        document.getElementById('range-diff-1'),
-        document.getElementById('range-diff-2'),
-        document.getElementById('range-diff-3')
-    ];
-
-// When the slider value changes, update the input and span
     range.noUiSlider.on('update', function (values, handle) {
-        valuesDivs[handle].innerHTML = values[handle];
-        diffDivs[0].innerHTML = values[1] - values[0];
-        diffDivs[1].innerHTML = values[2] - values[1];
-        diffDivs[2].innerHTML = values[3] - values[2];
+        valueContainers[handle].innerHTML = values[handle];
     });
 
     var connect = range.querySelectorAll('.noUi-connect');

@@ -1,6 +1,7 @@
 package com.queststore.DAO;
 
 import com.queststore.Model.Class;
+import com.queststore.Model.ClassInfo;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,5 +26,5 @@ public interface ClassDAO {
 
     Optional<Integer> getClassId(String className) throws  DaoException;
 
-
+    List<ClassInfo> getClassesInfo() throws DaoException;
 }
