@@ -31,6 +31,8 @@ public class Main {
         server.createContext("/mentor-students-addupdate", new UserCardUpdate());
         server.createContext("/mentor-students-add", new UserCardAdd());
         server.createContext("/mentor-quests", new MentorQuests());
+        server.createContext("/mentor-addquests", new MentorAddQuests());
+
         server.createContext("/mentor-achieved-quest", new MentorAchievedQuest());
 
         LoginDao dao = new LoginDao();

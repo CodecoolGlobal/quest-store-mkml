@@ -30,6 +30,22 @@ function addNewItemCard() {
     location.reload();
 }
 
+
+function addNewQuestCard() {
+    let itemCardDescrip = document.getElementById("newDescription").innerHTML;
+    let itemCardPriceBox = document.getElementById("newPrice").innerHTML;
+    let itemCardText = document.getElementById("newCardText").innerHTML;
+
+    let itemsList = [itemCardDescrip, itemCardPriceBox, itemCardText];
+    let request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:8000/mentor-add-items");
+    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+    request.send(JSON.stringify(itemsList));
+
+    location.reload();
+}
+
+
 function sendInfoItemsCard(e) {
     let content = document.getElementById(e);
     let itemCardId = e;
