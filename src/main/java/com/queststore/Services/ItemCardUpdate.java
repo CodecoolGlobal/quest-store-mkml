@@ -61,7 +61,5 @@ public class ItemCardUpdate implements HttpHandler {
         cardDAO.update(createCart);
         cardList.addAll(cardDAO.getCardsOfType(cardDAO.getCardTypeById(artifactTypeId)));
         return cardList;
-
     }
-
 }

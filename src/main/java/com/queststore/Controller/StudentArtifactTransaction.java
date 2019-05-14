@@ -12,6 +12,7 @@ public class StudentArtifactTransaction extends StudentTransaction {
 
     private UserService userService = new UserService(new UserDAOSql(), new ClassDAOSql(), new TransactionDAOSql());
 
+    //To test
     boolean canBeBought(Card card, User user) throws DaoException {
         int balance = userService.getCoinBalance(user.getId());
         return balance >= card.getValue();

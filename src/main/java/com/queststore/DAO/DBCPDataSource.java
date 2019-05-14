@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 class DBCPDataSource {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/queststore";
-    private static final String USER = "postgres";
-    private static final String PASS = "12345";
+    private static final String URL = "jdbc:postgresql://localhost:5432/public";
+    private static final String USER = "gosteek";
+    private static final String PASS = "Patryk342351";
     private static BasicDataSource ds = new BasicDataSource();
 
     static {

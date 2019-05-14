@@ -12,7 +12,7 @@ public class CookieHelper {
 
     private static final String SESSION_COOKIE_NAME = "session_id";
 
-    private List<HttpCookie> parseCookies(String cookieStr) {
+    public List<HttpCookie> parseCookies(String cookieStr) {
         List<HttpCookie> cookies = new ArrayList<>();
 
         if (cookieStr == null || cookieStr.isEmpty()) {
@@ -23,7 +23,6 @@ public class CookieHelper {
             String[] pair = cookie.split("=");
             cookies.add(new HttpCookie(pair[0].trim(), pair[1].trim().replaceAll("\"", "")));
         }
-
         return cookies;
     }
 
@@ -43,6 +42,7 @@ public class CookieHelper {
 
     public Optional<HttpCookie> getSessionIdCookie(HttpExchange exchange) {
         String cookieStr = exchange.getRequestHeaders().getFirst("Cookie");
+        System.out.println(cookieStr);
         List<HttpCookie> cookies = parseCookies(cookieStr);
         return getCookieByName(cookies);
     }
