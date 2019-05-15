@@ -19,6 +19,15 @@ import java.util.List;
 import java.util.Random;
 
 public class UserCardAdd implements HttpHandler {
+    private ClassDAO classDAO;
+
+    public UserCardAdd(ClassDAO classDAO) {
+        this.classDAO = classDAO;
+    }
+
+    public UserCardAdd() {
+        this.classDAO = new ClassDAOSql();
+    }
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -70,8 +79,7 @@ public class UserCardAdd implements HttpHandler {
         return userList;
     }
 
-    private User createStudent (List<String> items) throws DaoException {
-        ClassDAO classDAO = new ClassDAOSql();
+    public User createStudent (List<String> items) throws DaoException {
 
         User newUser = new User.UserBuilder()
                 .firstName(items.get(items.size()-2))

@@ -1,6 +1,6 @@
 package com.queststore.helpers;
 
-import org.junit.Test;
+import org.junit.*;
 
 import java.net.HttpCookie;
 import java.util.List;

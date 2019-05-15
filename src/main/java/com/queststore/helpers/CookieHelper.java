@@ -26,7 +26,7 @@ public class CookieHelper {
         return cookies;
     }
 
-    private Optional<HttpCookie> getCookieByName(List<HttpCookie> cookies) {
+    public Optional<HttpCookie> getCookieByName(List<HttpCookie> cookies) {
         for (HttpCookie cookie : cookies) {
             if (cookie.getName().equals(SESSION_COOKIE_NAME)) {
                 return Optional.of(cookie);
