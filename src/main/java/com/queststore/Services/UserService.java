@@ -17,6 +17,7 @@ public class UserService {
     private ClassDAO classDAO;
     private TransactionDAO transactionDAO;
     private ConfigurationDAO configurationDAOsql = new ConfigurationDAOSql();
+
     public UserService(UserDAO userDAO, ClassDAO classDAO, TransactionDAO transactionDAO) {
         this.userDAO = userDAO;
         this.classDAO = classDAO;
@@ -58,7 +59,7 @@ public class UserService {
         return coinBalance;
     }
 
-    public String calculateUserLvl(int userId) throws DaoException{
+    public String calculateUserLvl(int userId) throws DaoException {
         List<Transaction> questsList = new ArrayList<>();
         int questId = 1;
         questsList.addAll(transactionDAO.getTransactions(userId, questId));
