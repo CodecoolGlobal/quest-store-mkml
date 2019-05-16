@@ -16,12 +16,18 @@ public class UserService {
     private UserDAO userDAO;
     private ClassDAO classDAO;
     private TransactionDAO transactionDAO;
-    private ConfigurationDAO configurationDAOsql = new ConfigurationDAOSql();
+    private ConfigurationDAO configurationDAOsql;
 
     public UserService(UserDAO userDAO, ClassDAO classDAO, TransactionDAO transactionDAO) {
         this.userDAO = userDAO;
         this.classDAO = classDAO;
         this.transactionDAO = transactionDAO;
+        if(configurationDAOsql==null) this.configurationDAOsql = new ConfigurationDAOSql();
+    }
+
+    public UserService(UserDAO userDAO, ClassDAO classDAO, TransactionDAO transactionDAO, ConfigurationDAO configurationDAO) {
+        this(userDAO, classDAO, transactionDAO);
+        this.configurationDAOsql = configurationDAO;
     }
 
     List<User> getAllStudentsInMentorClass(int mentorId) throws DaoException {
