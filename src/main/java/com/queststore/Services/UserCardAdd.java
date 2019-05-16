@@ -79,7 +79,7 @@ public class UserCardAdd implements HttpHandler {
         return userList;
     }
 
-    public User createStudent (List<String> items) throws DaoException {
+    User createStudent (List<String> items) throws DaoException {
 
         User newUser = new User.UserBuilder()
                 .firstName(items.get(items.size()-2))

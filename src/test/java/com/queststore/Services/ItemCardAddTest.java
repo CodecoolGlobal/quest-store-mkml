@@ -12,9 +12,8 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
-public class ItemCardAddTest{
+public class ItemCardAddTest {
 
     @Test
     public void addCardToDB() throws DaoException {

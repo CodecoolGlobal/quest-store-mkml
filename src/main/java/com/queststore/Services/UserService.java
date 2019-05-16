@@ -25,7 +25,7 @@ public class UserService {
         if(configurationDAOsql==null) this.configurationDAOsql = new ConfigurationDAOSql();
     }
 
-    public UserService(UserDAO userDAO, ClassDAO classDAO, TransactionDAO transactionDAO, ConfigurationDAO configurationDAO) {
+    UserService(UserDAO userDAO, ClassDAO classDAO, TransactionDAO transactionDAO, ConfigurationDAO configurationDAO) {
         this(userDAO, classDAO, transactionDAO);
         this.configurationDAOsql = configurationDAO;
     }
@@ -49,7 +49,7 @@ public class UserService {
         questsList.addAll(transactionDAO.getTransactions(userId, questId));
         artifactsList.addAll(transactionDAO.getTransactions(userId, artifactId));
 
-        Integer coinBalance = 0;
+        int coinBalance = 0;
         for (Transaction transaction : questsList) {
             if (transaction.getTransactionStatus().getName().equals("accepted")) {
                 coinBalance += transaction.getCost();
@@ -70,7 +70,7 @@ public class UserService {
         int questId = 1;
         questsList.addAll(transactionDAO.getTransactions(userId, questId));
 
-        Integer coinBalance = 0;
+        int coinBalance = 0;
         for (Transaction transaction : questsList) {
             if (transaction.getTransactionStatus().getName().equals("accepted")) {
                 coinBalance += transaction.getCost();

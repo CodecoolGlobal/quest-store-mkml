@@ -29,7 +29,8 @@ public class UserServiceTest {
 
         assertEquals(10, userService.getCoinBalance(user.getId()));
     }
-//Integer id, Date date, User user, Card card, TransactionStatus transactionStatus, int cost) {
+
+    //Integer id, Date date, User user, Card card, TransactionStatus transactionStatus, int cost) {
     @Test
     public void calculateUserLvl() throws DaoException {
         User user = new User(100, "kuba", "buba", "kubabuba@kupa.pl", null, null, new UserType(0, "student"));
