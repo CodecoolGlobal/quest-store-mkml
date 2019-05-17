@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -30,10 +29,8 @@ public class UserServiceTest {
         assertEquals(10, userService.getCoinBalance(user.getId()));
     }
 
-    //Integer id, Date date, User user, Card card, TransactionStatus transactionStatus, int cost) {
     @Test
     public void calculateUserLvl() throws DaoException {
-        User user = new User(100, "kuba", "buba", "kubabuba@kupa.pl", null, null, new UserType(0, "student"));
         TransactionDAO transactionDAOMock = getTransactionDAOMock();
         ConfigurationDAO configurationDAOMock = getConfigurationDAOMock();
 
@@ -49,7 +46,6 @@ public class UserServiceTest {
 
     private TransactionDAO getTransactionDAOMock() throws DaoException {
         TransactionDAO transactionDAOMock = mock(TransactionDAOSql.class);
-        UserType userType = new UserType(1, "accepted");
         List<Transaction> transactionList = new ArrayList<>();
         transactionList.add(new Transaction(
                 0,

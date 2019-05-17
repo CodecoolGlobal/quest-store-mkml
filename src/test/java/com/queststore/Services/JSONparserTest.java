@@ -29,7 +29,7 @@ public class JSONparserTest {
     }
 
     @Test
-    public void parseJSONlistToArray() throws java.io.IOException {
+    void parseJSONlistToArray() throws java.io.IOException {
         String json = "[\n" +
                 "        \"my/path/old\",\n" +
                 "        \"my/path/new\"\n" +
@@ -40,7 +40,7 @@ public class JSONparserTest {
     }
 
     @Test
-    public void convertJSONtoString() throws IOException {
+    void convertJSONtoString() throws IOException {
         HttpExchange httpExchangeMock = mock(HttpExchange.class);
         String bodyString = "sampleRequestBody";
         InputStream inputStream = new ByteArrayInputStream(bodyString.getBytes());
