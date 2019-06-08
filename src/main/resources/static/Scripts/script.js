@@ -165,6 +165,24 @@ function slider(){
 
 }
 
+function getSliderValues(){
+    var range = document.getElementById('range');
+
+    var valueContainers = document.getElementsByClassName("slider-value");
+    let sliderValues = {
+            "0":valueContainers[0].innerHTML,
+            "1":valueContainers[1].innerHTML,
+            "2":valueContainers[2].innerHTML};
+
+    let request = new XMLHttpRequest();
+    request.onload = handleBuyResponse;
+    request.open("POST", getLocation() + "admin/change-slider-value", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(sliderValues));
+
+
+}
+
 function sendArtifactToBuy(artifactId) {
     let buyData = {"id":artifactId};
     let request = new XMLHttpRequest();
