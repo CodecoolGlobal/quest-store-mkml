@@ -49,6 +49,8 @@ public class Main {
 
         server.createContext("/admin", new Admin());
         server.createContext("/admin/configuration", new AdminConfiguration());
+        server.createContext("/admin/change-slider-value", new AdminSliderConfiguration());
+
 
 
         server.setExecutor(null); // creates a default executor

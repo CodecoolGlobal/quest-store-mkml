@@ -28,6 +28,24 @@ public class ConfigurationDAOSql implements ConfigurationDAO {
             throw new DaoException("Can not create Levels List");
         }
     }
+    @Override
+    public boolean changeExperienceLvl(List<Integer> values) throws DaoException{
+        try (Connection connection = DBCPDataSource.getConnection()){
+            for (int i = 0; i<values.size(); i++){
+
+                PreparedStatement statement = connection.prepareStatement(
+                        "UPDATE levels SET level_start = ? WHERE id = ?;");
+                statement.setInt(1, values.get(i));
+                statement.setInt(2, i+2);
+                statement.execute();
+            }
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     private ExperienceLevel createExperienceLevelObject(ResultSet resultSet) throws SQLException{
         return new ExperienceLevel(resultSet.getInt("id"), resultSet.getString("name")
