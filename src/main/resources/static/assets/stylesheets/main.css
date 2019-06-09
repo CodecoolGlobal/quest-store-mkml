@@ -344,14 +344,25 @@ table {
 
 }
 
-.delete-class-button{
+.delete-class-button {
     border-style: none;
     background-color: transparent;
-    display: block;
+    display: inline;
     margin: 10px auto;
 
 }
 .delete-class-button img{
+    width: 40px;
+}
+
+.activate-class-button{
+    border-style: none;
+    background-color: transparent;
+    display: inline;
+    margin: 10px auto;
+}
+
+.activate-class-button img{
     width: 40px;
 }
 

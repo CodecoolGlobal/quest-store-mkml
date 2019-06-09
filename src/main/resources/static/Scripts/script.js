@@ -247,3 +247,28 @@ function addNewClass() {
     //     }
 
 }
+
+function deleteClass(objButton){
+    let buttonId = objButton.value;
+    let jsonClassName = {"deActivateId": buttonId};
+    let request = new XMLHttpRequest();
+    request.onload = handleBuyResponse;
+    request.open("POST", getLocation() + "admin/delete-class", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(jsonClassName));
+
+    location.reload();
+
+}
+
+function activateClass(objButton){
+    let buttonId = objButton.value;
+    let jsonClassName = {"activateId": buttonId};
+    let request = new XMLHttpRequest();
+    request.onload = handleBuyResponse;
+    request.open("POST", getLocation() + "admin/delete-class", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(jsonClassName));
+
+    location.reload();
+}

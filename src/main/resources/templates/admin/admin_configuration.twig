@@ -25,7 +25,7 @@
                 <th>Mentors #</th>
                 <th>Students #</th>
                 <th>Is active</th>
-                <th>Delete Class</th>
+                <th>Deactivate / activate Class</th>
             </tr>
             {% for classInfo in classesInfo %}
             <tr id = "{{ classInfo.getKlass.getId }}">
@@ -33,9 +33,13 @@
                 <td>{{ classInfo.getMentorsCount }}</td>
                 <td>{{ classInfo.getStudentsCount }}</td>
                 <td>{{ classInfo.getIsActive }}</td>
-                <td><button class="delete-class-button">
+                <td><button value="{{ classInfo.getId }}" type="submit" class="delete-class-button" onclick="deleteClass(this)">
                         <img src="/static/assets/images/buttons/decline_button.png">
-                    </button> </td>
+                    </button>
+                    <button value="{{ classInfo.getId }}" type="submit" class="activate-class-button" onclick="activateClass(this)">
+                        <img src="/static/assets/images/buttons/accept_button.png">
+                    </button>
+                </td>
             </tr>
             {% endfor %}
         </table>

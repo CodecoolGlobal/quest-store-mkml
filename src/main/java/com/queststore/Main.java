@@ -51,6 +51,7 @@ public class Main {
         server.createContext("/admin/configuration", new AdminConfiguration());
         server.createContext("/admin/change-slider-value", new AdminSliderConfiguration());
         server.createContext("/admin/change-add-class", new AdminAddClass());
+        server.createContext("/admin/delete-class", new AdminChangeActiveClass());
 
 
 
