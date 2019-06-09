@@ -24,20 +24,32 @@
                 <th>Class Name</th>
                 <th>Mentors #</th>
                 <th>Students #</th>
+                <th>Is active</th>
                 <th>Delete Class</th>
             </tr>
             {% for classInfo in classesInfo %}
             <tr id = "{{ classInfo.getKlass.getId }}">
-                <td>{{ classInfo.getKlass.getName }}</td>
+                <td class="classDisplayName">{{ classInfo.getKlass.getName }}</td>
                 <td>{{ classInfo.getMentorsCount }}</td>
                 <td>{{ classInfo.getStudentsCount }}</td>
+                <td>{{ classInfo.getIsActive }}</td>
                 <td><button class="delete-class-button">
                         <img src="/static/assets/images/buttons/decline_button.png">
                     </button> </td>
             </tr>
             {% endfor %}
         </table>
-        <button class="add-class-button">Add New Class</button>
+        <button class="open-button" onclick="openForm()">New Class</button>
+
+        <div class="form-popup" id="myForm">
+            <form class="form-container">
+                <label for="className"><b>Class name</b></label>
+                <input type="text" id="className" placeholder="Enter Class name" class="inputClassName" name="className" required>
+
+                <button type="submit" class="btn" onclick="addNewClass()">Create new</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+        </div>
     </div>
 
 </section>

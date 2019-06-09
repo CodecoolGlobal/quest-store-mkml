@@ -8,4 +8,5 @@ public interface ConfigurationDAO {
 
     List<ExperienceLevel> getAllLevels() throws DaoException;
     public boolean changeExperienceLvl(List<Integer> values) throws DaoException;
+
 }

@@ -20,7 +20,8 @@ public class UserDAOSql implements UserDAO {
     public static void main(String[] args) {
         UserDAO dao = new UserDAOSql();
         try {
-            dao.setTestPassword();
+            dao.add(new User(1,"Admin", "Nazwisko", "admin@admin", new Class(1, "java"),
+                    null, new UserType(1, "admin")), "kamil");
         } catch (DaoException e) {
             e.printStackTrace();
         }
@@ -151,6 +152,7 @@ public class UserDAOSql implements UserDAO {
             throw new DaoException("An error occured during getting students from class from db");
         }
     }
+
 
     @Override
     public void add(User user, String password) throws DaoException {

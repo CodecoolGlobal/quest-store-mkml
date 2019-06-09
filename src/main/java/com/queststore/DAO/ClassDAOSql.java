@@ -136,11 +136,12 @@ public class ClassDAOSql implements ClassDAO {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT classes.id AS id, classes.name AS name, " +
                             "SUM(CASE WHEN user_type_id = 2 THEN 1 ELSE 0 END) AS mentor_count, " +
-                            "SUM(CASE WHEN user_type_id = 1 THEN 1 ELSE 0 END) AS student_count " +
+                            "SUM(CASE WHEN user_type_id = 1 THEN 1 ELSE 0 END) AS student_count, " +
+                            "classes.is_active " +
                             "FROM classes " +
-                            "JOIN users " +
+                            "FULL OUTER JOIN users " +
                             "ON users.class_id = classes.id " +
-                            "WHERE users.is_active = true AND classes.is_active = true " +
+//                            "WHERE users.is_active = true AND classes.is_active = true " +
                             "GROUP BY classes.id, classes.name"
             )) {
             List<ClassInfo> classInfos = new ArrayList<>();
@@ -163,7 +164,8 @@ public class ClassDAOSql implements ClassDAO {
         Class klass = createClass(resultSet);
         return new ClassInfo(klass,
                 resultSet.getInt("mentor_count"),
-                resultSet.getInt("student_count"));
+                resultSet.getInt("student_count"),
+                resultSet.getBoolean("is_active"));
     }
 
     private int getUserCountByClassId(int id, String userType) throws DaoException {
