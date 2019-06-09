@@ -27,4 +27,6 @@ public interface ClassDAO {
     Optional<Integer> getClassId(String className) throws  DaoException;
 
     List<ClassInfo> getClassesInfo() throws DaoException;
+
+    void activate(Integer activateId) throws DaoException;
 }

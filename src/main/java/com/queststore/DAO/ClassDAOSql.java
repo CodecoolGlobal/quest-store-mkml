@@ -136,11 +136,11 @@ public class ClassDAOSql implements ClassDAO {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT classes.id AS id, classes.name AS name, " +
                             "SUM(CASE WHEN user_type_id = 2 THEN 1 ELSE 0 END) AS mentor_count, " +
-                            "SUM(CASE WHEN user_type_id = 1 THEN 1 ELSE 0 END) AS student_count " +
+                            "SUM(CASE WHEN user_type_id = 1 THEN 1 ELSE 0 END) AS student_count, " +
+                            "classes.is_active " +
                             "FROM classes " +
-                            "JOIN users " +
+                            "FULL OUTER JOIN users " +
                             "ON users.class_id = classes.id " +
-                            "WHERE users.is_active = true AND classes.is_active = true " +
                             "GROUP BY classes.id, classes.name"
             )) {
             List<ClassInfo> classInfos = new ArrayList<>();
@@ -161,9 +161,12 @@ public class ClassDAOSql implements ClassDAO {
 
     private ClassInfo createClassInfo(ResultSet resultSet) throws SQLException {
         Class klass = createClass(resultSet);
-        return new ClassInfo(klass,
+        return new ClassInfo(
+                resultSet.getInt("Id"),
+                klass,
                 resultSet.getInt("mentor_count"),
-                resultSet.getInt("student_count"));
+                resultSet.getInt("student_count"),
+                resultSet.getBoolean("is_active"));
     }
 
     private int getUserCountByClassId(int id, String userType) throws DaoException {
@@ -199,6 +202,19 @@ public class ClassDAOSql implements ClassDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("Issue wit Classes name list");
+        }
+    }
+
+    @Override
+    public void activate(Integer activateId) throws DaoException {
+        try (Connection connection = DBCPDataSource.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("UPDATE classes SET is_active = TRUE " +
+                    "WHERE id = ?;");
+            statement.setInt(1, activateId);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("An error occured during activate class");
         }
     }
 }

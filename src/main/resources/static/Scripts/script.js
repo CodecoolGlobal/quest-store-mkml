@@ -215,3 +215,60 @@ function getLocation() {
     let loc = window.location;
     return loc.protocol + "\/\/" + loc.host + "\/";
 }
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+
+function addNewClass() {
+    var className = document.getElementById('className').value;
+    var classDisplayName = document.getElementsByClassName('classDisplayName');
+    console.log(classDisplayName[1].innerHTML);
+    console.log(className);
+
+    let jsonClassName = {"name": className};
+
+    let request = new XMLHttpRequest();
+    request.onload = handleBuyResponse;
+    request.open("POST", getLocation() + "admin/change-add-class", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(jsonClassName));
+
+
+    //TODO:add input validation (duplicate)
+
+    // for (let i = 0; i < classDisplayName.size; i++){
+    //     if(classDisplayName[i].innerHTML == className.trim()){
+    //
+    //     }
+
+}
+
+function deleteClass(objButton){
+    let buttonId = objButton.value;
+    let jsonClassName = {"deActivateId": buttonId};
+    let request = new XMLHttpRequest();
+    request.onload = handleBuyResponse;
+    request.open("POST", getLocation() + "admin/delete-class", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(jsonClassName));
+
+    location.reload();
+
+}
+
+function activateClass(objButton){
+    let buttonId = objButton.value;
+    let jsonClassName = {"activateId": buttonId};
+    let request = new XMLHttpRequest();
+    request.onload = handleBuyResponse;
+    request.open("POST", getLocation() + "admin/delete-class", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(jsonClassName));
+
+    location.reload();
+}

@@ -51,7 +51,7 @@ public class AdminConfiguration implements HttpHandler {
         String response = template.render(model);
 
         // send the results to a the client
-        httpExchange.sendResponseHeaders(200, response.length());
+        httpExchange.sendResponseHeaders(200, response.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();

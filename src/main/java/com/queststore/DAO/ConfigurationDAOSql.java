@@ -47,6 +47,7 @@ public class ConfigurationDAOSql implements ConfigurationDAO {
         }
     }
 
+
     private ExperienceLevel createExperienceLevelObject(ResultSet resultSet) throws SQLException{
         return new ExperienceLevel(resultSet.getInt("id"), resultSet.getString("name")
                 , resultSet.getInt("level_start"));
