@@ -17,6 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemCardAdd implements HttpHandler {
+    private CardDAO cardDAO;
+
+    ItemCardAdd(CardDAO cardDAO) {
+        this.cardDAO = cardDAO;
+    }
+
+    public ItemCardAdd() {
+        this.cardDAO = new CardDAOSql();
+    }
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -53,14 +62,12 @@ public class ItemCardAdd implements HttpHandler {
     }
 
     public List<Card> addCardToDB(List<String> items) throws DaoException {
-
-        CardDAO cardDAO = new CardDAOSql();
         List<Card> cardList = new ArrayList<>();
         int artifactTypeId = 2;
         Card newCard = new Card(4, items.get(0), items.get(2), new Categories(1, "easy"), null,
                 Integer.parseInt((String) items.get(1)), new CardTypes(artifactTypeId, "artifact"), true);
         cardDAO.add(newCard);
-        cardList.addAll(cardDAO.getCardsOfType(cardDAO.getCardTypeById(artifactTypeId)));
+        cardList.add(newCard);
         return cardList;
     }
 
